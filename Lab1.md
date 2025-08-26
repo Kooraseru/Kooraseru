@@ -5,7 +5,7 @@
 
 ## Part 1 - GitHub Profile
 
-1. [your_github_username_here's GitHub Profile](https://github.com/Kooraseru)
+1. [My Profile!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!](https://github.com/Kooraseru)
 
 ## Part 2 - Research
 
