@@ -5,20 +5,20 @@
 
 ## Part 1 - GitHub Profile
 
-1. [My Profile!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!](https://github.com/Kooraseru)
+1. [My Profile!](https://github.com/Kooraseru)
 
 ## Part 2 - Research
 
 | Windows | Linux / Mac | Action |
 | ---     | ---         | ---    |
-| help    | man         |        |
-| Get-Location | pwd    |        |
-| Get-ChildItem | ls    |        |
-| mkdir   | mkdir       |        |
-| Set-Location | cd     |        |
-| New-Item | touch      |        |
-| Move-Item | mv        |        |
-| Copy-Item | cp        |        |
+| help    | man         | Displays help about Windows PowerShell cmdlets and concepts. |
+| Get-Location | pwd    | Identifies the current directory. |
+| Get-ChildItem | ls    | Lists the Child-Items of the current directory. |
+| mkdir   | mkdir       | Creates a new directory (with a given name) in the existing directory. |
+| Set-Location | cd     | Changes the current directory to a given memory address. |
+| New-Item | touch      | Creates a new item. |
+| Move-Item | mv        | Moves an item from it's current directory to a new directory. |
+| Copy-Item | cp        | Creates |
 | Remove-Item | rm      |        |
 | notepad.exe | vim     |        |
 
@@ -29,7 +29,7 @@ My OS is:
 - [] Linux
 - [] Mac
 
-My Command Line Shell is: 
+My Command Line Shell is: PowerShell
 
 ### Navigating My OS on the Command Line
 
