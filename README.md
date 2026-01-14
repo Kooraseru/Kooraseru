@@ -8,7 +8,7 @@
     <div>
         <table align="center" width="100%" height="100%" >
             <tr>
-                <td>[![Ashutosh's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=ashutosh00710&custom_title=This%20is%20a%20title&hide_border=true)](https://github.com/ashutosh00710/github-readme-activity-graph)</td>
+                <td>[![Kooraseru's recent contributions](https://github-readme-activity-graph.vercel.app/graph?username=Kooraseru&custom_title=This%20is%20a%20title&hide_border=true)](https://github.com/Kooraseru/github-readme-activity-graph)</td>
             </tr>
         </table>
     </div>
