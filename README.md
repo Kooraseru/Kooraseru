@@ -12,9 +12,9 @@
                     Hello there! I'm Kooraseru! I do developer commissions and am currently a Computer Engineering and Computer Science student at Wright State University!
                 </p>
             </div>
-            <div style="border: 1px solid #333333; padding: 4px; margin: 8px; flex: 1; display: flex; align-items: center;" align="right">
+            <!-- <div style="border: 1px solid #333333; padding: 4px; margin: 8px; flex: 1; display: flex; align-items: center;" align="right">
                 <img src="https://github-readme-stats-fast.vercel.app/api?username=Kooraseru&theme=transparent&hide_border=true&title_color=FFFFFF&text_color=FFFFFF&icon_color=FFFFFF"/>
-            </div>
+            </div> -->
         </div>
     </div>
     <div style="margin-bottom: 8px;">
