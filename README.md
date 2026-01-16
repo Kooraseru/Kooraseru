@@ -1,7 +1,7 @@
 <!-- Styles are defined in styles.css for reference, but GitHub doesn't support external CSS -->
 <!-- All styling is applied inline below for GitHub compatibility -->
 
-<h1>Hiya! <img src="Fumo.jpg" alt="icon" style="height:1em; vertical-align:middle;"></h1>
+<h1>Hiya! <img src="Resources (ignore plz)\Fumo.jpg" alt="icon" style="height:1em; vertical-align:middle;"></h1>
 
 <div style="align: center; text-align: center;">
     <div style="margin-bottom: 8px;">
