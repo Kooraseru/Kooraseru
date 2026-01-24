@@ -1,53 +1,60 @@
-<!-- Styles are defined in styles.css for reference, but GitHub doesn't support external CSS -->
-<!-- All styling is applied inline below for GitHub compatibility -->
+<!--
+Hi there! If you're here wondering how this README.md was formatted, just know that you can mix HTML and markdown for github's README's!
 
-<h1>Hiya! <img src="Resources (ignore plz)\Fumo.jpg" alt="icon" style="height:1em; vertical-align:middle;"></h1>
+Feel free to copy anything here if you want to copy the exact formatting of something!
 
-<div style="align: center; text-align: center;">
-    <div style="margin-bottom: 8px;">
-        <h2 style="margin-bottom: 8px;">WELCOME TO MY PAGE!!!!!!!!!</h2>
-        <div style="display: flex; align-items: stretch; gap: 0;">
-            <div style="border: 1px solid #333333; padding: 4px; margin: 8px; flex: 1; display: flex; align-items: center;" align="left">
-                <p style="margin:0; font-size: 2vw; text-align:center">
-                    Hello there! I'm Kooraseru! I do developer commissions and am currently a Computer Engineering and Computer Science student at Wright State University!
-                </p>
-            </div>
-            <!-- <div style="border: 1px solid #333333; padding: 4px; margin: 8px; flex: 1; display: flex; align-items: center;" align="right">
-                <img src="https://github-readme-stats-fast.vercel.app/api?username=Kooraseru&theme=transparent&hide_border=true&title_color=FFFFFF&text_color=FFFFFF&icon_color=FFFFFF"/>
-            </div> -->
-        </div>
-    </div>
-    <div style="margin-bottom: 8px;">
-        <h2 style="margin-bottom: 8px;">MY SOCIALS</h2>
-        <div style="display: flex; flex-wrap: nowrap; gap: 8px; justify-content: center; align-items: center; margin-top: 8px;">
-            <!-- Whoever made it so I can't have CSS styles as I can't fix the hover, I hope your pillow is warm at night. -->
-            <a href="https://discord.com/users/584894715917369349" style="text-decoration: none; display: inline-block; flex-shrink: 1;">
-                <img style="display: block; height: 2em; vertical-align: middle;" src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white">
-            </a>
-            <a href="https://x.com/Kooraseru" style="text-decoration: none; display: inline-block; flex-shrink: 1;">
-                <img style="display: block; height: 2em; vertical-align: middle;" src="https://img.shields.io/badge/X.com-000000?style=for-the-badge&logo=x&logoColor=white">
-            </a>
-            <a href="https://www.youtube.com/@Kooraseru" style="text-decoration: none; display: inline-block; flex-shrink: 1;">
-                <img style="display: block; height: 2em; vertical-align: middle;" src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white">
-            </a>
-            <a href="https://www.roblox.com/users/3294832549/profile" style="text-decoration: none; display: inline-block; flex-shrink: 1;">
-                <img style="display: block; height: 2em; vertical-align: middle;" src="https://img.shields.io/badge/Roblox-000000?style=for-the-badge&logo=roblox&logoColor=white">
-            </a>
-        </div>
-    </div>
-    <div style="margin-bottom: 8px;">
-        <h2 style="margin-bottom: 8px;">LANGUAGES AND TOOLS</h2>
-        <div style="display: flex; flex-wrap: nowrap; gap: 8px; justify-content: center; align-items: center; margin-top: 8px;">
-            <img style="display: block; height: 2em; vertical-align: middle;" src="https://techstack-generator.vercel.app/python-icon.svg">
-            <img style="display: block; height: 2em; vertical-align: middle;" src="https://techstack-generator.vercel.app/java-icon.svg">
-            <img style="display: block; height: 2em; vertical-align: middle;" src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Lua-Logo.svg">
-            <img style="display: block; height: 2em; vertical-align: middle;" src="https://techstack-generator.vercel.app/cpp-icon.svg">
-        </div>
-    </div>
-    <div style="margin-bottom: 8px;">
-        <h2 style="margin-bottom: 8px;">CURRENT ACTIVITY</h2>
-        <div style="border: 1px solid #333333; padding: 4px; margin: 8px;">
-            <img style="width: 100%; margin-top: 8px;" src="https://github-readme-activity-graph.vercel.app/graph?username=Kooraseru&hide_title=true&hide_border=true&color=FFFFFF&bg_color=0d111700&point=FFFFFF&line=FFFFFF"/>
-        </div>
-    </div>
-</div>
+Here's the tools used to display some of the awesome displays on the profile:
+https://github-readme-stats-fast.vercel.app
+https://shields.io/badges
+https://github-readme-activity-graph.vercel.app
+-->
+
+<h1>Hiya! <img src="https://media.tenor.com/iora7DooHl0AAAAM/vkay-hmn.gif" alt="icon" style="height:1em; vertical-align:middle;"></h1>
+
+Hello there! I'm **Kooraseru**! I do developer commissions and am currently a Computer Engineering and Computer Science student at Wright State University!
+
+<!-- ![GitHub Stats](https://github-readme-stats-fast.vercel.app/api?username=Kooraseru&theme=transparent&hide_border=true&title_color=FFFFFF&text_color=FFFFFF&icon_color=FFFFFF) -->
+
+![GitHub Sponsors](https://img.shields.io/github/sponsors/Kooraseru?style=for-the-badge)
+
+## My Socials
+[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/users/584894715917369349)
+[![X.com](https://img.shields.io/badge/X.com-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/Kooraseru)
+[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@Kooraseru)
+[![Roblox](https://img.shields.io/badge/Roblox-000000?style=for-the-badge&logo=roblox&logoColor=white)](https://www.roblox.com/users/3294832549/profile)
+
+<!--
+Sorry to whoever is reading this and wondering: wtf is with the length of the Java URL???
+
+In short, since there wasn't an open stacks image this is the Base64 conversion of a svg file. If you're wondering how to convert an image to Base64, there's a few ways but I highly recommend going online to https://codebeautify.org/svg-to-base64-converter.
+
+To get the correct formatting, this is what I use for SVG's based on the formatting for img.shields.io, I use the 2bxml format:
+logo=data:image/svg%2bxml;base64,[Base64]
+-->
+
+## Languages
+
+### Website Hosting
+
+#### Front-End
+![HTML5](https://img.shields.io/badge/HTML5-d92d00?style=for-the-badge&logo=html5&logoColor=ffffff)
+![Javascript](https://img.shields.io/badge/JS-ddb700?style=for-the-badge&logo=javascript&logoColor=ffffff)
+![CSS](https://img.shields.io/badge/CSS-006bb4?style=for-the-badge&logo=css&logoColor=ffffff)
+
+#### Back-End
+![NodeJS](https://img.shields.io/badge/Node.js-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=ffffff)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=ffffff)
+
+### General
+![Python](https://img.shields.io/badge/PYTHON-3476aa?style=for-the-badge&logo=python&logoColor=ffcf3c)
+![C++](https://img.shields.io/badge/C%2B%2B-A8B9CC?style=for-the-badge&logo=cplusplus&logoColor=ffffff)
+![C#](https://img.shields.io/badge/C%23-512bd4?style=for-the-badge&logo=data:image/svg%2bxml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgMTYwIj4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjZmZmOwogICAgICB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8cmVjdCBjbGFzcz0iY2xzLTEiIHg9Ijk1LjQ0IiB5PSI3NC44NSIgd2lkdGg9IjEwLjI5IiBoZWlnaHQ9IjEwLjI5Ii8+CiAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTQxLjc1LDMyLjQ2TDkwLjI5LDIuNzZjLTYuMzctMy42OC0xNC4yMS0zLjY4LTIwLjU4LDBsLTUxLjQ2LDI5LjcxYy02LjM3LDMuNjgtMTAuMjksMTAuNDctMTAuMjksMTcuODJ2NTkuNDJjMCw3LjM1LDMuOTIsMTQuMTUsMTAuMjksMTcuODJsNTEuNDYsMjkuNzFjNi4zNywzLjY4LDE0LjIxLDMuNjgsMjAuNTgsMGw1MS40Ni0yOS43MWM2LjM3LTMuNjgsMTAuMjktMTAuNDcsMTAuMjktMTcuODJ2LTU5LjQyYzAtNy4zNS0zLjkyLTE0LjE1LTEwLjI5LTE3LjgyWk00OS4xMSw5NS40NGguMDJjMi44NCwwLDUuMTUtMi4zLDUuMTUtNS4xNGgwYzAtMi44NSwyLjMtNS4xNSw1LjE1LTUuMTVzNS4xNSwyLjMsNS4xNSw1LjE1YzAsOC41My02LjkxLDE1LjQ0LTE1LjQ0LDE1LjQ0cy0xNS40NC02LjkxLTE1LjQ0LTE1LjQ0di0yMC41OGMwLTguNTMsNi45MS0xNS40NCwxNS40NC0xNS40NHMxNS40NCw2LjkxLDE1LjQ0LDE1LjQ0YzAsMi44NC0yLjMsNS4xNS01LjE1LDUuMTVzLTUuMTUtMi4zLTUuMTUtNS4xNS0yLjMtNS4xNS01LjE1LTUuMTUtNS4xNSwyLjMtNS4xNSw1LjE1aDBzMCwyMC41OCwwLDIwLjU4YzAsMi44NCwyLjI5LDUuMTQsNS4xMyw1LjE1Wk0xMjEuMTgsOTUuNDRoLTUuMTZ2NS4xNGMwLDEuMzctLjU0LDIuNjgtMS41MSwzLjY0LTIsMi4wMS01LjI1LDIuMDItNy4yNi4wMWgtLjAxYy0uOTYtLjk4LTEuNTEtMi4yOS0xLjUxLTMuNjV2LTUuMTRoLTEwLjI5djUuMTRjMCwyLjg0LTIuMjksNS4xNC01LjEyLDUuMTVoLS4wMmMtMi44NCwwLTUuMTQtMi4yOS01LjE0LTUuMTN2LTUuMTZoLTUuMTVjLTIuODQsMC01LjE1LTIuMy01LjE1LTUuMTVzMi4zLTUuMTUsNS4xNS01LjE1aDUuMTV2LTEwLjI5aC01LjE1Yy0yLjg0LDAtNS4xNS0yLjMtNS4xNS01LjE1czIuMy01LjE1LDUuMTUtNS4xNWg1LjE1di01LjE1YzAtMi44NCwyLjMtNS4xNSw1LjE1LTUuMTVzNS4xNSwyLjMsNS4xNSw1LjE1djUuMTRoMTAuMjl2LTUuMTRjMC0yLjg0LDIuMy01LjE1LDUuMTUtNS4xNXM1LjE1LDIuMyw1LjE1LDUuMTV2NS4xNGg1LjE1YzEuMzYsMCwyLjY3LjU0LDMuNjQsMS41MSwyLjAxLDIsMi4wMiw1LjI1LjAxLDcuMjZoLS4wMWMtLjk2Ljk4LTIuMjcsMS41Mi0zLjY0LDEuNTJoLTUuMTV2MTAuMjloNS4xNWMyLjg0LDAsNS4xNCwyLjMxLDUuMTUsNS4xNGgwYzAsMi44NC0yLjMsNS4xNC01LjEzLDUuMTVaIi8+Cjwvc3ZnPg==&logoColor=ffffff)
+![Java](https://img.shields.io/badge/Java-d36601?style=for-the-badge&logo=data:image/svg%2bxml;base64,PCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KDTwhLS0gVXBsb2FkZWQgdG86IFNWRyBSZXBvLCB3d3cuc3ZncmVwby5jb20sIFRyYW5zZm9ybWVkIGJ5OiBTVkcgUmVwbyBNaXhlciBUb29scyAtLT4KPHN2ZyBoZWlnaHQ9IjgwMHB4IiB3aWR0aD0iODAwcHgiIHZlcnNpb249IjEuMSIgaWQ9IkNhcGFfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmlld0JveD0iMCAwIDUwMi42MzIgNTAyLjYzMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjZmZmZmZmIj4KDTxnIGlkPSJTVkdSZXBvX2JnQ2FycmllciIgc3Ryb2tlLXdpZHRoPSIwIi8+Cg08ZyBpZD0iU1ZHUmVwb190cmFjZXJDYXJyaWVyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KDTxnIGlkPSJTVkdSZXBvX2ljb25DYXJyaWVyIj4gPGc+IDxnPiA8cGF0aCBzdHlsZT0iZmlsbDojZmZmZmZmOyIgZD0iTTI0MC44NjQsMjY5Ljg5NGMwLDAtMjguMDItNTMuOTkyLTI2Ljk4NS05My40NDVjMC43NTUtMjguMTkzLDY0LjMyNC01Ni4wNjIsODkuMjgxLTk2LjUyOSBDMzI4LjA3NCwzOS40MzEsMzAwLjA1NCwwLDMwMC4wNTQsMHM2LjIzNCwyOS4wNzctMTAuMzc2LDU5LjE0N2MtMTYuNjA5LDMwLjExMy03Ny45MTQsNDcuNzc5LTEwMS43NDksOTkuNjc5IFMyNDAuODY0LDI2OS44OTQsMjQwLjg2NCwyNjkuODk0eiIvPiA8cGF0aCBzdHlsZT0iZmlsbDojZmZmZmZmOyIgZD0iTTM0NS43NDEsMTA1Ljg2OWMwLDAtOTUuNDk0LDM2LjM0Ny05NS40OTQsNzcuODQ5YzAsNDEuNTQ1LDI1LjkyOCw1NS4wMjcsMzAuMTEzLDY4LjUwOSBjNC4xNDIsMTMuNTI1LTcuMjY5LDM2LjM0Ny03LjI2OSwzNi4zNDdzMzcuMzYxLTI1Ljk1LDMxLjEwNS01Ni4wNjJjLTYuMjM0LTMwLjExMy0zNS4yOS0zOS40NzUtMTguNjU5LTY5LjU0NCBDMjk2LjY0NiwxNDIuNzk5LDM0NS43NDEsMTA1Ljg2OSwzNDUuNzQxLDEwNS44Njl6Ii8+IDxwYXRoIHN0eWxlPSJmaWxsOiNmZmZmZmY7IiBkPSJNMjMwLjUxLDMyNC43NDhjODguMjQ2LTMuMTQ5LDEyMC40My0zMC45OTcsMTIwLjQzLTMwLjk5NyBjLTU3LjA3NiwxNS41NTMtMjA4LjY1NCwxNC41MzktMjA5LjcxMSwzLjEyOGMtMS4wMTQtMTEuNDExLDQ2LjcwMS0yMC43NzMsNDYuNzAxLTIwLjc3M3MtNzQuNzIxLDAtODAuOTU1LDE4LjY4IEMxMDAuNzQsMzEzLjQ2NywxNDIuMzI4LDMyNy44MzMsMjMwLjUxLDMyNC43NDh6Ii8+IDxwYXRoIHN0eWxlPSJmaWxsOiNmZmZmZmY7IiBkPSJNMzU4LjE4NywzNjguNDk0YzAsMCw4Ni4zNjktMTguNDIxLDc3LjgyNy02NS4zMzhjLTEwLjM1NC01Ny4xMTktNzAuNTgtMjQuOTM2LTcwLjU4LTI0LjkzNiBzNDIuNjAyLDAsNDYuNzIyLDI1LjkyOEM0MTYuMzIsMzMwLjA5OCwzNTguMTg3LDM2OC40OTQsMzU4LjE4NywzNjguNDk0eiIvPiA8cGF0aCBzdHlsZT0iZmlsbDojZmZmZmZmOyIgZD0iTTMxNS42MjgsMzQzLjYwMWMwLDAtMjEuNzY1LDUuNzE2LTU0LjAxMyw5LjM0Yy00My4yMjgsNC44NTMtOTUuNDk0LDEuMDE0LTk5LjY1Ny02LjI1NiBjLTQuMDk4LTcuMjY5LDcuMjY5LTExLjQxMSw3LjI2OS0xMS40MTFjLTUxLjkyMSwxMi40NjgtMjMuNTEyLDM0LjIzMywzNy4zMzksMzguNDE4YzUyLjE1OCwzLjU1OSwxMjkuNzkxLTE1LjU3NCwxMjkuNzkxLTE1LjU3NCBMMzE1LjYyOCwzNDMuNjAxeiIvPiA8cGF0aCBzdHlsZT0iZmlsbDojZmZmZmZmOyIgZD0iTTE4MS43MzgsMzg4Ljk0M2MwLDAtMjMuNTU1LDAuNjY5LTI0LjkzNiwxMy4xMzdjLTEuMzU5LDEyLjM4MiwxNC40OTYsMjMuNTEyLDcyLjY1LDI2Ljk2NCBjNTguMTMzLDMuNDUxLDk4Ljk4OC0xNS44OTgsOTguOTg4LTE1Ljg5OGwtMjYuMjk1LTE1Ljk2MmMwLDAtMTYuNjMxLDMuNDk0LTQyLjIzNiw2Ljk0NiBjLTI1LjYyNiwzLjQ3My03OC4xNzMtMi43ODMtODAuMjQzLTcuNTkzQzE3Ny41NTMsMzkxLjY4MiwxODEuNzM4LDM4OC45NDMsMTgxLjczOCwzODguOTQzeiIvPiA8cGF0aCBzdHlsZT0iZmlsbDojZmZmZmZmOyIgZD0iTTQwNy45OTQsNDQ1LjAwNWM4Ljk5NS05LjcwNy0yLjc4My0xNy4zMjEtMi43ODMtMTcuMzIxczQuMTQyLDQuODUzLTEuMzM3LDEwLjM3NiBjLTUuNTQ0LDUuNTIyLTU2LjA4NCwxOS4zNDktMTM3LjA2MSwyMy41MTJjLTgwLjk1NSw0LjE2My0xNjguODU2LTcuNjE1LTE3MS42MzktMTcuOTkgYy0yLjY5Ni0xMC4zNzYsNDUuMDE4LTE4LjY1OSw0NS4wMTgtMTguNjU5Yy01LjUyMiwwLjY5LTcxLjk2LDIuMDcxLTc0LjA3NCwyMC4wODJjLTIuMDcxLDE3Ljk2OCwyOS4wNTYsMzIuNTA3LDE1My42NywzMi41MDcgQzM0NC4zMzksNDc3LjQ5MSwzOTkuMDQyLDQ1NC42NDcsNDA3Ljk5NCw0NDUuMDA1eiIvPiA8cGF0aCBzdHlsZT0iZmlsbDojZmZmZmZmOyIgZD0iTTM1OS41NjgsNDg1LjgxN2MtNTQuNjgyLDExLjA0NC0yMjAuNzM0LDQuMDc3LTIyMC43MzQsNC4wNzdzMTA3LjkxOSwyNS42MjYsMjMxLjEwOSw0LjE4NSBjNTguODg4LTEwLjI2OCw2Mi4zMTgtMzguNzYzLDYyLjMxOC0zOC43NjNTNDE0LjI1LDQ3NC43MDgsMzU5LjU2OCw0ODUuODE3eiIvPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDwvZz4gPC9nPgoNPC9zdmc+&logoColor=ffffff)
+
+### Games and Modding
+![Lua](https://img.shields.io/badge/Lua-000080?style=for-the-badge&logo=lua&logoColor=ffffff)
+![LuaU](https://img.shields.io/badge/LuaU-00A2FF?style=for-the-badge&logo=luau&logoColor=ffffff)
+
+## Current Activity
+
+![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=Kooraseru&hide_title=true&hide_border=true&color=FFFFFF&bg_color=0d111700&point=FFFFFF&line=FFFFFF)
