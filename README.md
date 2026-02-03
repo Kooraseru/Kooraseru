@@ -39,7 +39,7 @@ logo=data:image/svg%2bxml;base64,[Base64]
 
 #### Front-End
 ![HTML5](https://img.shields.io/badge/HTML5-d92d00?style=for-the-badge&logo=html5&logoColor=ffffff)
-![Javascript](https://img.shields.io/badge/JS-ddb700?style=for-the-badge&logo=javascript&logoColor=ffffff)
+![Typescript](https://img.shields.io/badge/TS-ddb700?style=for-the-badge&logo=typescript&logoColor=ffffff)
 ![CSS](https://img.shields.io/badge/CSS-006bb4?style=for-the-badge&logo=css&logoColor=ffffff)
 
 #### Back-End
