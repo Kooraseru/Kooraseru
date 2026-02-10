@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="ja" data-theme="dark">
     <!--
-        Kooraseru - A multilingual WebAssembly-powered website
-        Set the language attribute to "en" for English content
-        Set the character encoding to UTF-8 for proper text rendering
-        Set the icon to .github/resources/kooraseru.ico
-        Include a viewport meta tag for responsive design
-        Link to external CSS stylesheets for styling and themes
+        Kooraseru - 日本語版
+        言語属性を「ja」に設定
+        キャラクタエンコーディングをUTF-8に設定
+        アイコンを .github/resources/kooraseru.ico に設定
+        レスポンシブデザイン用のビューポートメタタグを含める
+        スタイルシートをリンク
     -->
-    <head lang="en">
+    <head lang="ja">
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Kooraseru - A WebAssembly-powered multilingual platform">
+        <meta name="description" content="Kooraseru - WebAssembly対応の多言語プラットフォーム">
         
         <title>Kooraseru</title>
         <base href="/">
 
-        <link rel="icon" href=".github/resources/kooraseru.ico" type="image/x-icon" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" />
-        <link rel="stylesheet" href=".github/resources/stylesheet.css" />
-        <link rel="stylesheet" href=".github/resources/themes.css" />
-        <link rel="stylesheet" href=".github/resources/topbar.css" />
+        <link rel="icon" href="/.github/resources/kooraseru.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&GoogleSans:wght@400;500;700&display=swap" />
+        <link rel="stylesheet" href="/.github/resources/stylesheet.css" />
+        <link rel="stylesheet" href="/.github/resources/themes.css" />
+        <link rel="stylesheet" href="/.github/resources/topbar.css" />
         
         <!-- Theme helper - runs immediately to prevent flash -->
-        <script src="js/theme-helper.js"></script>
+        <script src="/js/theme-helper.js"></script>
     </head>
     <body>
         <!-- Top Navigation Bar -->
@@ -31,7 +31,7 @@
             <div class="topbar-content">
                 <div class="topbar-left">
                     <a href="/" class="logo">
-                        <img src=".github/resources/kooraseru.ico" alt="Kooraseru" class="logo-icon" />
+                        <img src="/.github/resources/kooraseru.ico" alt="Kooraseru" class="logo-icon" />
                         <span class="logo-text">Kooraseru</span>
                     </a>
                 </div>
@@ -42,9 +42,9 @@
                 
                 <div class="topbar-right">
                     <div class="language-selector">
-                        <a href="/" class="lang-link active" data-lang="en">English</a>
+                        <a href="https://kooraseru.com" class="lang-link" data-lang="en">English</a>
                         <span class="lang-separator">/</span>
-                        <a href="https://jp.kooraseru.com" class="lang-link" data-lang="jp">日本語</a>
+                        <a href="/" class="lang-link active" data-lang="jp">日本語</a>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
 
         <!-- Theme Toggle Button -->
         <div class="theme-toggle-container">
-            <button class="theme-toggle-button" id="themeToggle" aria-label="Toggle theme">
+            <button class="theme-toggle-button" id="themeToggle" aria-label="テーマを選択">
                 <svg class="theme-icon" viewBox="0 0 24 24" fill="currentColor">
                     <!-- Sun icon for light theme -->
                     <circle class="sun-circle" cx="12" cy="12" r="5"/>
@@ -84,11 +84,11 @@
             <!-- Theme Dropdown Menu -->
             <div class="theme-dropdown" id="themeDropdown">
                 <div class="theme-dropdown-content">
-                    <button class="theme-option" data-theme="light" aria-label="Light theme">
-                        <span class="theme-option-label">Light</span>
+                    <button class="theme-option" data-theme="light" aria-label="ライトテーマ">
+                        <span class="theme-option-label">ライト</span>
                     </button>
-                    <button class="theme-option" data-theme="dark" aria-label="Dark theme">
-                        <span class="theme-option-label">Dark</span>
+                    <button class="theme-option" data-theme="dark" aria-label="ダークテーマ">
+                        <span class="theme-option-label">ダーク</span>
                     </button>
                 </div>
             </div>
@@ -96,7 +96,7 @@
 
         <!-- WebAssembly Module -->
         <script type="module">
-            import init, { init_theme_system, set_theme } from './kooraseru.js';
+            import init, { init_theme_system, set_theme } from '/../kooraseru.js';
             
             async function run() {
                 try {

@@ -1,1 +1,49 @@
-/target
+# Rust
+/target/
+Cargo.lock
+*.rlib
+*.rmeta
+
+# WebAssembly
+/pkg/
+*.wasm
+wasm-pack.log
+
+# Node
+node_modules/
+package-lock.json
+yarn.lock
+.npm
+dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.env.local
+
+# OS
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Generated files
+public/kooraseru.js
+public/kooraseru_bg.wasm
+public/kooraseru.d.ts
+public/**/*.map
+
+# Keep these!
+!public/js/
+!public/.github/
+!public/jp/
+!public/index.html

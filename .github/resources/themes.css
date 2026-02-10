@@ -1,0 +1,58 @@
+/* Kooraseru - Theme Definitions */
+
+/* ===== DARK THEME (Default) ===== */
+html[data-theme="dark"],
+html[data-theme=""] {
+    color-scheme: dark;
+
+    /* Background Colors */
+    --bg-primary: #1e1e1e;
+    --bg-secondary: #252526;
+    --bg-tertiary: #2d2d30;
+    --bg-hover: #3e3e42;
+    
+    /* Text Colors */
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --text-tertiary: #757575;
+    --text-link: #569cd6;
+    --text-link-hover: #7cb7e8;
+    
+    /* Border Colors */
+    --border-primary: #404040;
+    --border-secondary: #3e3e42;
+    
+    /* Status Colors */
+    --color-success: #4ec9b0;
+    --color-error: #f48771;
+    --color-warning: #ce9178;
+    --color-info: #569cd6;
+}
+
+/* ===== LIGHT THEME ===== */
+html[data-theme="light"] {
+    color-scheme: light;
+
+    /* Background Colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f3f3f3;
+    --bg-tertiary: #e8e8e8;
+    --bg-hover: #e0e0e0;
+    
+    /* Text Colors */
+    --text-primary: #1e1e1e;
+    --text-secondary: #646695;
+    --text-tertiary: #a0a0a0;
+    --text-link: #0066cc;
+    --text-link-hover: #0052a3;
+    
+    /* Border Colors */
+    --border-primary: #d0d0d0;
+    --border-secondary: #e0e0e0;
+    
+    /* Status Colors */
+    --color-success: #107c10;
+    --color-error: #e81123;
+    --color-warning: #ff8c00;
+    --color-info: #0078d4;
+}

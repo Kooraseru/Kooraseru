@@ -1,0 +1,8 @@
+{
+  "profile": {
+    "release": {
+      "wasm-opt": ["-O4"],
+      "other-args": ["--no-modules"]
+    }
+  }
+}
