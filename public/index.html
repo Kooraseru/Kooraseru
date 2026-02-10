@@ -96,58 +96,87 @@
 
         <!-- Theme and Language Initialization -->
         <script>
-            // Initialize language system and theme UI
-            async function initializeUI() {
-                // Wait for LanguageSystem to be ready
-                await LanguageSystem.init();
-                
-                // Update translated text
-                LanguageSystem.updatePageContent();
-                
-                // Highlight current language in selector
-                const currentLang = LanguageSystem.getCurrentLanguage();
-                document.querySelectorAll('.lang-link').forEach(link => {
-                    if (link.dataset.lang === currentLang) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
-                });
-                
-                // Setup theme toggle
+            // Setup theme toggle button immediately (don't wait for LanguageSystem)
+            function setupThemeToggle() {
                 const themeToggle = document.getElementById('themeToggle');
                 const themeDropdown = document.getElementById('themeDropdown');
                 const themeOptions = document.querySelectorAll('.theme-option');
                 
-                themeToggle.addEventListener('click', (e) => {
+                if (!themeToggle || !themeDropdown) {
+                    console.warn('Theme elements not found in DOM');
+                    return;
+                }
+                
+                console.log('Setting up theme toggle button');
+                
+                // Toggle dropdown on button click
+                themeToggle.addEventListener('click', function(e) {
+                    console.log('Theme toggle clicked');
+                    e.preventDefault();
                     e.stopPropagation();
                     themeDropdown.classList.toggle('active');
+                    console.log('Dropdown active:', themeDropdown.classList.contains('active'));
                 });
                 
+                // Handle theme option clicks
                 themeOptions.forEach(option => {
-                    option.addEventListener('click', (e) => {
+                    option.addEventListener('click', function(e) {
+                        console.log('Theme option clicked:', this.dataset.theme);
                         e.preventDefault();
                         e.stopPropagation();
-                        const theme = e.currentTarget.dataset.theme;
-                        ThemeManager.setTheme(theme);
+                        const theme = this.dataset.theme;
+                        if (ThemeManager && ThemeManager.setTheme) {
+                            ThemeManager.setTheme(theme);
+                        }
                         themeDropdown.classList.remove('active');
-                        console.log('Theme changed to:', theme);
                     });
                 });
                 
                 // Close dropdown when clicking outside
-                document.addEventListener('click', (e) => {
+                document.addEventListener('click', function(e) {
                     if (!e.target.closest('.theme-toggle-container')) {
                         themeDropdown.classList.remove('active');
                     }
                 });
+                
+                console.log('Theme toggle setup complete');
             }
             
-            // Initialize when ready
+            // Initialize language system and UI
+            async function initializeLanguageUI() {
+                try {
+                    // Wait for LanguageSystem to be ready
+                    if (typeof LanguageSystem !== 'undefined') {
+                        await LanguageSystem.init();
+                        LanguageSystem.updatePageContent();
+                        
+                        // Highlight current language in selector
+                        const currentLang = LanguageSystem.getCurrentLanguage();
+                        document.querySelectorAll('.lang-link').forEach(link => {
+                            if (link.dataset.lang === currentLang) {
+                                link.classList.add('active');
+                            } else {
+                                link.classList.remove('active');
+                            }
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error initializing language system:', error);
+                }
+            }
+            
+            // Setup theme toggle immediately
             if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initializeUI);
+                document.addEventListener('DOMContentLoaded', setupThemeToggle);
             } else {
-                initializeUI();
+                setupThemeToggle();
+            }
+            
+            // Initialize language system when ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initializeLanguageUI);
+            } else {
+                initializeLanguageUI();
             }
         </script>
     </body>
