@@ -40,20 +40,38 @@ jobs:
             ${{ runner.os }}-cargo-
 
       - name: Install wasm-pack
-        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+        run: |
+          echo "Installing wasm-pack..."
+          curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+          echo "Verifying wasm-pack installation:"
+          ~/.cargo/bin/wasm-pack --version || wasm-pack --version
 
       - name: Build WebAssembly
-        run: wasm-pack build --target web --release
+        run: |
+          echo "Current working directory:"
+          pwd
+          echo "Contents of current directory:"
+          ls -la
+          echo "=== Running wasm-pack build ==="
+          ~/.cargo/bin/wasm-pack build --target web --release || wasm-pack build --target web --release
+          echo "=== Build complete, checking pkg directory ==="
+          ls -la pkg/ || echo "ERROR: pkg directory not found!"
 
       - name: Prepare deployment files
         run: |
+          # List what files exist after wasm-pack build
+          echo "=== Contents of pkg directory ==="
+          ls -la pkg/ || echo "pkg directory not found"
+          
           # Copy Wasm files to public directory
+          echo "=== Copying WASM files ==="
           cp pkg/kooraseru.js public/
           cp pkg/kooraseru_bg.wasm public/
           cp pkg/kooraseru_bg.wasm.d.ts public/ 2>/dev/null || true
           cp pkg/kooraseru.d.ts public/ 2>/dev/null || true
           
           # Verify required files exist
+          echo "=== Verifying files in public directory ==="
           ls -la public/
           test -f public/index.html
           test -f public/kooraseru.js
