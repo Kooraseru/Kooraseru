@@ -26,7 +26,6 @@ jobs:
           mkdir -p dist
           echo "kooraseru.com" > dist/CNAME
           cp -r public/* dist/
-          cp -r .github/resources dist/resources
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
