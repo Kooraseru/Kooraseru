@@ -96,15 +96,25 @@
 
         <!-- WebAssembly Module -->
         <script type="module">
-            import init, { init_theme_system, set_theme } from './kooraseru.js';
+            // Ensure ThemeHelper is available
+            if (typeof ThemeHelper === 'undefined') {
+                console.error('ThemeHelper not loaded!');
+            }
             
             async function run() {
+                let wasmLoaded = false;
+                let set_theme_func = null;
+                
                 try {
-                    await init();
-                    init_theme_system();
+                    const wasm = await import('./kooraseru.js');
+                    await wasm.default();
+                    wasm.init_theme_system();
+                    set_theme_func = wasm.set_theme;
+                    wasmLoaded = true;
+                    console.log('WebAssembly module loaded successfully');
                 } catch (e) {
-                    console.warn('WebAssembly module failed to load:', e);
-                    // ThemeHelper will provide fallback functionality
+                    console.warn('WebAssembly module failed to load, using JavaScript fallback:', e);
+                    wasmLoaded = false;
                 }
                 
                 // Setup theme toggle
@@ -120,12 +130,18 @@
                 themeOptions.forEach(option => {
                     option.addEventListener('click', (e) => {
                         const theme = e.currentTarget.dataset.theme;
-                        try {
-                            set_theme(theme);
-                        } catch (e) {
-                            console.warn('Wasm set_theme failed, using fallback:', e);
+                        
+                        if (wasmLoaded && set_theme_func) {
+                            try {
+                                set_theme_func(theme);
+                            } catch (err) {
+                                console.warn('Wasm set_theme failed, using fallback:', err);
+                                ThemeHelper.setTheme(theme);
+                            }
+                        } else {
                             ThemeHelper.setTheme(theme);
                         }
+                        
                         themeDropdown.classList.remove('active');
                     });
                 });
