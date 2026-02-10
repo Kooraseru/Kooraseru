@@ -44,7 +44,9 @@ jobs:
 
       - name: Add CNAME
         run: |
+          mkdir -p dist
           echo "kooraseru.com" > dist/CNAME
+          cp public/* dist/ 2>/dev/null || true
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
