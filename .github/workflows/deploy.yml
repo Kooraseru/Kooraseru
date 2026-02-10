@@ -58,8 +58,11 @@ jobs:
           test -f public/index.html
           test -f public/kooraseru.js
           test -f public/kooraseru_bg.wasm
-          test -f public/jp/index.html
           test -f public/.github/resources/stylesheet.css
+          test -f public/js/theme-manager.js
+          test -f public/js/language-system.js
+          test -f public/i18n/en.json
+          test -f public/i18n/ja.json
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

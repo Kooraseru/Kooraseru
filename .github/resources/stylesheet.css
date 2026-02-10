@@ -1,8 +1,10 @@
 /* Kooraseru - Main Stylesheet */
 
 :root {
-    /* Default font family - Google Sans */
+    /* Default font family - Google Sans (fallback for language-specific fonts) */
     --font-family: 'Google Sans', system-ui, -apple-system, sans-serif;
+    /* Language-specific font family - dynamically set by language system */
+    --font-family-lang: 'Google Sans', system-ui, -apple-system, sans-serif;
     
     /* Spacing scale */
     --space-xs: 0.25rem;
@@ -45,7 +47,7 @@ html {
 }
 
 body {
-    font-family: var(--font-family);
+    font-family: var(--font-family-lang, var(--font-family));
     font-size: var(--font-size-base);
     line-height: 1.6;
     background-color: var(--bg-primary);
