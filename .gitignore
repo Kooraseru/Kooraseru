@@ -1,13 +1,3 @@
-# Rust
-/target/
-Cargo.lock
-*.rlib
-*.rmeta
-
-# WebAssembly
-*.wasm
-wasm-pack.log
-
 # Node
 node_modules/
 package-lock.json
@@ -35,14 +25,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Generated files
-public/kooraseru.js
-public/kooraseru_bg.wasm
-public/kooraseru.d.ts
-public/**/*.map
-
 # Keep these!
 !public/js/
 !public/.github/
-!public/jp/
 !public/index.html

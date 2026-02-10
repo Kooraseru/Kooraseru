@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
     <!--
-        Kooraseru - A multilingual WebAssembly-powered website
+        Kooraseru - A multilingual website
         Single index.html with JSON-based translations
         Subdomain determines language: jp.kooraseru.com = Japanese
     -->
     <head lang="en">
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Kooraseru - A WebAssembly-powered multilingual platform">
+        <meta name="description" content="My personal website!">
         
         <title>Kooraseru</title>
         <base href="/">
@@ -96,55 +96,76 @@
 
         <!-- Theme and Language Initialization -->
         <script>
-            // Setup theme toggle button immediately (don't wait for LanguageSystem)
+            // Setup theme toggle button
             function setupThemeToggle() {
                 const themeToggle = document.getElementById('themeToggle');
                 const themeDropdown = document.getElementById('themeDropdown');
                 const themeOptions = document.querySelectorAll('.theme-option');
                 
                 if (!themeToggle || !themeDropdown) {
-                    console.warn('Theme elements not found in DOM');
+                    console.warn('[UI] Theme elements not found in DOM');
                     return;
                 }
                 
-                console.log('Setting up theme toggle button');
+                console.log('[UI] Setting up theme toggle button with', themeOptions.length, 'options');
                 
                 // Toggle dropdown on button click
                 themeToggle.addEventListener('click', function(e) {
-                    console.log('Theme toggle clicked');
+                    console.log('[UI] Theme toggle button clicked');
                     e.preventDefault();
                     e.stopPropagation();
+                    const isActive = themeDropdown.classList.contains('active');
                     themeDropdown.classList.toggle('active');
-                    console.log('Dropdown active:', themeDropdown.classList.contains('active'));
+                    console.log('[UI] Dropdown toggled to:', !isActive);
                 });
                 
                 // Handle theme option clicks
-                themeOptions.forEach(option => {
+                themeOptions.forEach((option, index) => {
                     option.addEventListener('click', function(e) {
-                        console.log('Theme option clicked:', this.dataset.theme);
+                        console.log('[UI] Theme option clicked:', this.dataset.theme);
                         e.preventDefault();
                         e.stopPropagation();
+                        
                         const theme = this.dataset.theme;
-                        if (ThemeManager && ThemeManager.setTheme) {
-                            ThemeManager.setTheme(theme);
+                        console.log('[UI] Calling ThemeManager.setTheme(' + theme + ')');
+                        
+                        // Call ThemeManager to change theme and save cookie
+                        if (typeof ThemeManager !== 'undefined' && ThemeManager.setTheme) {
+                            const success = ThemeManager.setTheme(theme);
+                            console.log('[UI] ThemeManager.setTheme result:', success);
+                            
+                            if (success) {
+                                // Update button to show current theme
+                                console.log('[UI] Theme changed successfully to:', theme);
+                            } else {
+                                console.error('[UI] Failed to set theme');
+                            }
+                        } else {
+                            console.error('[UI] ThemeManager not available');
                         }
+                        
+                        // Close dropdown
                         themeDropdown.classList.remove('active');
+                        console.log('[UI] Dropdown closed');
                     });
                 });
                 
                 // Close dropdown when clicking outside
                 document.addEventListener('click', function(e) {
+                    // Only close if clicking outside the theme toggle container
                     if (!e.target.closest('.theme-toggle-container')) {
                         themeDropdown.classList.remove('active');
                     }
                 });
                 
-                console.log('Theme toggle setup complete');
+                console.log('[UI] Theme toggle setup complete');
             }
             
             // Initialize language system and UI
             async function initializeLanguageUI() {
                 try {
+                    console.log('[Init] Starting language system initialization');
+                    
                     // Wait for LanguageSystem to be ready
                     if (typeof LanguageSystem !== 'undefined') {
                         await LanguageSystem.init();
@@ -159,13 +180,17 @@
                                 link.classList.remove('active');
                             }
                         });
+                        
+                        console.log('[Init] Language system initialized for:', currentLang);
+                    } else {
+                        console.warn('[Init] LanguageSystem not available');
                     }
                 } catch (error) {
-                    console.error('Error initializing language system:', error);
+                    console.error('[Init] Error initializing language system:', error);
                 }
             }
             
-            // Setup theme toggle immediately
+            // Setup theme toggle immediately (before DOM content loaded)
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', setupThemeToggle);
             } else {
