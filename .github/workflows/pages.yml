@@ -21,22 +21,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Verify required files
-        run: |
-          echo "=== Verifying required files ==="
-          test -f public/index.html && echo "✓ public/index.html" || (echo "✗ Missing public/index.html" && exit 1)
-          test -f public/.github/resources/stylesheet.css && echo "✓ stylesheet.css" || (echo "✗ Missing stylesheet.css" && exit 1)
-          test -f public/.github/resources/themes.css && echo "✓ themes.css" || (echo "✗ Missing themes.css" && exit 1)
-          test -f public/.github/resources/topbar.css && echo "✓ topbar.css" || (echo "✗ Missing topbar.css" && exit 1)
-          test -f public/.github/resources/kooraseru.ico && echo "✓ kooraseru.ico" || (echo "✗ Missing kooraseru.ico" && exit 1)
-          test -f public/js/theme-manager.js && echo "✓ theme-manager.js" || (echo "✗ Missing theme-manager.js" && exit 1)
-          test -f public/js/language-system.js && echo "✓ language-system.js" || (echo "✗ Missing language-system.js" && exit 1)
-          test -f public/i18n/en.json && echo "✓ en.json" || (echo "✗ Missing en.json" && exit 1)
-          test -f public/i18n/ja.json && echo "✓ ja.json" || (echo "✗ Missing ja.json" && exit 1)
-          echo ""
-          echo "=== Directory structure ==="
-          ls -la public/
-
       - name: Prepare deployment
         run: |
           mkdir -p dist
