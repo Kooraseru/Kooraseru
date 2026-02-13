@@ -21,8 +21,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build TypeScript
+        run: npm run build
+
       - name: Prepare deployment
-      # This step prepares the files to be deployed to GitHub Pages. It creates a `dist` directory, adds a `CNAME` file for custom domain configuration, and copies the necessary frontend and public files into the `dist` directory.
+      # This step prepares the files to be deployed to GitHub Pages. It creates a `dist` directory, adds a CNAME file for custom domain configuration, and copies the necessary frontend and public files into the `dist` directory.
         run: |
           mkdir -p dist
           echo "kooraseru.com" > dist/CNAME 

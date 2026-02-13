@@ -20,10 +20,10 @@
         <link rel="stylesheet" href="frontend/src/css/topbar.css" />
         
         <!-- Theme manager - runs immediately to prevent flash -->
-        <script src="frontend/src/js/theme-manager.js"></script>
+        <script type="module" src="frontend/src/js/theme-manager.js"></script>
         
         <!-- Language system - loads translations and sets font -->
-        <script src="frontend/src/js/language-system.js"></script>
+        <script type="module" src="frontend/src/js/language-system.js"></script>
     </head>
     <body>
         <!-- Top Navigation Bar -->
@@ -39,16 +39,27 @@
                 
                 <div class="topbar-center">
                     <div class="logo">
-                        <img src="public/kooraseru.ico" alt="Kooraseru" class="logo-icon" data-i18n="topbar.logoAlt" />
+                        <img src="public/favicon.ico" alt="Kooraseru" class="logo-icon" data-i18n="topbar.logoAlt" />
                         <span class="logo-text">Kooraseru</span>
                     </div>
                 </div>
                 
                 <div class="topbar-right">
                     <div class="language-selector">
-                        <a href="https://kooraseru.com" class="lang-link en-link active" data-lang="en" data-i18n="languageSelector.english">English</a>
-                        <span class="lang-separator">/</span>
-                        <a href="https://jp.kooraseru.com" class="lang-link ja-link" data-lang="ja" data-i18n="languageSelector.japanese">日本語</a>
+                        <button class="language-toggle-button" id="languageToggle" aria-label="Select language">
+                            <span class="language-current" data-i18n="languageSelector.english">English</span>
+                            <svg class="language-icon" viewBox="0 0 24 24">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        
+                        <!-- Language Dropdown Menu -->
+                        <div class="language-dropdown" id="languageDropdown">
+                            <div class="language-dropdown-content">
+                                <a href="https://kooraseru.com" class="language-option" data-lang="en" data-i18n="languageSelector.english" aria-label="English">English</a>
+                                <a href="https://jp.kooraseru.com" class="language-option" data-lang="ja" data-i18n="languageSelector.japanese" aria-label="日本語">日本語</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -99,6 +110,51 @@
 
         <!-- Theme and Language Initialization -->
         <script>
+            // Setup language dropdown button
+            function setupLanguageDropdown() {
+                const languageToggle = document.getElementById('languageToggle');
+                const languageDropdown = document.getElementById('languageDropdown');
+                const languageOptions = document.querySelectorAll('.language-option');
+                
+                if (!languageToggle || !languageDropdown) {
+                    console.warn('[UI] Language elements not found in DOM');
+                    return;
+                }
+                
+                console.log('[UI] Setting up language dropdown with', languageOptions.length, 'options');
+                
+                // Toggle dropdown on button click
+                languageToggle.addEventListener('click', function(e) {
+                    console.log('[UI] Language toggle button clicked');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isActive = languageDropdown.classList.contains('active');
+                    languageDropdown.classList.toggle('active');
+                    console.log('[UI] Language dropdown toggled to:', !isActive);
+                });
+                
+                // Handle language option clicks
+                languageOptions.forEach((option) => {
+                    option.addEventListener('click', function(e) {
+                        console.log('[UI] Language option clicked:', this.dataset.lang);
+                        // Allow navigation to the link
+                        // Close dropdown
+                        languageDropdown.classList.remove('active');
+                        console.log('[UI] Language dropdown closed');
+                    });
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    // Only close if clicking outside the language selector
+                    if (!e.target.closest('.language-selector')) {
+                        languageDropdown.classList.remove('active');
+                    }
+                });
+                
+                console.log('[UI] Language dropdown setup complete');
+            }
+            
             // Setup theme toggle button
             function setupThemeToggle() {
                 const themeToggle = document.getElementById('themeToggle');
@@ -174,15 +230,12 @@
                         await LanguageSystem.init();
                         LanguageSystem.updatePageContent();
                         
-                        // Highlight current language in selector
+                        // Update active state in language selector
                         const currentLang = LanguageSystem.getCurrentLanguage();
-                        document.querySelectorAll('.lang-link').forEach(link => {
-                            if (link.dataset.lang === currentLang) {
-                                link.classList.add('active');
-                            } else {
-                                link.classList.remove('active');
-                            }
-                        });
+                        const toggleButton = document.querySelector('.language-toggle-button .language-current');
+                        if (toggleButton) {
+                            toggleButton.textContent = LanguageSystem.t('languageSelector.' + currentLang);
+                        }
                         
                         console.log('[Init] Language system initialized for:', currentLang);
                     } else {
@@ -191,6 +244,13 @@
                 } catch (error) {
                     console.error('[Init] Error initializing language system:', error);
                 }
+            }
+            
+            // Setup language dropdown immediately (before DOM content loaded)
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', setupLanguageDropdown);
+            } else {
+                setupLanguageDropdown();
             }
             
             // Setup theme toggle immediately (before DOM content loaded)
