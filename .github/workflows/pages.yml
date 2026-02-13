@@ -25,6 +25,7 @@ jobs:
         run: |
           mkdir -p dist
           echo "kooraseru.com" > dist/CNAME
+          cp -r frontend/* dist/
           cp -r public/* dist/
 
       - name: Upload Pages artifact

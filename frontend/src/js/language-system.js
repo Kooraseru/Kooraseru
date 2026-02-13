@@ -84,7 +84,7 @@ const LanguageSystem = (() => {
      */
     async function loadTranslation(language) {
         try {
-            const response = await fetch(`/i18n/${language}.json`);
+            const response = await fetch(`frontend/src/i18n/${language}.json`);
             if (!response.ok) {
                 console.warn(`Translation not found for ${language}, using default`);
                 return loadTranslation(DEFAULT_LANGUAGE);

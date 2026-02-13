@@ -13,31 +13,35 @@
         <title>Kooraseru</title>
         <base href="/">
 
-        <link rel="icon" href="/resources/kooraseru.ico" type="image/x-icon" />
+        <link rel="icon" href="public/kooraseru.ico" type="image/x-icon" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" />
-        <link rel="stylesheet" href="/resources/stylesheet.css" />
-        <link rel="stylesheet" href="/resources/themes.css" />
-        <link rel="stylesheet" href="/resources/topbar.css" />
+        <link rel="stylesheet" href="frontend/src/css/stylesheet.css" />
+        <link rel="stylesheet" href="frontend/src/css/themes.css" />
+        <link rel="stylesheet" href="frontend/src/css/topbar.css" />
         
         <!-- Theme manager - runs immediately to prevent flash -->
-        <script src="/js/theme-manager.js"></script>
+        <script src="frontend/src/js/theme-manager.js"></script>
         
         <!-- Language system - loads translations and sets font -->
-        <script src="/js/language-system.js"></script>
+        <script src="frontend/src/js/language-system.js"></script>
     </head>
     <body>
         <!-- Top Navigation Bar -->
         <nav class="topbar">
             <div class="topbar-content">
                 <div class="topbar-left">
-                    <a href="/" class="logo">
-                        <img src="/resources/kooraseru.ico" alt="Kooraseru" class="logo-icon" data-i18n="topbar.logoAlt" />
-                        <span class="logo-text">Kooraseru</span>
-                    </a>
+                    <div>
+                        <!-- Placeholder for future navigation links -->
+                        <a href="" class="section-text">About</a>
+                        <a href="" class="section-text">Contact</a>
+                    </div>
                 </div>
                 
                 <div class="topbar-center">
-                    <!-- Will be populated dynamically -->
+                    <div class="logo">
+                        <img src="public/kooraseru.ico" alt="Kooraseru" class="logo-icon" data-i18n="topbar.logoAlt" />
+                        <span class="logo-text">Kooraseru</span>
+                    </div>
                 </div>
                 
                 <div class="topbar-right">
@@ -50,24 +54,23 @@
             </div>
         </nav>
 
-        <!-- Ribbon -->
-        <div class="ribbon">
-            <div class="ribbon-content">
-                <!-- Placeholder for ribbon content -->
-            </div>
-        </div>
-
         <!-- Main Content Area -->
         <main class="content">
             <div class="container">
                 <!-- Content will be loaded here -->
+                 <h1>
+                    Hiya!
+                 </h1>
+                 <h2>
+                    Welcome to my personal website!
+                 </h2>
             </div>
         </main>
 
         <!-- Theme Toggle Button -->
         <div class="theme-toggle-container">
-            <button class="theme-toggle-button" id="themeToggle" data-i18n="themeToggle.label" aria-label="Toggle theme">
-                <svg class="theme-icon" viewBox="0 0 24 24" fill="currentColor">
+            <button class="theme-toggle-button" id="themeToggle">
+                <svg class="theme-icon" viewBox="0 0 24 24">
                     <!-- Sun icon for light theme -->
                     <circle class="sun-circle" cx="12" cy="12" r="5"/>
                     <line class="sun-ray" x1="12" y1="1" x2="12" y2="3"/>

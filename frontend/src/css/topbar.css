@@ -17,7 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 50px;
+    height: 45px;
 }
 
 /* Logo styling */
@@ -50,12 +50,19 @@
     display: inline;
 }
 
-/* Topbar center - navigation will go here */
+.section-text {
+    display: inline;
+    gap: var(--space-sm);
+    color: var(--text-primary);
+    font-size: var(--font-size-lg);
+    font-weight: 400;
+    transition: opacity 0.2s ease;
+}
+
+/* Topbar center - logo will go here */
 .topbar-center {
-    flex: 1;
     display: flex;
-    justify-content: center;
-    gap: var(--space-xl);
+    align-items: center;
 }
 
 /* Topbar right - language selector */
@@ -90,25 +97,6 @@
 
 .lang-separator {
     color: var(--text-tertiary);
-}
-
-/* ===== RIBBON ===== */
-.ribbon {
-    background-color: var(--bg-primary);
-    border-bottom: 1px solid var(--border-primary);
-    padding: var(--space-md) 0;
-    position: sticky;
-    top: 50px;
-    z-index: 999;
-}
-
-.ribbon-content {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 var(--space-lg);
-    display: flex;
-    align-items: center;
-    gap: var(--space-lg);
 }
 
 /* ===== THEME TOGGLE BUTTON ===== */
@@ -165,12 +153,12 @@
 }
 
 .theme-icon .sun-circle {
-    stroke: currentColor;
+    stroke: var(--text-secondary);
     fill: none;
 }
 
 .theme-icon .sun-ray {
-    stroke: currentColor;
+    stroke: var(--text-secondary);
     fill: none;
 }
 
@@ -241,15 +229,6 @@
 
 /* Responsive design */
 @media (max-width: 640px) {
-    .topbar-content {
-        height: 45px;
-        padding: 0 var(--space-md);
-    }
-
-    .topbar-center {
-        display: none;
-    }
-
     .theme-toggle-container {
         bottom: var(--space-md);
         left: var(--space-md);

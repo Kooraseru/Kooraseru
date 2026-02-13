@@ -1,6 +1,6 @@
 {
-  "language": "ja",
-  "languageName": "日本語",
+  "language": "en",
+  "languageName": "English",
   "direction": "ltr",
   "topbar": {
     "logoAlt": "Kooraseru"
@@ -9,11 +9,8 @@
     "english": "English",
     "japanese": "日本語"
   },
-  "themeToggle": {
-    "label": "テーマを選択"
-  },
   "themeOptions": {
-    "light": "ライト",
-    "dark": "ダーク"
+    "light": "Light",
+    "dark": "Dark"
   }
 }
