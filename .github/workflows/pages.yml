@@ -29,7 +29,6 @@ jobs:
           cp -r frontend dist/
           cp -r public dist/
           mv dist/frontend/index.html dist/index.html
-          ls dist/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

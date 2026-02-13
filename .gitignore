@@ -5,6 +5,9 @@ yarn.lock
 .npm
 dist/
 
+# Testing
+local-test.bash
+
 # IDE
 .vscode/
 .idea/
