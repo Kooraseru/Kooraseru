@@ -1,17 +1,3 @@
-# Node
-node_modules/
-package.json
-yarn.lock
-.npm
-dist/
-
-# Compiled JavaScript from TypeScript
-frontend/src/js/
-!frontend/src/js/.gitkeep
-
-# Testing
-local-test.bash
-
 # IDE
 .vscode/
 .idea/
