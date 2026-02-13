@@ -22,11 +22,13 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Prepare deployment
+      # This step prepares the files to be deployed to GitHub Pages. It creates a `dist` directory, adds a `CNAME` file for custom domain configuration, and copies the necessary frontend and public files into the `dist` directory.
         run: |
           mkdir -p dist
-          echo "kooraseru.com" > dist/CNAME
+          echo "kooraseru.com" > dist/CNAME 
           cp -r frontend dist/
           cp -r public dist/
+          mv dist/frontend/index.html dist/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
