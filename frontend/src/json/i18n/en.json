@@ -3,7 +3,9 @@
   "languageName": "English",
   "direction": "ltr",
   "topbar": {
-    "logoAlt": "Kooraseru"
+    "logoAlt": "Kooraseru",
+    "about": "About",
+    "contact": "Contact"
   },
   "languageSelector": {
     "english": "English",
@@ -12,5 +14,18 @@
   "themeOptions": {
     "light": "Light",
     "dark": "Dark"
+  },
+  "themeToggle": {
+    "label": "Theme"
+  },
+  "particleToggle": {
+    "label": "Particles"
+  },
+  "scrollPrompt": {
+    "text": "Scroll to Discover"
+  },
+  "home": {
+    "greeting": "Hiya!",
+    "welcome": "Welcome to my personal website!"
   }
 }

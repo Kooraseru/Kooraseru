@@ -42,6 +42,22 @@
     box-sizing: border-box;
 }
 
+/* Remove borders from all elements except buttons */
+*:not(button):not([role="button"]) {
+    border: none !important;
+}
+
+/* Remove outlines from all elements except buttons */
+*:not(button):not([role="button"]):focus {
+    outline: none;
+}
+
+button:focus,
+[role="button"]:focus {
+    outline: 2px solid var(--text-link);
+    outline-offset: 2px;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -118,4 +134,45 @@ body {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
+}
+
+/* Confetti Effects */
+/* Canvas confetti will be z-index: 0, behind content but above body background */
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure proper stacking context */
+body {
+    position: relative;
+    isolation: isolate;
+}
+
+/* Container needs to support the blend mode */
+.container {
+    position: relative;
+}
+
+/* Beveled Center Div */
+.center-card {
+    max-width: 800px;
+    margin: var(--space-2xl) auto;
+    padding: var(--space-2xl) var(--space-xl);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+        0 4px 8px rgba(0, 0, 0, 0.15),
+        0 8px 16px rgba(0, 0, 0, 0.1);
+    position: relative;
+    /* Enable transparency holes for confetti */
+    mix-blend-mode: normal;
+    backdrop-filter: blur(10px);
+}
+
+.center-card-content {
+    position: relative;
+    z-index: 1;
 }

@@ -3,7 +3,9 @@
   "languageName": "日本語",
   "direction": "ltr",
   "topbar": {
-    "logoAlt": "Kooraseru"
+    "logoAlt": "Kooraseru",
+    "about": "について",
+    "contact": "お問い合わせ"
   },
   "languageSelector": {
     "english": "English",
@@ -12,5 +14,18 @@
   "themeOptions": {
     "light": "ライト",
     "dark": "ダーク"
+  },
+  "themeToggle": {
+    "label": "テーマ"
+  },
+  "particleToggle": {
+    "label": "パーティクル"
+  },
+  "scrollPrompt": {
+    "text": "スクロールして探索"
+  },
+  "home": {
+    "greeting": "こんにちは！",
+    "welcome": "私の個人ウェブサイトへようこそ！"
   }
 }

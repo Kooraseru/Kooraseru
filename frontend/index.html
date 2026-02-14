@@ -1,271 +1,437 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-    <!--
-        Kooraseru - A multilingual website
-        Single index.html with JSON-based translations
-        Subdomain determines language: jp.kooraseru.com = Japanese
-    -->
-    <head lang="en">
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="My personal website!">
-        
-        <title>Kooraseru</title>
-        <base href="/">
 
-        <link rel="icon" href="public/kooraseru.ico" type="image/x-icon" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" />
-        <link rel="stylesheet" href="frontend/src/css/stylesheet.css" />
-        <link rel="stylesheet" href="frontend/src/css/themes.css" />
-        <link rel="stylesheet" href="frontend/src/css/topbar.css" />
-        
-        <!-- Theme manager - runs immediately to prevent flash -->
-        <script type="module" src="frontend/src/js/theme-manager.js"></script>
-        
-        <!-- Language system - loads translations and sets font -->
-        <script type="module" src="frontend/src/js/language-system.js"></script>
-    </head>
-    <body>
-        <!-- Top Navigation Bar -->
-        <nav class="topbar">
-            <div class="topbar-content">
-                <div class="topbar-left">
-                    <div>
-                        <!-- Placeholder for future navigation links -->
-                        <a href="" class="section-text">About</a>
-                        <a href="" class="section-text">Contact</a>
-                    </div>
+<head lang="en">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="My personal website!">
+
+    <title>Kooraseru</title>
+    <base href="/">
+
+    <link rel="icon" href="public/kooraseru.ico" type="image/x-icon" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" />
+    <link rel="stylesheet" href="frontend/src/css/stylesheet.css" />
+    <link rel="stylesheet" href="frontend/src/css/themes.css" />
+    <link rel="stylesheet" href="frontend/src/css/topbar.css" />
+
+    <!-- Theme manager - runs immediately to prevent flash -->
+    <script type="module" src="frontend/src/js/theme-manager.js"></script>
+
+    <!-- Language system - loads translations and sets font -->
+    <script type="module" src="frontend/src/js/language-system.js"></script>
+
+    <!-- Wind system - background wind effects -->
+    <script src="frontend/src/js/wind.js"></script>
+</head>
+
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="topbar">
+        <div class="topbar-content">
+            <div class="topbar-left">
+                <div class="nav-links">
+                    <!-- Placeholder for future navigation links -->
+                    <span class="nav-links-text" data-i18n="topbar.about">About</span>
+                    <span class="nav-links-text" data-i18n="topbar.contact">Contact</span>
                 </div>
-                
-                <div class="topbar-center">
-                    <div class="logo">
-                        <img src="public/favicon.ico" alt="Kooraseru" class="logo-icon" data-i18n="topbar.logoAlt" />
-                        <span class="logo-text">Kooraseru</span>
-                    </div>
+            </div>
+
+            <div class="topbar-center">
+                <div class="logo">
+                    <img src="public/favicon.ico" alt="Kooraseru" class="logo-icon" data-i18n="topbar.logoAlt" />
+                    <span class="logo-text">Kooraseru</span>
                 </div>
-                
-                <div class="topbar-right">
-                    <div class="language-selector">
-                        <button class="language-toggle-button" id="languageToggle" aria-label="Select language">
-                            <span class="language-current" data-i18n="languageSelector.english">English</span>
-                            <svg class="language-icon" viewBox="0 0 24 24">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </button>
-                        
-                        <!-- Language Dropdown Menu -->
-                        <div class="language-dropdown" id="languageDropdown">
-                            <div class="language-dropdown-content">
-                                <a href="https://kooraseru.com" class="language-option" data-lang="en" data-i18n="languageSelector.english" aria-label="English">English</a>
-                                <a href="https://jp.kooraseru.com" class="language-option" data-lang="ja" data-i18n="languageSelector.japanese" aria-label="日本語">日本語</a>
-                            </div>
+            </div>
+
+            <div class="topbar-right">
+                <div class="language-selector">
+                    <button class="language-toggle-button" id="languageToggle" aria-label="Select language">
+                        <span class="language-current" data-lang="en" data-i18n="languageSelector.english"
+                            aria-label="English">English</span>
+                        <svg class="language-icon" viewBox="0 0 24 24">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+
+                    <!-- Language Dropdown Menu -->
+                    <div class="dropdown language-dropdown" id="languageDropdown">
+                        <div class="dropdown-content">
+                            <a class="dropdown-option language-option" data-lang="en" data-i18n="languageSelector.english"
+                                aria-label="English">English</a>
+                            <a class="dropdown-option language-option" data-lang="ja" data-i18n="languageSelector.japanese"
+                                aria-label="日本語">日本語</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        <!-- Main Content Area -->
-        <main class="content">
-            <div class="container">
-                <!-- Content will be loaded here -->
-                 <h1>
-                    Hiya!
-                 </h1>
-                 <h2>
-                    Welcome to my personal website!
-                 </h2>
-            </div>
-        </main>
-
-        <!-- Theme Toggle Button -->
-        <div class="theme-toggle-container">
-            <button class="theme-toggle-button" id="themeToggle">
-                <svg class="theme-icon" viewBox="0 0 24 24">
-                    <!-- Sun icon for light theme -->
-                    <circle class="sun-circle" cx="12" cy="12" r="5"/>
-                    <line class="sun-ray" x1="12" y1="1" x2="12" y2="3"/>
-                    <line class="sun-ray" x1="12" y1="21" x2="12" y2="23"/>
-                    <line class="sun-ray" x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                    <line class="sun-ray" x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                    <line class="sun-ray" x1="1" y1="12" x2="3" y2="12"/>
-                    <line class="sun-ray" x1="21" y1="12" x2="23" y2="12"/>
-                    <line class="sun-ray" x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                    <line class="sun-ray" x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-                </svg>
-            </button>
-
-            <!-- Theme Dropdown Menu -->
-            <div class="theme-dropdown" id="themeDropdown">
-                <div class="theme-dropdown-content">
-                    <button class="theme-option" data-theme="light" data-i18n="themeOptions.light" aria-label="Light theme">
-                        <span class="theme-option-label">Light</span>
-                    </button>
-                    <button class="theme-option" data-theme="dark" data-i18n="themeOptions.dark" aria-label="Dark theme">
-                        <span class="theme-option-label">Dark</span>
-                    </button>
+    <!-- Main Content Area -->
+    <main class="content">
+        <div class="container">
+            <!-- Beveled Center Card -->
+            <div class="center-card">
+                <div class="center-card-content">
+                    <h1 data-i18n="home.greeting">
+                        Hiya!
+                    </h1>
+                    <h2 data-i18n="home.welcome">
+                        Welcome to my personal website!
+                    </h2>
                 </div>
             </div>
         </div>
+    </main>
 
-        <!-- Theme and Language Initialization -->
-        <script>
-            // Setup language dropdown button
-            function setupLanguageDropdown() {
-                const languageToggle = document.getElementById('languageToggle');
-                const languageDropdown = document.getElementById('languageDropdown');
-                const languageOptions = document.querySelectorAll('.language-option');
-                
-                if (!languageToggle || !languageDropdown) {
-                    console.warn('[UI] Language elements not found in DOM');
-                    return;
-                }
-                
-                console.log('[UI] Setting up language dropdown with', languageOptions.length, 'options');
-                
-                // Toggle dropdown on button click
-                languageToggle.addEventListener('click', function(e) {
-                    console.log('[UI] Language toggle button clicked');
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const isActive = languageDropdown.classList.contains('active');
-                    languageDropdown.classList.toggle('active');
-                    console.log('[UI] Language dropdown toggled to:', !isActive);
-                });
-                
-                // Handle language option clicks
-                languageOptions.forEach((option) => {
-                    option.addEventListener('click', function(e) {
-                        console.log('[UI] Language option clicked:', this.dataset.lang);
-                        // Allow navigation to the link
-                        // Close dropdown
-                        languageDropdown.classList.remove('active');
-                        console.log('[UI] Language dropdown closed');
-                    });
-                });
-                
-                // Close dropdown when clicking outside
-                document.addEventListener('click', function(e) {
-                    // Only close if clicking outside the language selector
-                    if (!e.target.closest('.language-selector')) {
-                        languageDropdown.classList.remove('active');
-                    }
-                });
-                
-                console.log('[UI] Language dropdown setup complete');
-            }
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle-container">
+        <button class="theme-toggle-button" id="themeToggle">
+            <svg class="theme-icon" viewBox="0 0 24 24">
+                <!-- Sun icon for light theme -->
+                <circle class="sun-circle" cx="12" cy="12" r="5" />
+                <line class="sun-ray" x1="12" y1="1" x2="12" y2="3" />
+                <line class="sun-ray" x1="12" y1="21" x2="12" y2="23" />
+                <line class="sun-ray" x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line class="sun-ray" x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line class="sun-ray" x1="1" y1="12" x2="3" y2="12" />
+                <line class="sun-ray" x1="21" y1="12" x2="23" y2="12" />
+                <line class="sun-ray" x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line class="sun-ray" x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
             
-            // Setup theme toggle button
-            function setupThemeToggle() {
-                const themeToggle = document.getElementById('themeToggle');
-                const themeDropdown = document.getElementById('themeDropdown');
-                const themeOptions = document.querySelectorAll('.theme-option');
+            <span class="theme-button-content">
+                <!-- Theme Selector -->
+                <div class="theme-selector" id="themeSelector">
+                    <span class="theme-current" data-i18n="themeOptions.dark">Dark</span>
+                    <svg class="theme-dropdown-icon" viewBox="0 0 24 24">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
                 
-                if (!themeToggle || !themeDropdown) {
-                    console.warn('[UI] Theme elements not found in DOM');
+                <!-- Divider -->
+                <div class="theme-divider"></div>
+                
+                <!-- Particle Toggle -->
+                <div class="particle-toggle-inline">
+                    <span class="particle-toggle-label" data-i18n="particleToggle.label">Particles</span>
+                    <label class="switch">
+                        <input type="checkbox" id="particleToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </span>
+        </button>
+
+        <!-- Theme Dropdown Menu -->
+        <div class="dropdown theme-dropdown" id="themeDropdown">
+            <div class="dropdown-content">
+                <button class="dropdown-option theme-option" data-theme="light" data-i18n="themeOptions.light" aria-label="Light theme">
+                    <span>Light</span>
+                </button>
+                <button class="dropdown-option theme-option" data-theme="dark" data-i18n="themeOptions.dark" aria-label="Dark theme">
+                    <span>Dark</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme and Initialization -->
+    <script>
+
+        // Setup theme toggle button
+        function setupThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeSelector = document.getElementById('themeSelector');
+            const themeDropdown = document.getElementById('themeDropdown');
+            const themeOptions = document.querySelectorAll('.theme-option');
+            const themeCurrent = document.querySelector('.theme-current');
+
+            if (!themeToggle || !themeDropdown) {
+                console.warn('[UI] Theme elements not found in DOM');
+                return;
+            }
+
+            console.log('[UI] Setting up theme toggle button with', themeOptions.length, 'options');
+
+            // Toggle button expansion on click
+            themeToggle.addEventListener('click', function (e) {
+                // Don't handle if clicking on the theme selector or particle toggle
+                if (e.target.closest('.theme-selector') || e.target.closest('.particle-toggle-inline')) {
                     return;
                 }
                 
-                console.log('[UI] Setting up theme toggle button with', themeOptions.length, 'options');
+                console.log('[UI] Theme toggle button clicked');
+                e.preventDefault();
+                e.stopPropagation();
                 
-                // Toggle dropdown on button click
-                themeToggle.addEventListener('click', function(e) {
-                    console.log('[UI] Theme toggle button clicked');
+                const isExpanded = themeToggle.classList.contains('expanded');
+                themeToggle.classList.toggle('expanded');
+                
+                // Close dropdown if collapsing button
+                if (isExpanded && themeDropdown.classList.contains('active')) {
+                    themeDropdown.classList.remove('active');
+                }
+                
+                console.log('[UI] Button expanded:', !isExpanded);
+            });
+
+            // Handle theme selector click (opens dropdown)
+            if (themeSelector) {
+                themeSelector.addEventListener('click', function (e) {
+                    console.log('[UI] Theme selector clicked');
                     e.preventDefault();
                     e.stopPropagation();
-                    const isActive = themeDropdown.classList.contains('active');
                     themeDropdown.classList.toggle('active');
-                    console.log('[UI] Dropdown toggled to:', !isActive);
+                    console.log('[UI] Theme dropdown toggled');
                 });
-                
-                // Handle theme option clicks
-                themeOptions.forEach((option, index) => {
-                    option.addEventListener('click', function(e) {
-                        console.log('[UI] Theme option clicked:', this.dataset.theme);
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        const theme = this.dataset.theme;
-                        console.log('[UI] Calling ThemeManager.setTheme(' + theme + ')');
-                        
-                        // Call ThemeManager to change theme and save cookie
-                        if (typeof ThemeManager !== 'undefined' && ThemeManager.setTheme) {
-                            const success = ThemeManager.setTheme(theme);
-                            console.log('[UI] ThemeManager.setTheme result:', success);
-                            
-                            if (success) {
-                                // Update button to show current theme
-                                console.log('[UI] Theme changed successfully to:', theme);
-                            } else {
-                                console.error('[UI] Failed to set theme');
+            }
+
+            // Handle theme option clicks
+            themeOptions.forEach((option) => {
+                option.addEventListener('click', function (e) {
+                    console.log('[UI] Theme option clicked:', this.dataset.theme);
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const theme = this.dataset.theme;
+                    console.log('[UI] Calling ThemeManager.setTheme(' + theme + ')');
+
+                    // Call ThemeManager to change theme and save cookie
+                    if (typeof ThemeManager !== 'undefined' && ThemeManager.setTheme) {
+                        const success = ThemeManager.setTheme(theme);
+                        console.log('[UI] ThemeManager.setTheme result:', success);
+
+                        if (success) {
+                            // Update current theme text
+                            if (themeCurrent) {
+                                const themeText = this.querySelector('span').textContent;
+                                themeCurrent.textContent = themeText;
+                                themeCurrent.dataset.i18n = this.dataset.i18n;
                             }
+                            console.log('[UI] Theme changed successfully to:', theme);
                         } else {
-                            console.error('[UI] ThemeManager not available');
+                            console.error('[UI] Failed to set theme');
                         }
-                        
-                        // Close dropdown
-                        themeDropdown.classList.remove('active');
-                        console.log('[UI] Dropdown closed');
-                    });
-                });
-                
-                // Close dropdown when clicking outside
-                document.addEventListener('click', function(e) {
-                    // Only close if clicking outside the theme toggle container
-                    if (!e.target.closest('.theme-toggle-container')) {
-                        themeDropdown.classList.remove('active');
-                    }
-                });
-                
-                console.log('[UI] Theme toggle setup complete');
-            }
-            
-            // Initialize language system and UI
-            async function initializeLanguageUI() {
-                try {
-                    console.log('[Init] Starting language system initialization');
-                    
-                    // Wait for LanguageSystem to be ready
-                    if (typeof LanguageSystem !== 'undefined') {
-                        await LanguageSystem.init();
-                        LanguageSystem.updatePageContent();
-                        
-                        // Update active state in language selector
-                        const currentLang = LanguageSystem.getCurrentLanguage();
-                        const toggleButton = document.querySelector('.language-toggle-button .language-current');
-                        if (toggleButton) {
-                            toggleButton.textContent = LanguageSystem.t('languageSelector.' + currentLang);
-                        }
-                        
-                        console.log('[Init] Language system initialized for:', currentLang);
                     } else {
-                        console.warn('[Init] LanguageSystem not available');
+                        console.error('[UI] ThemeManager not available');
                     }
-                } catch (error) {
-                    console.error('[Init] Error initializing language system:', error);
+
+                    // Close dropdown
+                    themeDropdown.classList.remove('active');
+                    console.log('[UI] Dropdown closed');
+                });
+            });
+
+            // Close dropdown and collapse button when clicking outside
+            document.addEventListener('click', function (e) {
+                // Only close if clicking outside the theme toggle container
+                if (!e.target.closest('.theme-toggle-container')) {
+                    if (themeDropdown.classList.contains('active')) {
+                        themeDropdown.classList.remove('active');
+                        console.log('[UI] Dropdown closed by outside click');
+                    }
+                    if (themeToggle.classList.contains('expanded')) {
+                        themeToggle.classList.remove('expanded');
+                        console.log('[UI] Button collapsed by outside click');
+                    }
                 }
+            });
+
+            console.log('[UI] Theme toggle setup complete');
+            
+            // Update current theme display on init
+            if (themeCurrent && typeof ThemeManager !== 'undefined') {
+                const currentTheme = ThemeManager.getCurrentTheme() || 'dark';
+                const themeOption = document.querySelector(`.theme-option[data-theme="${currentTheme}"]`);
+                if (themeOption) {
+                    themeCurrent.textContent = themeOption.querySelector('span').textContent;
+                    themeCurrent.dataset.i18n = themeOption.dataset.i18n;
+                }
+                console.log('[UI] Current theme set to:', currentTheme);
+            }
+        }
+
+        // Setup particle toggle
+        function setupParticleToggle() {
+            const particleToggle = document.getElementById('particleToggle');
+            
+            if (!particleToggle) {
+                console.warn('[UI] Particle toggle not found in DOM');
+                return;
             }
             
-            // Setup language dropdown immediately (before DOM content loaded)
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', setupLanguageDropdown);
-            } else {
-                setupLanguageDropdown();
-            }
+            console.log('[UI] Setting up particle toggle');
             
-            // Setup theme toggle immediately (before DOM content loaded)
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', setupThemeToggle);
-            } else {
+            // Handle particle toggle change
+            particleToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    console.log('[UI] Enabling particles');
+                    if (typeof Confetti !== 'undefined') {
+                        Confetti.playSnow();
+                    }
+                    if (typeof WindSystem !== 'undefined') {
+                        WindSystem.start();
+                    }
+                } else {
+                    console.log('[UI] Disabling particles');
+                    if (typeof Confetti !== 'undefined') {
+                        Confetti.stopSnow();
+                    }
+                    if (typeof WindSystem !== 'undefined') {
+                        WindSystem.stop();
+                    }
+                }
+            });
+            
+            console.log('[UI] Particle toggle setup complete');
+        }
+
+        // Setup theme toggle immediately (before DOM content loaded)
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
                 setupThemeToggle();
+                setupParticleToggle();
+            });
+        } else {
+            setupThemeToggle();
+            setupParticleToggle();
+        }
+    </script>
+
+    <!-- Language Handling -->
+    <script>
+        // Setup language dropdown button
+        function setupLanguageDropdown() {
+
+            const languageToggle = document.getElementById('languageToggle');
+            const languageDropdown = document.getElementById('languageDropdown');
+            const languageOptions = document.querySelectorAll('.language-option');
+
+            if (!languageToggle || !languageDropdown) {
+                console.warn('[UI] Language elements not found in DOM');
+                return;
             }
-            
-            // Initialize language system when ready
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initializeLanguageUI);
-            } else {
-                initializeLanguageUI();
+
+            console.log('[UI] Setting up language dropdown with', languageOptions.length, 'options');
+
+            // Toggle dropdown on button click
+            languageToggle.addEventListener('click', function (e) {
+                console.log('[UI] Language toggle button clicked');
+                e.preventDefault();
+                e.stopPropagation();
+                const isActive = languageDropdown.classList.contains('active');
+                languageDropdown.classList.toggle('active');
+                console.log('[UI] Language dropdown toggled to:', !isActive);
+            });
+
+            // Handle language option clicks
+            languageOptions.forEach((option) => {
+                option.addEventListener('click', async function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const selectedLang = this.dataset.lang;
+                    console.log('[UI] Language option clicked:', selectedLang);
+
+                    // Switch language using LanguageSystem
+                    if (typeof LanguageSystem !== 'undefined' && LanguageSystem.switchLanguage) {
+                        const success = await LanguageSystem.switchLanguage(selectedLang);
+
+                        if (success) {
+                            // Update button text
+                            const toggleButton = document.querySelector('.language-toggle-button .language-current');
+                            if (toggleButton) {
+                                const langKey = selectedLang === 'ja' ? 'japanese' : 'english';
+                                toggleButton.textContent = LanguageSystem.t('languageSelector.' + langKey);
+                                toggleButton.dataset.lang = selectedLang;
+                            }
+                            console.log('[UI] Language switched successfully to:', selectedLang);
+                        } else {
+                            console.error('[UI] Failed to switch language');
+                        }
+                    } else {
+                        console.error('[UI] LanguageSystem not available');
+                    }
+
+                    // Close dropdown
+                    languageDropdown.classList.remove('active');
+                    console.log('[UI] Language dropdown closed');
+                });
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function (e) {
+                // Only close if clicking outside the language selector
+                if (!e.target.closest('.language-selector')) {
+                    languageDropdown.classList.remove('active');
+                }
+            });
+
+            console.log('[UI] Language dropdown setup complete');
+        }
+
+        // Initialize language system and UI
+        async function initializeLanguageUI() {
+            try {
+                console.log('[Init] Starting language system initialization');
+
+                // Wait for LanguageSystem to be ready
+                if (typeof LanguageSystem !== 'undefined') {
+                    await LanguageSystem.init();
+                    LanguageSystem.updatePageContent();
+
+                    // Update active state in language selector
+                    const currentLang = LanguageSystem.getCurrentLanguage();
+                    const toggleButton = document.querySelector('.language-toggle-button .language-current');
+                    if (toggleButton) {
+                        // Map language code to translation key
+                        const langKey = currentLang === 'ja' ? 'japanese' : 'english';
+                        toggleButton.textContent = LanguageSystem.t('languageSelector.' + langKey);
+                    }
+
+                    console.log('[Init] Language system initialized for:', currentLang);
+                } else {
+                    console.warn('[Init] LanguageSystem not available');
+                }
+            } catch (error) {
+                console.error('[Init] Error initializing language system:', error);
             }
-        </script>
-    </body>
+        }
+
+        // Setup language dropdown immediately (before DOM content loaded)
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', setupLanguageDropdown);
+        } else {
+            setupLanguageDropdown();
+        }
+
+        // Initialize language system when ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeLanguageUI);
+        } else {
+            initializeLanguageUI();
+        }
+    </script>
+
+    <!-- Particle Effects (Snow/Confetti) -->
+    <!-- Create module shim for CommonJS-style confetti library -->
+    <script>
+        // Create a module object for the confetti library to use
+        if (typeof module === 'undefined') {
+            var module = { exports: {} };
+        }
+    </script>
+    <script src="frontend/src/js/confetti.js"></script>
+    <script>
+        // Expose confetti library to window
+        if (typeof module !== 'undefined' && module.exports) {
+            window.confetti = module.exports;
+        }
+    </script>
+    <script src="frontend/src/js/confetti-manager.js"></script>
+</body>
+
 </html>
