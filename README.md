@@ -33,7 +33,7 @@ To get the correct formatting, this is what I use for SVG's based on the formatt
 logo=data:image/svg%2bxml;base64,[Base64]
 -->
 
-## Languages
+## Languages & Applications
 
 ### Website Hosting
 
