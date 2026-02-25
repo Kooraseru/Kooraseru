@@ -19,13 +19,56 @@
     "label": "Theme"
   },
   "particleToggle": {
-    "label": "Particles"
+    "label": "Confetti!"
   },
   "scrollPrompt": {
     "text": "Scroll to Discover"
   },
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "skills": "Skills",
+    "experience": "Experience",
+    "contact": "Contact",
+    "devlog": "Devlog"
+  },
   "home": {
     "greeting": "Hiya!",
-    "welcome": "Welcome to my personal website!"
+    "welcome": "Welcome to my personal website!",
+    "intro": "I'm Kooraseru, though you might know me by my another name. This is my personal website, which I experiment with and build fun wacky experiments. This website runs off of GitHub Pages, and the source code is available on GitHub. Feel free to check it out and ~steal~ borrow any code you find interesting!"
+  },
+  "portfolio": {
+    "title": "Portfolio & Projects",
+    "subtitle": "A selection of things I've built.",
+    "sortLabel": "Sort by:",
+    "sortNewest": "Newest First",
+    "sortOldest": "Oldest First",
+    "sortActive": "Active First"
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Technologies and tools I'm comfortable with.",
+    "body": "Usage and knowledge of these tools vary."
+  },
+  "experience": {
+    "title": "Experience",
+    "subtitle": "Where I've been and what I've done.",
+    "entries": {
+      "job1": {
+        "company": "Kooraseru & Co.",
+        "role": "Owner & Proprietor",
+        "duration": "Owner & Proprietor | Mar 2023 - Present",
+        "description": "Running my own business and building projects. That's about it!"
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Get in touch!",
+    "emailLabel": "Email",
+    "emailPlaceholder": "your@email.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Say hello...",
+    "sendButton": "Send"
   }
 }

@@ -164,23 +164,125 @@ const LanguageSystem = (() => {
         return value;
     }
     
+    // ===========================
+    // MARKDOWN PARSER
+    // ===========================
+
     /**
-     * Update page content with translations
-     * @param {Object} translation - Translation object
+     * Escape HTML special characters for safe embedding.
+     * @param {string} str
+     * @returns {string}
+     */
+    function escapeHtmlMd(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    /**
+     * Parse inline Markdown syntax within a single line of text.
+     * Supported:
+     *   [text](url)    → <a> link
+     *   `code`         → <code>
+     *   ~~text~~       → <del> (strikethrough, standard)
+     *   ~text~         → <del> (strikethrough, shorthand)
+     *   **text**       → <strong> (bold)
+     *   *text*         → <em> (italic)
+     * @param {string} text
+     * @returns {string} HTML string
+     */
+    function parseInlineMarkdown(text) {
+        // Links [text](url) — only allow http(s) or root-relative URLs
+        text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, linkText, url) => {
+            const safeUrl = /^https?:\/\//.test(url) || url.startsWith('/') ? url : '#';
+            return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${linkText}</a>`;
+        });
+
+        // Protect inline code spans from further replacements
+        const codeSpans = [];
+        text = text.replace(/`([^`]+)`/g, (_, code) => {
+            codeSpans.push(escapeHtmlMd(code));
+            return `\x00CODE${codeSpans.length - 1}\x00`;
+        });
+
+        // Strikethrough ~~text~~ (standard) or ~text~ (shorthand)
+        text = text.replace(/~~(.+?)~~/g, '<del>$1</del>');
+        text = text.replace(/~([^~\s][^~]*)~/g, '<del>$1</del>');
+
+        // Bold **text** (must come before italic)
+        text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+        // Italic *text*
+        text = text.replace(/\*([^*\s][^*]*)\*/g, '<em>$1</em>');
+
+        // Restore code spans
+        text = text.replace(/\x00CODE(\d+)\x00/g, (_, i) => `<code>${codeSpans[+i]}</code>`);
+
+        return text;
+    }
+
+    /**
+     * Parse a Markdown string into an HTML string.
+     * Block-level: lines starting with `* ` or `- ` become <ul><li> bullet lists.
+     * Empty lines become <br> separators.
+     * All other content is passed through parseInlineMarkdown.
+     * @param {string} text
+     * @returns {string} HTML string
+     */
+    function parseMarkdown(text) {
+        if (!text || typeof text !== 'string') return text || '';
+
+        const lines = text.split(/\r?\n/);
+        const blocks = [];
+        let listItems = [];
+
+        function flushList() {
+            if (listItems.length) {
+                blocks.push('<ul class="md-list">' + listItems.join('') + '</ul>');
+                listItems = [];
+            }
+        }
+
+        for (const line of lines) {
+            const trimmed = line.trim();
+            if (/^[*-] /.test(trimmed)) {
+                listItems.push('<li>' + parseInlineMarkdown(trimmed.slice(2)) + '</li>');
+            } else {
+                flushList();
+                if (trimmed === '') {
+                    blocks.push('<br>');
+                } else {
+                    blocks.push(parseInlineMarkdown(line));
+                }
+            }
+        }
+        flushList();
+
+        return blocks.join('');
+    }
+
+    /**
+     * Update page content with translations.
+     * Elements with data-no-translate are skipped entirely.
+     * Elements with data-native-font keep their pinned font family via CSS.
+     * Translation values support Markdown syntax (see parseMarkdown).
      */
     function updatePageContent(translation) {
-        // Update elements with data-i18n attribute
+        // Update elements with data-i18n attribute, skipping no-translate elements
         document.querySelectorAll('[data-i18n]').forEach(element => {
+            // Skip elements explicitly tagged as no-translate
+            if (element.hasAttribute('data-no-translate')) return;
+
             const key = element.dataset.i18n;
             const translatedText = t(key);
             
             if (element.tagName === 'IMG' || element.tagName === 'INPUT') {
-                // For attributes
                 const attr = element.dataset.i18nAttr || 'alt';
-                element.setAttribute(attr, translatedText);
+                element.setAttribute(attr, String(translatedText));
             } else {
-                // For text content
-                element.textContent = translatedText;
+                element.innerHTML = parseMarkdown(String(translatedText));
             }
         });
     }
@@ -223,6 +325,7 @@ const LanguageSystem = (() => {
         t,
         updatePageContent,
         switchLanguage,
+        parseMarkdown,
         getCurrentLanguage: () => window.currentLanguage || DEFAULT_LANGUAGE,
         getSubdomain: getCurrentSubdomain
     };
@@ -237,3 +340,6 @@ if (document.readyState === 'loading') {
 
 // Expose to global scope for access from HTML scripts
 window.LanguageSystem = LanguageSystem;
+
+// Expose Markdown parser globally so non-module scripts (e.g. projects.js) can use it
+window.parseMarkdown = LanguageSystem.parseMarkdown;

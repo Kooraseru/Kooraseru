@@ -4,7 +4,7 @@
   "direction": "ltr",
   "topbar": {
     "logoAlt": "Kooraseru",
-    "about": "について",
+    "about": "概要",
     "contact": "お問い合わせ"
   },
   "languageSelector": {
@@ -19,13 +19,55 @@
     "label": "テーマ"
   },
   "particleToggle": {
-    "label": "パーティクル"
+    "label": "紙吹雪！"
   },
   "scrollPrompt": {
-    "text": "スクロールして探索"
+    "text": "スクロールして見る"
+  },
+  "nav": {
+    "home": "ホーム",
+    "projects": "プロジェクト",
+    "skills": "スキル",
+    "experience": "経験",
+    "contact": "お問い合わせ",
+    "devlog": "開発ログ"
   },
   "home": {
-    "greeting": "こんにちは！",
-    "welcome": "私の個人ウェブサイトへようこそ！"
+    "greeting": "やあ！",
+    "welcome": "私の個人サイトへようこそ！",
+    "intro": "Kooraseruです。別の名前で知っている方もいるかもしれません。このサイトは、いろいろ実験したり、ちょっと変わった楽しいものを作ったりするための個人サイトです。GitHub Pagesで運営しており、ソースコードはGitHubで公開しています。面白いと思ったコードがあれば、ぜひ〜steal〜借りてみてください！"
+  },
+  "portfolio": {
+    "title": "ポートフォリオ & プロジェクト",
+    "subtitle": "これまでに制作したものの一部です。",
+    "sortLabel": "並び替え：",
+    "sortNewest": "新しい順",
+    "sortOldest": "古い順",
+    "sortActive": "アクティブ順"
+  },
+  "skills": {
+    "title": "スキル",
+    "subtitle": "扱いに慣れている技術やツール。",
+    "body": "これらのツールの使用経験や知識の深さはそれぞれ異なります。"
+  },
+  "experience": {
+    "title": "経験",
+    "subtitle": "これまでの経歴と取り組み。",
+    "entries": {
+      "job1": {
+        "company": "Kooraseru & Co.",
+        "role": "オーナー兼代表",
+        "duration": "オーナー兼代表 | 2023年3月 - 現在",
+        "description": "自身の事業を運営し、さまざまなプロジェクトを制作しています。"
+      }
+    }
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "subtitle": "お気軽にご連絡ください。",
+    "emailLabel": "メールアドレス",
+    "emailPlaceholder": "your@email.com",
+    "messageLabel": "メッセージ",
+    "sendButton": "送信"
   }
 }

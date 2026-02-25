@@ -21,7 +21,7 @@ const Confetti = (() => {
         MAX_INIT_ATTEMPTS: 50,
         INIT_RETRY_DELAY: 100,
         WELCOME_DELAY: 500,
-        DEFAULT_Z_INDEX: 0,
+        DEFAULT_Z_INDEX: -1,
         PRESETS: {
             welcome: {
                 duration: 3000,
@@ -115,7 +115,7 @@ const Confetti = (() => {
         
         // Fire welcome animation after initialization
         setTimeout(() => {
-            playSnow();
+            playWelcome();
         }, config.WELCOME_DELAY);
         
         return true;
