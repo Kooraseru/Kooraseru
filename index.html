@@ -33,15 +33,16 @@
             </div>
             <div class="topbar-center">
                 <div class="logo" onclick="scrollToSection('welcome')" role="button" tabindex="0"
-                     onkeydown="if(event.key==='Enter')scrollToSection('welcome')">
-                    <img src="public/favicon.ico" class="logo-icon"
-                         alt="" data-i18n="topbar.logoAlt" data-i18n-attr="alt" data-no-translate />
+                    onkeydown="if(event.key==='Enter')scrollToSection('welcome')">
+                    <img src="public/favicon.ico" class="logo-icon" alt="" data-i18n="topbar.logoAlt"
+                        data-i18n-attr="alt" data-no-translate />
                     <span class="logo-text" data-no-translate>Kooraseru</span>
                 </div>
             </div>
             <div class="topbar-right">
                 <div class="language-selector">
-                    <button class="language-toggle-button" id="languageToggle" aria-label="" data-i18n="ui.languageToggle" data-i18n-attr="aria-label">
+                    <button class="language-toggle-button" id="languageToggle" aria-label=""
+                        data-i18n="ui.languageToggle" data-i18n-attr="aria-label">
                         <span class="language-current" id="languageCurrent" data-lang="en"></span>
                         <svg class="language-icon" viewBox="0 0 24 24">
                             <polyline points="6 9 12 15 18 9"></polyline>
@@ -49,10 +50,10 @@
                     </button>
                     <div class="dropdown language-dropdown" id="languageDropdown">
                         <div class="dropdown-content">
-                            <a class="dropdown-option language-option language-option-en"
-                               data-lang="en" data-i18n="languageSelector.english"></a>
-                            <a class="dropdown-option language-option language-option-ja"
-                               data-lang="ja" data-i18n="languageSelector.japanese"></a>
+                            <a class="dropdown-option language-option language-option-en" data-lang="en"
+                                data-i18n="languageSelector.english"></a>
+                            <a class="dropdown-option language-option language-option-ja" data-lang="ja"
+                                data-i18n="languageSelector.japanese"></a>
                         </div>
                     </div>
                 </div>
@@ -88,21 +89,26 @@
                             </button>
                             <div class="dropdown sort-dropdown" id="sortDropdown">
                                 <div class="dropdown-content">
-                                    <button class="dropdown-option sort-option" data-sort="newest" data-i18n="portfolio.sortNewest"></button>
-                                    <button class="dropdown-option sort-option" data-sort="oldest" data-i18n="portfolio.sortOldest"></button>
-                                    <button class="dropdown-option sort-option" data-sort="active" data-i18n="portfolio.sortActive"></button>
+                                    <button class="dropdown-option sort-option" data-sort="newest"
+                                        data-i18n="portfolio.sortNewest"></button>
+                                    <button class="dropdown-option sort-option" data-sort="oldest"
+                                        data-i18n="portfolio.sortOldest"></button>
+                                    <button class="dropdown-option sort-option" data-sort="active"
+                                        data-i18n="portfolio.sortActive"></button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-nav">
-                        <button class="carousel-btn" id="carouselPrev" aria-label="" data-i18n="ui.carouselPrev" data-i18n-attr="aria-label">&#8592;</button>
-                        <button class="carousel-btn" id="carouselNext" aria-label="" data-i18n="ui.carouselNext" data-i18n-attr="aria-label">&#8594;</button>
+                        <button class="carousel-btn" id="carouselPrev" aria-label="" data-i18n="ui.carouselPrev"
+                            data-i18n-attr="aria-label">&#8592;</button>
+                        <button class="carousel-btn" id="carouselNext" aria-label="" data-i18n="ui.carouselNext"
+                            data-i18n-attr="aria-label">&#8594;</button>
                     </div>
                 </div>
 
                 <div class="carousel-track" id="projectsCarousel"></div>
-                <div class="carousel-dots"  id="carouselDots"></div>
+                <div class="carousel-dots" id="carouselDots"></div>
             </div>
         </section>
 
@@ -114,7 +120,7 @@
                 </div>
                 <div class="skills-grid" id="skillsGrid"></div>
                 <p style="color:var(--text-secondary);font-size:var(--font-size-sm);margin-top:var(--space-xl);text-align:center;max-width:600px;margin-left:auto;margin-right:auto"
-                   data-i18n="skills.body">
+                    data-i18n="skills.body">
                 </p>
             </div>
         </section>
@@ -148,13 +154,13 @@
                 <form class="contact-form" id="contactForm" onsubmit="sendContactForm(event);">
                     <div class="form-group">
                         <label class="form-label" for="contactEmail" data-i18n="contact.emailLabel"></label>
-                        <input class="form-input" type="email" id="contactEmail"
-                            placeholder="" data-i18n="contact.emailPlaceholder" data-i18n-attr="placeholder" autocomplete="email" />
+                        <input class="form-input" type="email" id="contactEmail" placeholder=""
+                            data-i18n="contact.emailPlaceholder" data-i18n-attr="placeholder" autocomplete="email" />
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="contactMessage" data-i18n="contact.messageLabel"></label>
-                        <textarea class="form-textarea" id="contactMessage"
-                            placeholder="" data-i18n="contact.messagePlaceholder" data-i18n-attr="placeholder"></textarea>
+                        <textarea class="form-textarea" id="contactMessage" placeholder=""
+                            data-i18n="contact.messagePlaceholder" data-i18n-attr="placeholder"></textarea>
                     </div>
                     <button class="form-submit" type="submit" data-i18n="contact.sendButton"></button>
                 </form>
@@ -163,25 +169,28 @@
 
     </div>
 
-    <div class="project-modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-label="" data-i18n="ui.projectModal" data-i18n-attr="aria-label">
+    <div class="project-modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-label=""
+        data-i18n="ui.projectModal" data-i18n-attr="aria-label">
         <div class="project-modal">
-            <button class="project-modal-close" id="projectModalClose" aria-label="" data-i18n="ui.close" data-i18n-attr="aria-label">&times;</button>
+            <button class="project-modal-close" id="projectModalClose" aria-label="" data-i18n="ui.close"
+                data-i18n-attr="aria-label">&times;</button>
             <div id="projectModalContent"></div>
         </div>
     </div>
 
     <div class="theme-toggle-container">
-        <button class="theme-toggle-button" id="themeToggle" aria-label="" data-i18n="ui.themeOptions" data-i18n-attr="aria-label">
+        <button class="theme-toggle-button" id="themeToggle" aria-label="" data-i18n="ui.themeOptions"
+            data-i18n-attr="aria-label">
             <svg class="theme-icon" viewBox="0 0 24 24">
                 <circle class="sun-circle" cx="12" cy="12" r="5" />
-                <line class="sun-ray" x1="12" y1="1"  x2="12" y2="3" />
+                <line class="sun-ray" x1="12" y1="1" x2="12" y2="3" />
                 <line class="sun-ray" x1="12" y1="21" x2="12" y2="23" />
-                <line class="sun-ray" x1="4.22"  y1="4.22"  x2="5.64"  y2="5.64" />
+                <line class="sun-ray" x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
                 <line class="sun-ray" x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                <line class="sun-ray" x1="1"  y1="12" x2="3"  y2="12" />
+                <line class="sun-ray" x1="1" y1="12" x2="3" y2="12" />
                 <line class="sun-ray" x1="21" y1="12" x2="23" y2="12" />
-                <line class="sun-ray" x1="4.22"  y1="19.78" x2="5.64"  y2="18.36" />
-                <line class="sun-ray" x1="18.36" y1="5.64"  x2="19.78" y2="4.22" />
+                <line class="sun-ray" x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line class="sun-ray" x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
             </svg>
 
             <span class="theme-button-content">
@@ -204,10 +213,8 @@
 
         <div class="dropdown theme-dropdown" id="themeDropdown">
             <div class="dropdown-content">
-                <button class="dropdown-option theme-option" data-theme="light"
-                    data-i18n="themeOptions.light"></button>
-                <button class="dropdown-option theme-option" data-theme="dark"
-                    data-i18n="themeOptions.dark"></button>
+                <button class="dropdown-option theme-option" data-theme="light" data-i18n="themeOptions.light"></button>
+                <button class="dropdown-option theme-option" data-theme="dark" data-i18n="themeOptions.dark"></button>
             </div>
         </div>
     </div>
@@ -215,7 +222,7 @@
     <script>
         function scrollToSection(id) {
             const scroller = document.getElementById('pageScroller');
-            const target   = document.getElementById(id);
+            const target = document.getElementById(id);
             if (scroller && target) {
                 scroller.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
             }
@@ -224,11 +231,11 @@
 
     <script>
         function setupThemeToggle() {
-            const themeToggle   = document.getElementById('themeToggle');
+            const themeToggle = document.getElementById('themeToggle');
             const themeSelector = document.getElementById('themeSelector');
             const themeDropdown = document.getElementById('themeDropdown');
-            const themeOptions  = document.querySelectorAll('.theme-option');
-            const themeCurrent  = document.querySelector('.theme-current');
+            const themeOptions = document.querySelectorAll('.theme-option');
+            const themeCurrent = document.querySelector('.theme-current');
             if (!themeToggle || !themeDropdown) return;
 
             themeToggle.addEventListener('click', function (e) {
@@ -285,7 +292,7 @@
             if (!particleToggle) return;
             particleToggle.addEventListener('change', function () {
                 if (this.checked) { if (typeof Confetti !== 'undefined') Confetti.playSnow(); }
-                else              { if (typeof Confetti !== 'undefined') Confetti.stopSnow(); }
+                else { if (typeof Confetti !== 'undefined') Confetti.stopSnow(); }
             });
         }
 
@@ -296,10 +303,10 @@
 
     <script>
         function setupLanguageDropdown() {
-            var languageToggle   = document.getElementById('languageToggle');
-            var languageCurrent  = document.getElementById('languageCurrent');
+            var languageToggle = document.getElementById('languageToggle');
+            var languageCurrent = document.getElementById('languageCurrent');
             var languageDropdown = document.getElementById('languageDropdown');
-            var languageOptions  = document.querySelectorAll('.language-option');
+            var languageOptions = document.querySelectorAll('.language-option');
             if (!languageToggle || !languageDropdown) return;
 
             languageToggle.addEventListener('click', function (e) {
@@ -336,8 +343,8 @@
                     }
                     LanguageSystem.updatePageContent();
 
-                    var currentLang   = LanguageSystem.getCurrentLanguage();
-                    var langCurrent   = document.getElementById('languageCurrent');
+                    var currentLang = LanguageSystem.getCurrentLanguage();
+                    var langCurrent = document.getElementById('languageCurrent');
                     if (langCurrent) {
                         var matchOpt = document.querySelector('.language-option[data-lang="' + currentLang + '"]');
                         if (matchOpt) {
@@ -356,40 +363,46 @@
     </script>
 
     <script>
-        function sendContactForm(e) {
+        async function sendContactForm(e) {
             e.preventDefault();
 
-            var email   = (document.getElementById('contactEmail')?.value   || '').trim();
-            var message = (document.getElementById('contactMessage')?.value || '').trim();
-            var emptyMessage = (typeof LanguageSystem !== 'undefined' && LanguageSystem.t)
+            const form = document.getElementById('contactForm');
+            const name = (document.getElementById('contactName')?.value || '').trim();
+            const email = (document.getElementById('contactEmail')?.value || '').trim();
+            const message = (document.getElementById('contactMessage')?.value || '').trim();
+
+            const emptyMessage = (typeof LanguageSystem !== 'undefined' && LanguageSystem.t)
                 ? LanguageSystem.t('contact.toastEmptyMessage', 'Please write a message first.')
                 : 'Please write a message first.';
-            var sentMessage = (typeof LanguageSystem !== 'undefined' && LanguageSystem.t)
-                ? LanguageSystem.t('contact.toastSent', 'Email draft opened!')
-                : 'Email draft opened!';
-            var defaultSubject = (typeof LanguageSystem !== 'undefined' && LanguageSystem.t)
-                ? LanguageSystem.t('contact.mailSubject', 'Website contact')
-                : 'Website contact';
-            var subjectWithEmailTemplate = (typeof LanguageSystem !== 'undefined' && LanguageSystem.t)
-                ? LanguageSystem.t('contact.mailSubjectFrom', 'Website contact from {email}')
-                : 'Website contact from {email}';
+            const sentMessage = (typeof LanguageSystem !== 'undefined' && LanguageSystem.t)
+                ? LanguageSystem.t('contact.toastSent', 'Message sent!')
+                : 'Message sent!';
 
             if (!message) {
                 showToast(emptyMessage, 'error');
                 return;
             }
 
-            var subject = email ? subjectWithEmailTemplate.replace('{email}', email) : defaultSubject;
-            var body    = message + (email ? '\n\n-- \n' + email : '');
+            const formData = { name, email, message };
 
-            var mailto = 'mailto:social@kooraseru.com'
-                       + '?subject=' + encodeURIComponent(subject)
-                       + '&body='    + encodeURIComponent(body);
+            try {
+                const res = await fetch('https://contact.kooraseru.com/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
 
-            window.location.href = mailto;
-
-            document.getElementById('contactForm').reset();
-            showToast(sentMessage);
+                const result = await res.json();
+                if (result.success) {
+                    showToast(sentMessage);
+                    form.reset();
+                } else {
+                    showToast('Failed to send message.', 'error');
+                }
+            } catch (err) {
+                console.error(err);
+                showToast('Error sending message.', 'error');
+            }
         }
 
         function showToast(message, type) {
