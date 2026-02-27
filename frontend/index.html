@@ -1,122 +1,103 @@
 <!DOCTYPE html>
-<!-- NEW LAYOUT: block-scroll, carousel, cards, absolute-centered logo -->
 <html lang="en" data-theme="dark">
 
 <head lang="en">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="My personal website!">
+    <meta name="author" content="Kooraseru" />
 
     <title>Kooraseru</title>
     <base href="/">
 
-    <link rel="icon" href="public/kooraseru.ico" type="image/x-icon" />
+    <link rel="icon" href="public/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" />
     <link rel="stylesheet" href="frontend/src/css/stylesheet.css" />
     <link rel="stylesheet" href="frontend/src/css/themes.css" />
     <link rel="stylesheet" href="frontend/src/css/topbar.css" />
 
-    <!-- Theme manager - runs immediately to prevent flash -->
     <script type="module" src="frontend/src/js/theme-manager.js"></script>
 
-    <!-- Language system - loads translations and sets font -->
     <script type="module" src="frontend/src/js/language-system.js"></script>
 </head>
 
 <body>
-
-    <!-- ========== TOPBAR ========== -->
     <nav class="topbar">
         <div class="topbar-content">
-
-            <!-- Left: page nav links -->
             <div class="topbar-left">
                 <div class="nav-links">
-                    <button class="nav-link" data-i18n="nav.home"    onclick="scrollToSection('welcome')">Home</button>
-                    <button class="nav-link" data-i18n="nav.contact" onclick="scrollToSection('contact')">Contact</button>
+                    <button class="nav-link" data-i18n="nav.home" onclick="scrollToSection('welcome')"></button>
+                    <button class="nav-link" data-i18n="nav.contact" onclick="scrollToSection('contact')"></button>
                 </div>
             </div>
-
-            <!-- Center: logo — forced absolute center, never translates -->
             <div class="topbar-center">
                 <div class="logo" onclick="scrollToSection('welcome')" role="button" tabindex="0"
                      onkeydown="if(event.key==='Enter')scrollToSection('welcome')">
                     <img src="public/favicon.ico" class="logo-icon"
-                         alt="Kooraseru" data-i18n="topbar.logoAlt" data-i18n-attr="alt" data-no-translate />
+                         alt="" data-i18n="topbar.logoAlt" data-i18n-attr="alt" data-no-translate />
                     <span class="logo-text" data-no-translate>Kooraseru</span>
                 </div>
             </div>
-
-            <!-- Right: language selector -->
             <div class="topbar-right">
                 <div class="language-selector">
-                    <button class="language-toggle-button" id="languageToggle" aria-label="Select language">
-                        <span class="language-current" id="languageCurrent" data-lang="en">English</span>
+                    <button class="language-toggle-button" id="languageToggle" aria-label="" data-i18n="ui.languageToggle" data-i18n-attr="aria-label">
+                        <span class="language-current" id="languageCurrent" data-lang="en"></span>
                         <svg class="language-icon" viewBox="0 0 24 24">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
-
-                    <!-- Language Dropdown — each option pinned to its own native font -->
                     <div class="dropdown language-dropdown" id="languageDropdown">
                         <div class="dropdown-content">
                             <a class="dropdown-option language-option language-option-en"
-                               data-lang="en" data-no-translate aria-label="English">English</a>
+                               data-lang="en" data-i18n="languageSelector.english"></a>
                             <a class="dropdown-option language-option language-option-ja"
-                               data-lang="ja" data-no-translate aria-label="日本語">日本語</a>
+                               data-lang="ja" data-i18n="languageSelector.japanese"></a>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </nav>
-
-    <!-- ========== PAGE SCROLLER (snap blocks) ========== -->
     <div class="page-scroller" id="pageScroller">
-
-        <!-- ── 1. WELCOME ── -->
         <section class="section" id="welcome">
             <div class="container">
                 <div class="welcome-card">
-                    <h1 data-i18n="home.greeting">Hiya!</h1>
-                    <h2 data-i18n="home.welcome">Welcome to my personal website!</h2>
-                    <p data-i18n="home.intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    <h1 data-i18n="home.greeting"></h1>
+                    <h2 data-i18n="home.welcome"></h2>
+                    <p data-i18n="home.intro"></p>
                 </div>
             </div>
         </section>
-
-        <!-- ── 2. PORTFOLIO / PROJECTS ── -->
         <section class="section section--alt" id="portfolio">
             <div class="container">
                 <div class="section-heading">
-                    <h2 data-i18n="portfolio.title">Portfolio &amp; Projects</h2>
-                    <p data-i18n="portfolio.subtitle">A selection of things I've built.</p>
+                    <h2 data-i18n="portfolio.title"></h2>
+                    <p data-i18n="portfolio.subtitle"></p>
                 </div>
 
                 <div class="portfolio-controls">
                     <div class="sort-control">
-                        <span class="sort-label" data-i18n="portfolio.sortLabel">Sort by:</span>
+                        <span class="sort-label" data-i18n="portfolio.sortLabel"></span>
                         <div class="sort-selector">
                             <button class="sort-toggle-button" id="sortToggle" aria-haspopup="listbox">
-                                <span class="sort-current" id="sortCurrent" data-i18n="portfolio.sortNewest">Newest First</span>
+                                <span class="sort-current" id="sortCurrent" data-i18n="portfolio.sortNewest"></span>
                                 <svg class="sort-icon" viewBox="0 0 24 24">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
                             </button>
                             <div class="dropdown sort-dropdown" id="sortDropdown">
                                 <div class="dropdown-content">
-                                    <button class="dropdown-option sort-option" data-sort="newest" data-i18n="portfolio.sortNewest">Newest First</button>
-                                    <button class="dropdown-option sort-option" data-sort="oldest" data-i18n="portfolio.sortOldest">Oldest First</button>
-                                    <button class="dropdown-option sort-option" data-sort="active"  data-i18n="portfolio.sortActive">Active First</button>
+                                    <button class="dropdown-option sort-option" data-sort="newest" data-i18n="portfolio.sortNewest"></button>
+                                    <button class="dropdown-option sort-option" data-sort="oldest" data-i18n="portfolio.sortOldest"></button>
+                                    <button class="dropdown-option sort-option" data-sort="active" data-i18n="portfolio.sortActive"></button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-nav">
-                        <button class="carousel-btn" id="carouselPrev" aria-label="Previous">&#8592;</button>
-                        <button class="carousel-btn" id="carouselNext" aria-label="Next">&#8594;</button>
+                        <button class="carousel-btn" id="carouselPrev" aria-label="" data-i18n="ui.carouselPrev" data-i18n-attr="aria-label">&#8592;</button>
+                        <button class="carousel-btn" id="carouselNext" aria-label="" data-i18n="ui.carouselNext" data-i18n-attr="aria-label">&#8594;</button>
                     </div>
                 </div>
 
@@ -125,57 +106,23 @@
             </div>
         </section>
 
-        <!-- ── 3. SKILLS ── -->
         <section class="section" id="skills">
             <div class="container">
                 <div class="section-heading">
-                    <h2 data-i18n="skills.title">Skills</h2>
-                    <p data-i18n="skills.subtitle">Technologies and tools I'm comfortable with.</p>
+                    <h2 data-i18n="skills.title"></h2>
+                    <p data-i18n="skills.subtitle"></p>
                 </div>
-                <div class="skills-grid">
-                    <div class="skill-group">
-                        <div class="skill-group-title">Languages</div>
-                        <ul class="skill-list">
-                            <li class="skill-item">TypeScript</li>
-                            <li class="skill-item">Python</li>
-                            <li class="skill-item">Rust</li>
-                            <li class="skill-item">HTML / CSS</li>
-                            <li class="skill-item">C</li>
-                            <li class="skill-item">C++</li>
-                            <li class="skill-item">C#</li>
-                            <li class="skill-item">Lua / LuaU</li>
-                        </ul>
-                    </div>
-                    <div class="skill-group">
-                        <div class="skill-group-title">Frameworks</div>
-                        <ul class="skill-list">
-                            <li class="skill-item">WASM</li>
-                            <li class="skill-item">Node.js</li>
-                            <li class="skill-item">PHP</li>
-                        </ul>
-                    </div>
-                    <div class="skill-group">
-                        <div class="skill-group-title">Tools</div>
-                        <ul class="skill-list">
-                            <li class="skill-item">Git</li>
-                            <li class="skill-item">Github</li>
-                            <li class="skill-item">VS Code</li>
-                        </ul>
-                    </div>
-                </div>
+                <div class="skills-grid" id="skillsGrid"></div>
                 <p style="color:var(--text-secondary);font-size:var(--font-size-sm);margin-top:var(--space-xl);text-align:center;max-width:600px;margin-left:auto;margin-right:auto"
                    data-i18n="skills.body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
             </div>
         </section>
-
-        <!-- ── 4. EXPERIENCE ── -->
         <section class="section section--alt" id="experience">
             <div class="container">
                 <div class="section-heading">
-                    <h2 data-i18n="experience.title">Experience</h2>
-                    <p data-i18n="experience.subtitle">Where I've been and what I've done.</p>
+                    <h2 data-i18n="experience.title"></h2>
+                    <p data-i18n="experience.subtitle"></p>
                 </div>
                 <div class="experience-timeline">
                     <div class="timeline-item">
@@ -192,43 +139,39 @@
                 </div>
             </div>
         </section>
-
-        <!-- ── 5. CONTACT ── -->
         <section class="section" id="contact">
             <div class="container">
                 <div class="section-heading">
-                    <h2 data-i18n="contact.title">Contact</h2>
-                    <p data-i18n="contact.subtitle">Get in touch!</p>
+                    <h2 data-i18n="contact.title"></h2>
+                    <p data-i18n="contact.subtitle"></p>
                 </div>
                 <form class="contact-form" id="contactForm" onsubmit="sendContactForm(event);">
                     <div class="form-group">
                         <label class="form-label" for="contactEmail" data-i18n="contact.emailLabel"></label>
                         <input class="form-input" type="email" id="contactEmail"
-                            placeholder="your@email.com" autocomplete="email" />
+                            placeholder="" data-i18n="contact.emailPlaceholder" data-i18n-attr="placeholder" autocomplete="email" />
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="contactMessage" data-i18n="contact.messageLabel"></label>
                         <textarea class="form-textarea" id="contactMessage"
-                            placeholder="..."></textarea>
+                            placeholder="" data-i18n="contact.messagePlaceholder" data-i18n-attr="placeholder"></textarea>
                     </div>
                     <button class="form-submit" type="submit" data-i18n="contact.sendButton"></button>
                 </form>
             </div>
         </section>
 
-    </div><!-- /page-scroller -->
+    </div>
 
-    <!-- ========== PROJECT DETAIL MODAL ========== -->
-    <div class="project-modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-label="Project details">
+    <div class="project-modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-label="" data-i18n="ui.projectModal" data-i18n-attr="aria-label">
         <div class="project-modal">
-            <button class="project-modal-close" id="projectModalClose" aria-label="Close">&times;</button>
+            <button class="project-modal-close" id="projectModalClose" aria-label="" data-i18n="ui.close" data-i18n-attr="aria-label">&times;</button>
             <div id="projectModalContent"></div>
         </div>
     </div>
 
-    <!-- ========== THEME TOGGLE (bottom-left) ========== -->
     <div class="theme-toggle-container">
-        <button class="theme-toggle-button" id="themeToggle" aria-label="Theme options">
+        <button class="theme-toggle-button" id="themeToggle" aria-label="" data-i18n="ui.themeOptions" data-i18n-attr="aria-label">
             <svg class="theme-icon" viewBox="0 0 24 24">
                 <circle class="sun-circle" cx="12" cy="12" r="5" />
                 <line class="sun-ray" x1="12" y1="1"  x2="12" y2="3" />
@@ -243,15 +186,14 @@
 
             <span class="theme-button-content">
                 <div class="theme-selector" id="themeSelector">
-                    <span class="theme-current" data-i18n="themeOptions.dark">Dark</span>
+                    <span class="theme-current" data-i18n="themeOptions.dark"></span>
                     <svg class="theme-dropdown-icon" viewBox="0 0 24 24">
                         <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                 </div>
                 <div class="theme-divider"></div>
-                <!-- Confetti toggle — OFF by default (no 'checked') -->
                 <div class="particle-toggle-inline">
-                    <span class="particle-toggle-label" data-i18n="particleToggle.label">Confetti!</span>
+                    <span class="particle-toggle-label" data-i18n="particleToggle.label"></span>
                     <label class="switch">
                         <input type="checkbox" id="particleToggle">
                         <span class="slider"></span>
@@ -263,16 +205,13 @@
         <div class="dropdown theme-dropdown" id="themeDropdown">
             <div class="dropdown-content">
                 <button class="dropdown-option theme-option" data-theme="light"
-                    data-i18n="themeOptions.light" aria-label="Light theme"><span>Light</span></button>
+                    data-i18n="themeOptions.light"></button>
                 <button class="dropdown-option theme-option" data-theme="dark"
-                    data-i18n="themeOptions.dark"  aria-label="Dark theme"><span>Dark</span></button>
+                    data-i18n="themeOptions.dark"></button>
             </div>
         </div>
     </div>
 
-    <!-- ========== SCRIPTS ========== -->
-
-    <!-- Scroll helper -->
     <script>
         function scrollToSection(id) {
             const scroller = document.getElementById('pageScroller');
@@ -283,7 +222,6 @@
         }
     </script>
 
-    <!-- Theme UI -->
     <script>
         function setupThemeToggle() {
             const themeToggle   = document.getElementById('themeToggle');
@@ -315,7 +253,8 @@
                     if (typeof ThemeManager !== 'undefined' && ThemeManager.setTheme) {
                         const ok = ThemeManager.setTheme(theme);
                         if (ok && themeCurrent) {
-                            themeCurrent.textContent  = this.querySelector('span').textContent;
+                            const label = this.querySelector('span') ? this.querySelector('span').textContent : this.textContent;
+                            themeCurrent.textContent = label;
                             themeCurrent.dataset.i18n = this.dataset.i18n;
                         }
                     }
@@ -330,11 +269,14 @@
                 }
             });
 
-            // Init display
             if (themeCurrent && typeof ThemeManager !== 'undefined') {
                 const cur = ThemeManager.getCurrentTheme() || 'dark';
                 const opt = document.querySelector('.theme-option[data-theme="' + cur + '"]');
-                if (opt) { themeCurrent.textContent = opt.querySelector('span').textContent; themeCurrent.dataset.i18n = opt.dataset.i18n; }
+                if (opt) {
+                    const label = opt.querySelector('span') ? opt.querySelector('span').textContent : opt.textContent;
+                    themeCurrent.textContent = label;
+                    themeCurrent.dataset.i18n = opt.dataset.i18n;
+                }
             }
         }
 
@@ -352,7 +294,6 @@
         } else { setupThemeToggle(); setupParticleToggle(); }
     </script>
 
-    <!-- Language UI -->
     <script>
         function setupLanguageDropdown() {
             var languageToggle   = document.getElementById('languageToggle');
@@ -373,7 +314,6 @@
                     if (typeof LanguageSystem !== 'undefined' && LanguageSystem.switchLanguage) {
                         var ok = await LanguageSystem.switchLanguage(selectedLang);
                         if (ok && languageCurrent) {
-                            // Use the option's own native text — never a translated value
                             languageCurrent.textContent = this.textContent;
                             languageCurrent.dataset.lang = selectedLang;
                             languageCurrent.style.fontFamily = window.getComputedStyle(this).fontFamily;
@@ -391,7 +331,9 @@
         async function initializeLanguageUI() {
             try {
                 if (typeof LanguageSystem !== 'undefined') {
-                    await LanguageSystem.init();
+                    if (!window.translations) {
+                        await LanguageSystem.init();
+                    }
                     LanguageSystem.updatePageContent();
 
                     var currentLang   = LanguageSystem.getCurrentLanguage();
@@ -413,20 +355,31 @@
         } else { setupLanguageDropdown(); initializeLanguageUI(); }
     </script>
 
-    <!-- Contact form -->
     <script>
         function sendContactForm(e) {
             e.preventDefault();
 
             var email   = (document.getElementById('contactEmail')?.value   || '').trim();
             var message = (document.getElementById('contactMessage')?.value || '').trim();
+            var emptyMessage = (typeof LanguageSystem !== 'undefined' && LanguageSystem.t)
+                ? LanguageSystem.t('contact.toastEmptyMessage', 'Please write a message first.')
+                : 'Please write a message first.';
+            var sentMessage = (typeof LanguageSystem !== 'undefined' && LanguageSystem.t)
+                ? LanguageSystem.t('contact.toastSent', 'Email draft opened!')
+                : 'Email draft opened!';
+            var defaultSubject = (typeof LanguageSystem !== 'undefined' && LanguageSystem.t)
+                ? LanguageSystem.t('contact.mailSubject', 'Website contact')
+                : 'Website contact';
+            var subjectWithEmailTemplate = (typeof LanguageSystem !== 'undefined' && LanguageSystem.t)
+                ? LanguageSystem.t('contact.mailSubjectFrom', 'Website contact from {email}')
+                : 'Website contact from {email}';
 
             if (!message) {
-                showToast('Please write a message first.', 'error');
+                showToast(emptyMessage, 'error');
                 return;
             }
 
-            var subject = email ? 'Website contact from ' + email : 'Website contact';
+            var subject = email ? subjectWithEmailTemplate.replace('{email}', email) : defaultSubject;
             var body    = message + (email ? '\n\n-- \n' + email : '');
 
             var mailto = 'mailto:social@kooraseru.com'
@@ -435,9 +388,8 @@
 
             window.location.href = mailto;
 
-            // Clear the form and show confirmation
             document.getElementById('contactForm').reset();
-            showToast('Email sent!');
+            showToast(sentMessage);
         }
 
         function showToast(message, type) {
@@ -450,10 +402,8 @@
             toast.textContent = message;
             document.body.appendChild(toast);
 
-            // Trigger enter animation
             requestAnimationFrame(() => { requestAnimationFrame(() => { toast.classList.add('toast--visible'); }); });
 
-            // Auto-dismiss
             setTimeout(function () {
                 toast.classList.remove('toast--visible');
                 toast.addEventListener('transitionend', function () { toast.remove(); }, { once: true });
@@ -461,14 +411,13 @@
         }
     </script>
 
-    <!-- Confetti -->
     <script>if (typeof module === 'undefined') { var module = { exports: {} }; }</script>
     <script src="frontend/src/js/confetti.js"></script>
     <script>if (typeof module !== 'undefined' && module.exports) { window.confetti = module.exports; }</script>
     <script src="frontend/src/js/confetti-manager.js"></script>
 
-    <!-- Projects -->
     <script src="frontend/src/js/projects.js"></script>
+    <script src="frontend/src/js/skills.js"></script>
 
 </body>
 

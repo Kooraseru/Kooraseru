@@ -1,32 +1,36 @@
-/**
- * Projects System
- * Loads project data from JSON and renders a sortable card carousel
- */
-
 const Projects = (() => {
-    // ===========================
-    // STATE
-    // ===========================
     const state = {
         projects: [],
         sortOrder: 'newest',
         currentIndex: 0,
         modalOpen: false,
+        activeProjectId: null,
         isLoaded: false
     };
 
-    const PROJECTS_URL = 'frontend/src/json/projects.json';
+    const LANG_TO_LOCALE = {
+        en: 'en-US',
+        ja: 'ja-JP'
+    };
 
-    // ===========================
-    // DATA LOADING
-    // ===========================
+    function t(key, fallback = key) {
+        if (window.LanguageSystem && typeof window.LanguageSystem.t === 'function') {
+            return window.LanguageSystem.t(key, fallback);
+        }
+        return fallback;
+    }
+
+    function getCurrentLocale() {
+        const lang = window.LanguageSystem && typeof window.LanguageSystem.getCurrentLanguage === 'function'
+            ? window.LanguageSystem.getCurrentLanguage()
+            : 'en';
+        return LANG_TO_LOCALE[lang] || 'en-US';
+    }
 
     async function loadProjects() {
         try {
-            const response = await fetch(PROJECTS_URL);
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            const data = await response.json();
-            state.projects = data.projects || [];
+            const localized = t('portfolio.projects', []);
+            state.projects = Array.isArray(localized) ? localized : [];
             state.isLoaded = true;
             console.log('[Projects] Loaded', state.projects.length, 'projects');
             return state.projects;
@@ -36,10 +40,6 @@ const Projects = (() => {
             return [];
         }
     }
-
-    // ===========================
-    // SORTING
-    // ===========================
 
     function getSortedProjects() {
         const list = [...state.projects];
@@ -74,22 +74,20 @@ const Projects = (() => {
     }
 
     function formatDate(dateStr, isActive) {
-        if (!dateStr) return isActive ? 'Present' : '—';
+        if (!dateStr) return isActive ? t('common.present', 'Present') : '—';
         const [year, month] = dateStr.split('-');
         if (!month) return year;
         const date = new Date(parseInt(year), parseInt(month) - 1);
-        return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+        return new Intl.DateTimeFormat(getCurrentLocale(), { year: 'numeric', month: 'short' }).format(date);
     }
-
-    // ===========================
-    // RENDERING
-    // ===========================
 
     function renderCard(project) {
         const startFormatted = formatDate(project.startDate, false);
-        const endFormatted = project.endDate ? formatDate(project.endDate, false) : 'Present';
+        const endFormatted = project.endDate ? formatDate(project.endDate, false) : t('common.present', 'Present');
         const statusClass = `project-status--${project.status || 'completed'}`;
-        const statusLabel = project.status === 'active' ? 'Active' : 'Completed';
+        const statusLabel = project.status === 'active'
+            ? t('portfolio.status.active', 'Active')
+            : t('portfolio.status.completed', 'Completed');
 
         const tagsHtml = (project.tags || []).map(tag =>
             `<span class="project-tag">${escapeHtml(tag)}</span>`
@@ -129,7 +127,7 @@ const Projects = (() => {
 
         const sorted = getSortedProjects();
         if (sorted.length === 0) {
-            container.innerHTML = '<p class="projects-empty">No projects yet.</p>';
+            container.innerHTML = `<p class="projects-empty">${escapeHtml(t('portfolio.empty', 'No projects yet.'))}</p>`;
             return;
         }
 
@@ -140,8 +138,9 @@ const Projects = (() => {
 
         // Rebuild dots
         if (dots) {
+            const dotPrefix = escapeHtml(t('portfolio.projectLabel', 'Project'));
             dots.innerHTML = sorted.map((_, i) =>
-                `<button class="carousel-dot${i === 0 ? ' active' : ''}" data-index="${i}" aria-label="Project ${i + 1}"></button>`
+                `<button class="carousel-dot${i === 0 ? ' active' : ''}" data-index="${i}" aria-label="${dotPrefix} ${i + 1}"></button>`
             ).join('');
             dots.querySelectorAll('.carousel-dot').forEach(dot => {
                 dot.addEventListener('click', () => {
@@ -213,10 +212,6 @@ const Projects = (() => {
         }, { passive: true });
     }
 
-    // ===========================
-    // MODAL
-    // ===========================
-
     function openModal(projectId) {
         const project = state.projects.find(p => p.id === projectId);
         if (!project) return;
@@ -226,9 +221,11 @@ const Projects = (() => {
         if (!modal || !modalContent) return;
 
         const startFormatted = formatDate(project.startDate, false);
-        const endFormatted = project.endDate ? formatDate(project.endDate, false) : 'Present';
+        const endFormatted = project.endDate ? formatDate(project.endDate, false) : t('common.present', 'Present');
         const statusClass = `project-status--${project.status || 'completed'}`;
-        const statusLabel = project.status === 'active' ? 'Active' : 'Completed';
+        const statusLabel = project.status === 'active'
+            ? t('portfolio.status.active', 'Active')
+            : t('portfolio.status.completed', 'Completed');
         const tagsHtml = (project.tags || []).map(tag =>
             `<span class="project-tag">${escapeHtml(tag)}</span>`
         ).join('');
@@ -241,7 +238,7 @@ const Projects = (() => {
             : `<div class="project-modal-image project-modal-image--placeholder"><span>&#9638;</span></div>`;
 
         const urlHtml = project.url
-            ? `<a class="project-modal-link" href="${escapeHtml(project.url)}" rel="noopener noreferrer">View Project &rarr;</a>`
+            ? `<a class="project-modal-link" href="${escapeHtml(project.url)}" rel="noopener noreferrer">${escapeHtml(t('portfolio.viewProject', 'View Project →'))}</a>`
             : '';
 
         modalContent.innerHTML = `
@@ -261,6 +258,7 @@ const Projects = (() => {
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
         state.modalOpen = true;
+        state.activeProjectId = projectId;
 
         // Graceful image fallback
         hookImageErrors(modalContent);
@@ -274,11 +272,17 @@ const Projects = (() => {
         modal.classList.remove('active');
         document.body.style.overflow = '';
         state.modalOpen = false;
+        state.activeProjectId = null;
     }
 
-    // ===========================
-    // SORT CONTROL
-    // ===========================
+    function syncSortCurrentLabel() {
+        const sortCurrent = document.getElementById('sortCurrent');
+        const activeOption = document.querySelector(`.sort-option[data-sort="${state.sortOrder}"]`);
+        if (sortCurrent && activeOption) {
+            sortCurrent.textContent = activeOption.textContent;
+            sortCurrent.dataset.i18n = activeOption.dataset.i18n;
+        }
+    }
 
     function bindSortControl() {
         const sortToggle   = document.getElementById('sortToggle');
@@ -309,10 +313,7 @@ const Projects = (() => {
                 e.preventDefault();
                 e.stopPropagation();
                 state.sortOrder = opt.dataset.sort;
-                if (sortCurrent) {
-                    sortCurrent.textContent  = opt.textContent;
-                    sortCurrent.dataset.i18n = opt.dataset.i18n;
-                }
+                syncSortCurrentLabel();
                 sortDropdown.classList.remove('active');
                 renderCarousel();
                 updateActiveOption();
@@ -326,11 +327,8 @@ const Projects = (() => {
         });
 
         updateActiveOption();
+        syncSortCurrentLabel();
     }
-
-    // ===========================
-    // CAROUSEL PREV/NEXT
-    // ===========================
 
     function bindCarouselNav() {
         const prev = document.getElementById('carouselPrev');
@@ -353,10 +351,6 @@ const Projects = (() => {
         }
     }
 
-    // ===========================
-    // MODAL EVENTS
-    // ===========================
-
     function bindModalEvents() {
         const modal = document.getElementById('projectModal');
         const closeBtn = document.getElementById('projectModalClose');
@@ -373,10 +367,6 @@ const Projects = (() => {
         });
     }
 
-    /**
-     * Attach error handlers to all <img> elements inside root.
-     * On failure: hides the broken image and shows the placeholder.
-     */
     function hookImageErrors(root) {
         root.querySelectorAll('img').forEach(img => {
             if (img.complete && img.naturalWidth === 0) handleImgError(img);
@@ -385,14 +375,12 @@ const Projects = (() => {
     }
 
     function handleImgError(img) {
-        // Card image — find the .project-card-image wrapper
         const cardWrap = img.closest('.project-card-image');
         if (cardWrap) {
             cardWrap.innerHTML = '<span class="project-card-image-icon">&#9638;</span>';
             cardWrap.classList.add('project-card-image--placeholder');
             return;
         }
-        // Modal image — find the link or the img itself at top level
         const modalWrap = img.closest('.project-modal-image-link') || img;
         const placeholder = document.createElement('div');
         placeholder.className = 'project-modal-image project-modal-image--placeholder';
@@ -410,20 +398,19 @@ const Projects = (() => {
             .replace(/'/g, '&#039;');
     }
 
-    /**
-     * Render a string through the Markdown parser if available,
-     * otherwise fall back to plain HTML-escaped text.
-     * @param {string} str
-     * @returns {string} HTML string
-     */
     function renderMarkdown(str) {
         if (typeof window.parseMarkdown === 'function') return window.parseMarkdown(str || '');
         return escapeHtml(str);
     }
 
-    // ===========================
-    // INIT
-    // ===========================
+    async function refreshFromLanguage() {
+        await loadProjects();
+        renderCarousel();
+        syncSortCurrentLabel();
+        if (state.modalOpen && state.activeProjectId) {
+            openModal(state.activeProjectId);
+        }
+    }
 
     async function init() {
         await loadProjects();
@@ -431,6 +418,7 @@ const Projects = (() => {
         bindSortControl();
         bindCarouselNav();
         bindModalEvents();
+        document.addEventListener('languageChanged', refreshFromLanguage);
         console.log('[Projects] Initialized');
     }
 
