@@ -43,12 +43,64 @@
     "sortLabel": "Sort by:",
     "sortNewest": "Newest First",
     "sortOldest": "Oldest First",
-    "sortActive": "Active First"
+    "sortActive": "Active First",
+    "empty": "No projects yet.",
+    "projectLabel": "Project",
+    "viewProject": "View Project →",
+    "status": {
+      "active": "Active",
+      "completed": "Completed"
+    },
+    "projects": [
+      {
+        "id": "proj-001",
+        "title": "My Site!",
+        "description": "This very website! A personal portfolio and devlog built with vanilla HTML, CSS, and JavaScript.",
+        "image": "https://images8.alphacoders.com/738/thumb-1920-738553.jpg",
+        "tags": ["HTML", "CSS", "JavaScript"],
+        "startDate": "2025-09",
+        "endDate": null,
+        "status": "active",
+        "url": "https://kooraseru.com",
+        "details": "A personal website featuring block scrolling, a theme and language system, confetti particles, and a project card carousel. Built from scratch without any frameworks."
+      }
+    ]
   },
   "skills": {
     "title": "Skills",
     "subtitle": "Technologies and tools I'm comfortable with.",
-    "body": "Usage and knowledge of these tools vary."
+    "body": "Usage and knowledge of these tools vary.",
+    "groups": [
+      {
+        "title": "Languages",
+        "items": [
+          { "name": "TypeScript", "level": 85 },
+          { "name": "Python", "level": 82 },
+          { "name": "Rust", "level": 68 },
+          { "name": "HTML / CSS", "level": 88 },
+          { "name": "C", "level": 70 },
+          { "name": "C++", "level": 72 },
+          { "name": "C#", "level": 66 },
+          { "name": "Lua / Luau", "level": 79 }
+        ]
+      },
+      {
+        "title": "Frameworks",
+        "items": [
+          { "name": "WASM", "level": 60 },
+          { "name": "Node.js", "level": 74 },
+          { "name": "PHP", "level": 58 }
+        ]
+      },
+      {
+        "title": "Tools",
+        "items": [
+          { "name": "Git", "level": 84 },
+          { "name": "GitHub", "level": 86 },
+          { "name": "VS Code", "level": 90 }
+        ]
+      }
+    ]
   },
   "experience": {
     "title": "Experience",
@@ -69,6 +121,21 @@
     "emailPlaceholder": "your@email.com",
     "messageLabel": "Message",
     "messagePlaceholder": "Say hello...",
-    "sendButton": "Send"
+    "sendButton": "Send",
+    "mailSubject": "Website contact",
+    "mailSubjectFrom": "Website contact from {email}",
+    "toastEmptyMessage": "Please write a message first.",
+    "toastSent": "Email draft opened!"
+  },
+  "common": {
+    "present": "Present"
+  },
+  "ui": {
+    "languageToggle": "Select language",
+    "projectModal": "Project details",
+    "close": "Close",
+    "carouselPrev": "Previous project",
+    "carouselNext": "Next project",
+    "themeOptions": "Theme options"
   }
 }

@@ -43,12 +43,64 @@
     "sortLabel": "並び替え：",
     "sortNewest": "新しい順",
     "sortOldest": "古い順",
-    "sortActive": "アクティブ順"
+    "sortActive": "アクティブ順",
+    "empty": "まだプロジェクトはありません。",
+    "projectLabel": "プロジェクト",
+    "viewProject": "プロジェクトを見る →",
+    "status": {
+      "active": "進行中",
+      "completed": "完了"
+    },
+    "projects": [
+      {
+        "id": "proj-001",
+        "title": "マイサイト！",
+        "description": "このサイトそのものです。HTML・CSS・JavaScriptのみで作られた個人ポートフォリオ兼開発ログです。",
+        "image": "https://images8.alphacoders.com/738/thumb-1920-738553.jpg",
+        "tags": ["HTML", "CSS", "JavaScript"],
+        "startDate": "2025-09",
+        "endDate": null,
+        "status": "active",
+        "url": "https://kooraseru.com",
+        "details": "ブロックスクロール、テーマ切り替え、言語切り替え、紙吹雪エフェクト、プロジェクトカルーセルを備えた個人サイトです。フレームワークを使わずに一から構築しました。"
+      }
+    ]
   },
   "skills": {
     "title": "スキル",
     "subtitle": "扱いに慣れている技術やツール。",
-    "body": "これらのツールの使用経験や知識の深さはそれぞれ異なります。"
+    "body": "これらのツールの使用経験や知識の深さはそれぞれ異なります。",
+    "groups": [
+      {
+        "title": "言語",
+        "items": [
+          { "name": "TypeScript", "level": 85 },
+          { "name": "Python", "level": 82 },
+          { "name": "Rust", "level": 68 },
+          { "name": "HTML / CSS", "level": 88 },
+          { "name": "C", "level": 70 },
+          { "name": "C++", "level": 72 },
+          { "name": "C#", "level": 66 },
+          { "name": "Lua / Luau", "level": 79 }
+        ]
+      },
+      {
+        "title": "フレームワーク",
+        "items": [
+          { "name": "WASM", "level": 60 },
+          { "name": "Node.js", "level": 74 },
+          { "name": "PHP", "level": 58 }
+        ]
+      },
+      {
+        "title": "ツール",
+        "items": [
+          { "name": "Git", "level": 84 },
+          { "name": "GitHub", "level": 86 },
+          { "name": "VS Code", "level": 90 }
+        ]
+      }
+    ]
   },
   "experience": {
     "title": "経験",
@@ -68,6 +120,22 @@
     "emailLabel": "メールアドレス",
     "emailPlaceholder": "your@email.com",
     "messageLabel": "メッセージ",
-    "sendButton": "送信"
+    "messagePlaceholder": "こんにちは！",
+    "sendButton": "送信",
+    "mailSubject": "サイトからのお問い合わせ",
+    "mailSubjectFrom": "{email} からのお問い合わせ",
+    "toastEmptyMessage": "先にメッセージを書いてください。",
+    "toastSent": "メール下書きを開きました。"
+  },
+  "common": {
+    "present": "現在"
+  },
+  "ui": {
+    "languageToggle": "言語を選択",
+    "projectModal": "プロジェクト詳細",
+    "close": "閉じる",
+    "carouselPrev": "前のプロジェクト",
+    "carouselNext": "次のプロジェクト",
+    "themeOptions": "テーマ設定"
   }
 }

@@ -133,6 +133,10 @@ const LanguageSystem = (() => {
             // Store in window for access by other scripts
             window.currentLanguage = language;
             window.translations = translation;
+
+            document.dispatchEvent(new CustomEvent('languageChanged', {
+                detail: { language, translation }
+            }));
             
             return translation;
         } catch (error) {
@@ -277,9 +281,9 @@ const LanguageSystem = (() => {
 
             const key = element.dataset.i18n;
             const translatedText = t(key);
-            
-            if (element.tagName === 'IMG' || element.tagName === 'INPUT') {
-                const attr = element.dataset.i18nAttr || 'alt';
+
+            if (element.dataset.i18nAttr) {
+                const attr = element.dataset.i18nAttr;
                 element.setAttribute(attr, String(translatedText));
             } else {
                 element.innerHTML = parseMarkdown(String(translatedText));
@@ -311,6 +315,10 @@ const LanguageSystem = (() => {
             
             // Update all page content
             updatePageContent();
+
+            document.dispatchEvent(new CustomEvent('languageChanged', {
+                detail: { language: newLanguage, translation }
+            }));
             
             console.log(`[LanguageSystem] Successfully switched to ${newLanguage}`);
             return true;
