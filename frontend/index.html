@@ -272,14 +272,76 @@
 
     <!-- ========== SCRIPTS ========== -->
 
-    <!-- Scroll helper -->
+    <!-- Scroll helper + hash navigation -->
     <script>
         function scrollToSection(id) {
             const scroller = document.getElementById('pageScroller');
             const target   = document.getElementById(id);
             if (scroller && target) {
                 scroller.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
+                const capitalized = id.charAt(0).toUpperCase() + id.slice(1);
+                history.pushState(null, '', '#' + capitalized);
             }
+        }
+
+        // Capitalize first letter for pretty hashes (#Contact, #Portfolio, …)
+        function sectionIdToHash(id) {
+            return '#' + id.charAt(0).toUpperCase() + id.slice(1);
+        }
+
+        // Resolve a raw hash string to a section element (case-insensitive)
+        function resolveHash(hash) {
+            if (!hash) return null;
+            const id = hash.replace(/^#/, '').toLowerCase();
+            return document.getElementById(id) || null;
+        }
+
+        // On load: scroll to whatever hash is in the URL
+        function handleInitialHash() {
+            const target = resolveHash(window.location.hash);
+            if (target) {
+                // Small delay so the page has finished its own layout/snap setup
+                setTimeout(() => scrollToSection(target.id), 120);
+            }
+        }
+
+        // Keep hash updated as the user scrolls between snap sections
+        function setupHashObserver() {
+            const scroller  = document.getElementById('pageScroller');
+            const sections  = document.querySelectorAll('#pageScroller .section[id]');
+            if (!sections.length) return;
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        history.replaceState(null, '', sectionIdToHash(entry.target.id));
+                    }
+                });
+            }, {
+                root:      scroller,
+                threshold: 0.5          // fire when a section covers >50% of the viewport
+            });
+
+            sections.forEach(function(s) { observer.observe(s); });
+        }
+
+        // Also handle the browser back/forward buttons
+        window.addEventListener('popstate', function() {
+            const target = resolveHash(window.location.hash);
+            if (target) {
+                const scroller = document.getElementById('pageScroller');
+                if (scroller) scroller.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
+            }
+        });
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                handleInitialHash();
+                setupHashObserver();
+            });
+        } else {
+            handleInitialHash();
+            setupHashObserver();
         }
     </script>
 
