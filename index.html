@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="frontend/src/css/topbar.css" />
     <link rel="stylesheet" href="frontend/src/css/dropdown.css" />
     <link rel="stylesheet" href="frontend/src/css/theme-toggle.css" />
-    <link rel="stylesheet" href="frontend/src/css/cookie-banner.css" />
 
     <script type="module" src="frontend/src/js/theme-manager.js"></script>
 
@@ -382,34 +381,9 @@
             });
         }
 
-        function setupCookieBanner() {
-            var banner = document.getElementById('cookieBanner');
-            if (!banner) return;
-            var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:';
-            if (!isLocal) {
-                var existing = document.cookie.match(/(?:^|; )cookieConsent=([^;]*)/);
-                var sessionDenied = (typeof sessionStorage !== 'undefined') && sessionStorage.getItem('cookieConsentDenied');
-                if (existing || sessionDenied) return;
-            }
-            requestAnimationFrame(function () {
-                requestAnimationFrame(function () { banner.classList.add('cookie-banner--visible'); });
-            });
-            document.getElementById('cookieAccept').addEventListener('click', function () {
-                document.cookie = 'cookieConsent=granted; max-age=31536000; path=/; SameSite=Lax';
-                banner.classList.remove('cookie-banner--visible');
-                setTimeout(function () { banner.remove(); }, 400);
-                if (typeof Confetti !== 'undefined') Confetti.setType(Confetti.getType());
-            });
-            document.getElementById('cookieDecline').addEventListener('click', function () {
-                if (typeof sessionStorage !== 'undefined') sessionStorage.setItem('cookieConsentDenied', '1');
-                banner.classList.remove('cookie-banner--visible');
-                setTimeout(function () { banner.remove(); }, 400);
-            });
-        }
-
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', function () { setupThemeToggle(); setupConfettiDropdown(); setupCookieBanner(); });
-        } else { setupThemeToggle(); setupConfettiDropdown(); setupCookieBanner(); }
+            document.addEventListener('DOMContentLoaded', function () { setupThemeToggle(); setupConfettiDropdown(); });
+        } else { setupThemeToggle(); setupConfettiDropdown(); }
     </script>
 
     <script>
@@ -543,13 +517,7 @@
     <script src="frontend/src/js/projects.js"></script>
     <script src="frontend/src/js/skills.js"></script>
 
-    <div class="cookie-banner" id="cookieBanner" role="alertdialog" aria-live="polite">
-        <p class="cookie-banner-text" data-i18n="cookies.message"></p>
-        <div class="cookie-banner-actions">
-            <button class="cookie-btn cookie-btn--decline" id="cookieDecline" data-i18n="cookies.decline"></button>
-            <button class="cookie-btn cookie-btn--accept" id="cookieAccept" data-i18n="cookies.accept"></button>
-        </div>
-    </div>
+
 
 </body>
 

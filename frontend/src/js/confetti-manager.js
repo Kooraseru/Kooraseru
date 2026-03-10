@@ -85,7 +85,7 @@ const Confetti = (() => {
     }
 
     function hasCookieConsent() {
-        return getCookie('cookieConsent') === 'granted';
+        return true;
     }
 
     // ===========================
@@ -411,7 +411,6 @@ const Confetti = (() => {
             case 'none':
                 break;
             case 'snow':
-                if (isReady()) playWelcome();
                 playSnow();
                 break;
             case 'images':

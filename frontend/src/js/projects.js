@@ -83,7 +83,7 @@ const Projects = (() => {
 
     function getProjectImageSrc(projectId) {
         // Auto-generate local image path based on project ID
-        return `/public/images/portfolio/${projectId}.jpg`;
+        return `/public/images/portfolio/${projectId}.png`;
     }
 
     function renderCard(project) {
