@@ -35,7 +35,8 @@
   "home": {
     "greeting": "Hiya!",
     "welcome": "Welcome to my personal website!",
-    "intro": "I'm Kooraseru, though you might know me by my another name. This is my personal website, which I experiment with and build fun wacky experiments. This website runs off of GitHub Pages, and the source code is available on GitHub. Feel free to check it out and ~steal~ borrow any code you find interesting!"
+    "intro": "I'm Kooraseru, though you might know me by my another name. This is my personal website, which I experiment with and build fun wacky experiments. This website runs off of GitHub Pages, and the source code is available on GitHub. Feel free to check it out and ~steal~ borrow any code you find interesting!",
+    "notice": "Art by @pabobingu on X (formerly Twitter)."
   },
   "portfolio": {
     "title": "Portfolio & Projects",
@@ -56,13 +57,72 @@
         "id": "proj-001",
         "title": "My Site!",
         "description": "This very website! A personal portfolio and devlog built with vanilla HTML, CSS, and JavaScript.",
-        "image": "https://images8.alphacoders.com/738/thumb-1920-738553.jpg",
         "tags": ["HTML", "CSS", "JavaScript"],
         "startDate": "2025-09",
         "endDate": null,
-        "status": "active",
+        "status": "completed",
         "url": "https://kooraseru.com",
         "details": "A personal website featuring block scrolling, a theme and language system, confetti particles, and a project card carousel. Built from scratch without any frameworks."
+      },
+      {
+        "id": "proj-002",
+        "title": "Registry",
+        "description": "A script registry and runtime manager for LuaU. Acts as a module loader and bundler, in other words a Library Manager.",
+        "tags": ["HTML", "CSS", "JavaScript"],
+        "startDate": "2025-10",
+        "endDate": null,
+        "status": "completed",
+        "url": "https://github.com/Kooraseru-Hub/Registry",
+        "details": "A script registry and runtime manager for LuaU. Acts as a module loader and bundler, in other words a Library Manager."
+      },
+      {
+        "id": "proj-003",
+        "title": "Mod-Mail",
+        "description": "A discord bot for managing moderation tasks.",
+        "tags": ["HTML", "CSS", "JavaScript", "Rust"],
+        "startDate": "2025-12",
+        "endDate": null,
+        "status": "active",
+        "details": "A discord bot for managing moderation tasks. Runs off of Rust on an external server. Uses the Serenity library and features a web dashboard for configuration. Currently in early development, but the bot is already functional and can be invited to servers."
+      },
+      {
+        "id": "proj-004",
+        "title": "Clinical Trials Lookup",
+        "description": "A tool for looking up information about clinical trials.",
+        "tags": ["Rust"],
+        "startDate": "2026-01",
+        "endDate": null,
+        "status": "completed",
+        "url": "https://github.com/Kooraseru/Clinical-Trials-Lookup",
+        "details": "A tool for looking up information about clinical trials. Runs off of Rust on an external server. Made for an independent project in collaboration with wonderful individuals at Vanderbilt University and Georgetown University. Accesses the ClinicalTrials.gov API to search for specific queries to return relevant clinical trials, personnel, organizations, sponsors, and more."
+      },
+      {
+        "id": "proj-005",
+        "title": "Networker",
+        "description": "A networking library for LuaU.",
+        "tags": ["LuaU"],
+        "startDate": "2026-01",
+        "endDate": null,
+        "status": "completed"
+      },
+      {
+        "id": "proj-006",
+        "title": "ActiveCast",
+        "description": "LuaU casting library/package.",
+        "tags": ["LuaU"],
+        "startDate": "2026-02",
+        "endDate": null,
+        "status": "active"
+      },
+      {
+        "id": "proj-007",
+        "title": "WeldHelper",
+        "description": "Extension/Plugin toolkit for Roblox welding tools.",
+        "tags": ["LuaU"],
+        "startDate": "2026-03",
+        "endDate": null,
+        "status": "active",
+        "url": "https://create.roblox.com/store/asset/76207621979397/WeldHelper/"
       }
     ]
   },
@@ -129,6 +189,20 @@
   },
   "common": {
     "present": "Present"
+  },
+  "confetti": {
+    "label": "Effects",
+    "types": {
+      "none":     "None",
+      "standard": "Welcome Only",
+      "snow":     "Snow",
+      "images":   "Images"
+    }
+  },
+  "cookies": {
+    "message": "This site uses cookies to save your preferences.",
+    "accept":  "Accept",
+    "decline": "Decline"
   },
   "ui": {
     "languageToggle": "Select language",

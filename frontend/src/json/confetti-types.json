@@ -1,0 +1,11 @@
+{
+  "types": [
+    { "id": "none",     "labelKey": "confetti.types.none"     },
+    { "id": "standard", "labelKey": "confetti.types.standard" },
+    { "id": "snow",     "labelKey": "confetti.types.snow"     },
+    { "id": "images",   "labelKey": "confetti.types.images"   }
+  ],
+  "images": [
+    "1.png"
+  ]
+}
