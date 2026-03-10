@@ -35,7 +35,8 @@
   "home": {
     "greeting": "やあ！",
     "welcome": "私の個人サイトへようこそ！",
-    "intro": "Kooraseruです。別の名前で知っている方もいるかもしれません。このサイトは、いろいろ実験したり、ちょっと変わった楽しいものを作ったりするための個人サイトです。GitHub Pagesで運営しており、ソースコードはGitHubで公開しています。面白いと思ったコードがあれば、ぜひ~steal~借りてみてください！"
+    "intro": "Kooraseruです。別の名前で知っている方もいるかもしれません。このサイトは、いろいろ実験したり、ちょっと変わった楽しいものを作ったりするための個人サイトです。GitHub Pagesで運営しており、ソースコードはGitHubで公開しています。面白いと思ったコードがあれば、ぜひ~steal~借りてみてください！",
+    "notice": "アート: @pabobingu on X"
   },
   "portfolio": {
     "title": "ポートフォリオ & プロジェクト",
@@ -43,7 +44,7 @@
     "sortLabel": "並び替え：",
     "sortNewest": "新しい順",
     "sortOldest": "古い順",
-    "sortActive": "アクティブ順",
+    "sortActive": "進行中順",
     "empty": "まだプロジェクトはありません。",
     "projectLabel": "プロジェクト",
     "viewProject": "プロジェクトを見る →",
@@ -56,13 +57,75 @@
         "id": "proj-001",
         "title": "マイサイト！",
         "description": "このサイトそのものです。HTML・CSS・JavaScriptのみで作られた個人ポートフォリオ兼開発ログです。",
-        "image": "https://images8.alphacoders.com/738/thumb-1920-738553.jpg",
         "tags": ["HTML", "CSS", "JavaScript"],
         "startDate": "2025-09",
         "endDate": null,
-        "status": "active",
+        "status": "completed",
         "url": "https://kooraseru.com",
         "details": "ブロックスクロール、テーマ切り替え、言語切り替え、紙吹雪エフェクト、プロジェクトカルーセルを備えた個人サイトです。フレームワークを使わずに一から構築しました。"
+      },
+      {
+        "id": "proj-002",
+        "title": "Registry",
+        "description": "LuaU用のスクリプトレジストリ兼ランタイム管理ツールです。モジュールの読み込み・バンドルを行うライブラリマネージャーとして機能します。",
+        "tags": ["LuaU"],
+        "startDate": "2025-10",
+        "endDate": null,
+        "status": "completed",
+        "url": "https://github.com/Kooraseru-Hub/Registry",
+        "details": "LuaU用のスクリプトレジストリ兼ランタイム管理ツールです。モジュールのロードやバンドルを管理するライブラリマネージャーとして機能します。"
+      },
+      {
+        "id": "proj-003",
+        "title": "Mod-Mail",
+        "description": "Discordのモデレーション管理用ボットです。",
+        "tags": ["JavaScript", "Rust"],
+        "startDate": "2025-12",
+        "endDate": null,
+        "status": "active",
+        "details": "Discordのモデレーション管理用ボット。Rustで外部サーバー上で動作し、Serenityライブラリを使用。ウェブダッシュボードで設定可能。開発初期段階ですが、既に機能しておりサーバーに招待可能です。"
+      },
+      {
+        "id": "proj-004",
+        "title": "Clinical Trials Lookup",
+        "description": "臨床試験の情報を検索するツールです。",
+        "tags": ["Rust"],
+        "startDate": "2026-01",
+        "endDate": null,
+        "status": "completed",
+        "url": "https://github.com/Kooraseru/Clinical-Trials-Lookup",
+        "details": "臨床試験情報検索ツール。Rustで外部サーバー上で動作。Vanderbilt大学とGeorgetown大学の協力者と制作。ClinicalTrials.gov APIを利用し、試験、担当者、組織、スポンサーなどの情報を取得します。"
+      },
+      {
+        "id": "proj-005",
+        "title": "Networker",
+        "description": "LuaU用ネットワーキングライブラリです。",
+        "tags": ["LuaU"],
+        "startDate": "2026-01",
+        "endDate": null,
+        "status": "completed",
+        "details": "LuaU向けに設計されたネットワーキングライブラリ。Roblox上でモジュール間通信やネットワーク操作を簡易化します。"
+      },
+      {
+        "id": "proj-006",
+        "title": "ActiveCast",
+        "description": "LuaUキャスティングライブラリ/パッケージです。",
+        "tags": ["LuaU"],
+        "startDate": "2026-02",
+        "endDate": null,
+        "status": "active",
+        "details": "LuaU向けの型キャスティングライブラリ。変換や検証を簡潔に行えます。"
+      },
+      {
+        "id": "proj-007",
+        "title": "WeldHelper",
+        "description": "Roblox用溶接ツール拡張/プラグインキットです。",
+        "tags": ["LuaU"],
+        "startDate": "2026-03",
+        "endDate": null,
+        "status": "active",
+        "url": "https://create.roblox.com/store/asset/76207621979397/WeldHelper/",
+        "details": "Roblox向けの溶接支援ツール。作業効率を向上させる拡張機能やプラグインを提供します。"
       }
     ]
   },
@@ -133,15 +196,15 @@
   "confetti": {
     "label": "エフェクト",
     "types": {
-      "none":     "なし",
+      "none": "なし",
       "standard": "標準",
-      "snow":     "雪",
-      "images":   "画像"
+      "snow": "雪",
+      "images": "画像"
     }
   },
   "cookies": {
     "message": "このサイトは設定を保存するためにCookieを使用します。",
-    "accept":  "同意する",
+    "accept": "同意する",
     "decline": "断る"
   },
   "ui": {
