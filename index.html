@@ -10,12 +10,14 @@
     <title>Kooraseru</title>
     <base href="/">
 
-    <link rel="icon" href="public/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="public/images/main.png" type="image/x-icon" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" />
     <link rel="stylesheet" href="frontend/src/css/stylesheet.css" />
     <link rel="stylesheet" href="frontend/src/css/themes.css" />
     <link rel="stylesheet" href="frontend/src/css/topbar.css" />
+    <link rel="stylesheet" href="frontend/src/css/dropdown.css" />
+    <link rel="stylesheet" href="frontend/src/css/theme-toggle.css" />
 
     <script type="module" src="frontend/src/js/theme-manager.js"></script>
 
@@ -34,7 +36,7 @@
             <div class="topbar-center">
                 <div class="logo" onclick="scrollToSection('welcome')" role="button" tabindex="0"
                     onkeydown="if(event.key==='Enter')scrollToSection('welcome')">
-                    <img src="public/favicon.ico" class="logo-icon" alt="" data-i18n="topbar.logoAlt"
+                    <img src="public/images/main.png" class="logo-icon" alt="" data-i18n="topbar.logoAlt"
                         data-i18n-attr="alt" data-no-translate />
                     <span class="logo-text" data-no-translate>Kooraseru</span>
                 </div>
@@ -67,6 +69,7 @@
                     <h1 data-i18n="home.greeting"></h1>
                     <h2 data-i18n="home.welcome"></h2>
                     <p data-i18n="home.intro"></p>
+                    <a href="https://x.com/pabobingu" target="_blank" rel="noopener noreferrer" data-i18n="home.notice"></a>
                 </div>
             </div>
         </section>
@@ -201,12 +204,14 @@
                     </svg>
                 </div>
                 <div class="theme-divider"></div>
-                <div class="particle-toggle-inline">
-                    <span class="particle-toggle-label" data-i18n="particleToggle.label"></span>
-                    <label class="switch">
-                        <input type="checkbox" id="particleToggle">
-                        <span class="slider"></span>
-                    </label>
+                <div class="confetti-selector-inline" id="confettiSelector">
+                    <span class="confetti-selector-label" data-i18n="confetti.label"></span>
+                    <div class="confetti-current-wrap">
+                        <span class="confetti-current" id="confettiCurrent" data-i18n="confetti.types.standard">Standard</span>
+                        <svg class="theme-dropdown-icon" viewBox="0 0 24 24">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
                 </div>
             </span>
         </button>
@@ -215,6 +220,11 @@
             <div class="dropdown-content">
                 <button class="dropdown-option theme-option" data-theme="light" data-i18n="themeOptions.light"></button>
                 <button class="dropdown-option theme-option" data-theme="dark" data-i18n="themeOptions.dark"></button>
+            </div>
+        </div>
+        <div class="dropdown confetti-dropdown" id="confettiDropdown">
+            <div class="dropdown-content" id="confettiDropdownContent">
+                <!-- Populated by confetti-manager.js -->
             </div>
         </div>
     </div>
@@ -301,7 +311,7 @@
             if (!themeToggle || !themeDropdown) return;
 
             themeToggle.addEventListener('click', function (e) {
-                if (e.target.closest('.theme-selector') || e.target.closest('.particle-toggle-inline')) return;
+                if (e.target.closest('.theme-selector') || e.target.closest('.confetti-selector-inline')) return;
                 e.preventDefault(); e.stopPropagation();
                 const wasExpanded = themeToggle.classList.contains('expanded');
                 themeToggle.classList.toggle('expanded');
@@ -349,18 +359,28 @@
             }
         }
 
-        function setupParticleToggle() {
-            var particleToggle = document.getElementById('particleToggle');
-            if (!particleToggle) return;
-            particleToggle.addEventListener('change', function () {
-                if (this.checked) { if (typeof Confetti !== 'undefined') Confetti.playSnow(); }
-                else { if (typeof Confetti !== 'undefined') Confetti.stopSnow(); }
+        function setupConfettiDropdown() {
+            var confettiSelector = document.getElementById('confettiSelector');
+            var confettiDropdown = document.getElementById('confettiDropdown');
+            if (!confettiSelector || !confettiDropdown) return;
+            confettiSelector.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var rect = confettiSelector.getBoundingClientRect();
+                confettiDropdown.style.bottom = (window.innerHeight - rect.top + 4) + 'px';
+                confettiDropdown.style.left = rect.left + 'px';
+                confettiDropdown.classList.toggle('active');
+            });
+            document.addEventListener('click', function (e) {
+                if (!e.target.closest('.confetti-selector-inline') && !e.target.closest('#confettiDropdown')) {
+                    confettiDropdown.classList.remove('active');
+                }
             });
         }
 
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', function () { setupThemeToggle(); setupParticleToggle(); });
-        } else { setupThemeToggle(); setupParticleToggle(); }
+            document.addEventListener('DOMContentLoaded', function () { setupThemeToggle(); setupConfettiDropdown(); });
+        } else { setupThemeToggle(); setupConfettiDropdown(); }
     </script>
 
     <script>
@@ -493,6 +513,8 @@
 
     <script src="frontend/src/js/projects.js"></script>
     <script src="frontend/src/js/skills.js"></script>
+
+
 
 </body>
 

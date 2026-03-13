@@ -1,0 +1,300 @@
+/* Kooraseru - Theme Toggle & Effects Selector Styling */
+
+/* ===== THEME TOGGLE CONTAINER ===== */
+.theme-toggle-container {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 2000;
+}
+
+/* ===== THEME TOGGLE BUTTON ===== */
+.theme-toggle-button {
+    height: 40px;
+    width: auto;
+    max-width: 40px;
+    padding: 0;
+    background-color: var(--bg-secondary);
+    border: none;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--space-sm);
+    cursor: pointer;
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    font-family: var(--font-family-lang, var(--font-family));
+    overflow: hidden;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.2s ease;
+}
+
+.theme-toggle-button.expanded {
+    max-width: 1000px;
+}
+
+.theme-toggle-button:hover {
+    background-color: var(--bg-hover);
+}
+
+.theme-toggle-button:active {
+    box-shadow:
+        inset 0 1px 3px rgba(0, 0, 0, 0.4),
+        0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle-button:focus {
+    outline: 0px solid var(--text-link);
+    outline-offset: 0px;
+}
+
+/* ===== THEME ICON ===== */
+.theme-icon {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    flex-shrink: 0;
+    margin-left: 10px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle-button.expanded .theme-icon {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin-left: 0px;
+}
+
+.theme-icon .sun-circle {
+    stroke: var(--text-secondary);
+    fill: none;
+}
+
+.theme-icon .sun-ray {
+    stroke: var(--text-secondary);
+    fill: none;
+}
+
+/* ===== THEME BUTTON CONTENT ===== */
+.theme-button-content {
+    display: flex;
+    align-items: center;
+    padding-right: var(--space-sm);
+    gap: var(--space-sm);
+    opacity: 1;
+    transition: opacity 0.2s ease 0.1s;
+}
+
+.theme-toggle-button:not(.expanded) .theme-button-content {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+/* ===== THEME SELECTOR ===== */
+.theme-selector {
+    background-color: transparent;
+    border: 0px solid var(--border-primary);
+    border-radius: var(--radius-sm);
+    padding: var(--space-xs) var(--space-sm);
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    font-family: var(--font-family-lang, var(--font-family));
+}
+
+.theme-selector:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.theme-current {
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    white-space: nowrap;
+    flex: 1;
+}
+
+.theme-divider {
+    width: 1px;
+    height: 24px;
+    background-color: var(--border-primary);
+    flex-shrink: 0;
+}
+
+.theme-dropdown-icon {
+    width: 12px;
+    height: 12px;
+    stroke: var(--text-secondary);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    flex-shrink: 0;
+}
+
+/* ===== THEME LABEL ===== */
+.theme-label {
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: opacity 0.3s ease, max-width 0.3s ease;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+.theme-toggle-button.expanded .theme-label {
+    opacity: 1;
+}
+
+/* ===== CONFETTI / EFFECTS SELECTOR ===== */
+.confetti-selector-inline {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    padding-right: var(--space-md);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    font-family: var(--font-family-lang, var(--font-family));
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.confetti-selector-inline:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.confetti-selector-label {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    white-space: nowrap;
+}
+
+.confetti-current-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.confetti-current {
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    white-space: nowrap;
+}
+
+/* ===== PARTICLE / CONFETTI TOGGLE SWITCH ===== */
+.particle-toggle-inline {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding-right: var(--space-sm);
+}
+
+.particle-toggle-label {
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    white-space: nowrap;
+}
+
+.particle-toggle,
+.confetti-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) var(--space-md);
+    gap: var(--space-md);
+}
+
+.confetti-toggle-label {
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    font-family: var(--font-family-lang, var(--font-family));
+}
+
+/* ===== SWITCH / SLIDER ===== */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-tertiary);
+    transition: 0.3s;
+    border-radius: 20px;
+    border: 0px solid var(--border-primary);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 2px;
+    bottom: 2px;
+    background-color: var(--text-secondary);
+    transition: 0.3s;
+    border-radius: 50%;
+    border: 0px solid var(--border-primary);
+}
+
+.slider input:focus {
+    outline: none;
+}
+
+.switch input:checked + .slider {
+    background-color: var(--text-link);
+}
+
+.switch input:checked + .slider:before {
+    transform: translateX(18px);
+    background-color: white;
+}
+
+.switch input:focus + .slider {
+    box-shadow: 0 0 1px var(--text-link);
+    outline: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+    .theme-toggle-container {
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .theme-dropdown {
+        bottom: 50px;
+        left: 10px;
+    }
+}
