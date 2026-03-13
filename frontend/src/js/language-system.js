@@ -9,7 +9,7 @@ const LanguageSystem = (() => {
         'en': { name: 'English', fontFamily: '"Google Sans", system-ui, -apple-system, sans-serif' },
         'ja': { name: '日本語', fontFamily: '"Noto Sans JP", "Google Sans", system-ui, -apple-system, sans-serif' }
     };
-    
+
     /**
      * Get current subdomain
      * @returns {string} Current subdomain or 'www' if root
@@ -17,30 +17,30 @@ const LanguageSystem = (() => {
     function getCurrentSubdomain() {
         const hostname = window.location.hostname;
         const parts = hostname.split('.');
-        
+
         // localhost or IP address
         if (parts.length === 1 || hostname.includes('localhost') || /^\d+\.\d+\.\d+\.\d+$/.test(hostname)) {
             // Check for port-based language hint (e.g., localhost:8000 = en)
             const port = window.location.port;
             return DEFAULT_LANGUAGE;
         }
-        
+
         // Extract subdomain (first part before first dot)
         if (parts.length > 2) {
             return parts[0]; // jp.kooraseru.com -> jp
         }
-        
+
         // Root domain or www
         return 'www';
     }
-    
+
     /**
      * Get language from subdomain or fallback
      * @returns {string} Language code (en, ja, etc.)
      */
     function getLanguage() {
         const subdomain = getCurrentSubdomain();
-        
+
         // Map subdomains to languages
         const subdomainMap = {
             'jp': 'ja',
@@ -49,11 +49,11 @@ const LanguageSystem = (() => {
             'www': 'en',
             'root': 'en'
         };
-        
+
         const language = subdomainMap[subdomain];
         return language || DEFAULT_LANGUAGE;
     }
-    
+
     /**
      * Redirect to default domain if unsupported subdomain
      */
@@ -61,12 +61,12 @@ const LanguageSystem = (() => {
         const currentLang = getLanguage();
         const currentSubdomain = getCurrentSubdomain();
         const isLocalhost = window.location.hostname.includes('localhost');
-        
+
         // If localhost or dev server, allow everything
         if (isLocalhost || window.location.hostname.includes('127.0.0.1')) {
             return;
         }
-        
+
         // If unsupported subdomain, redirect to www/root
         if (!Object.values(Object.keys(SUPPORTED_LANGUAGES)).includes(currentLang)) {
             const protocol = window.location.protocol;
@@ -76,7 +76,7 @@ const LanguageSystem = (() => {
             window.location.replace(newUrl);
         }
     }
-    
+
     /**
      * Load translation JSON file
      * @param {string} language - Language code
@@ -95,7 +95,7 @@ const LanguageSystem = (() => {
             return { language: DEFAULT_LANGUAGE, languageName: 'English' };
         }
     }
-    
+
     /**
      * Apply font based on language
      * @param {string} language - Language code
@@ -108,7 +108,7 @@ const LanguageSystem = (() => {
             document.body.style.fontFamily = langConfig.fontFamily;
         }
     }
-    
+
     /**
      * Set HTML lang attribute
      * @param {string} language - Language code
@@ -116,7 +116,7 @@ const LanguageSystem = (() => {
     function setHtmlLanguage(language) {
         document.documentElement.lang = language;
     }
-    
+
     /**
      * Initialize language system
      * @returns {Promise<Object>} Translation object
@@ -126,10 +126,10 @@ const LanguageSystem = (() => {
             validateSubdomain();
             const language = getLanguage();
             const translation = await loadTranslation(language);
-            
+
             applyLanguageFont(language);
             setHtmlLanguage(language);
-            
+
             // Store in window for access by other scripts
             window.currentLanguage = language;
             window.translations = translation;
@@ -137,14 +137,14 @@ const LanguageSystem = (() => {
             document.dispatchEvent(new CustomEvent('languageChanged', {
                 detail: { language, translation }
             }));
-            
+
             return translation;
         } catch (error) {
             console.error('Failed to initialize language system:', error);
             return { language: DEFAULT_LANGUAGE };
         }
     }
-    
+
     /**
      * Get translation value
      * @param {string} key - Dot-notation key (e.g., 'topbar.logoAlt')
@@ -153,10 +153,10 @@ const LanguageSystem = (() => {
      */
     function t(key, fallback = key) {
         if (!window.translations) return fallback;
-        
+
         const parts = key.split('.');
         let value = window.translations;
-        
+
         for (const part of parts) {
             if (typeof value === 'object' && value !== null && part in value) {
                 value = value[part];
@@ -164,10 +164,10 @@ const LanguageSystem = (() => {
                 return fallback;
             }
         }
-        
+
         return value;
     }
-    
+
     // ===========================
     // MARKDOWN PARSER
     // ===========================
@@ -290,7 +290,7 @@ const LanguageSystem = (() => {
             }
         });
     }
-    
+
     /**
      * Switch to a different language
      * @param {string} newLanguage - Language code to switch to
@@ -301,25 +301,25 @@ const LanguageSystem = (() => {
             console.error(`Unsupported language: ${newLanguage}`);
             return false;
         }
-        
+
         try {
             console.log(`[LanguageSystem] Switching to ${newLanguage}`);
             const translation = await loadTranslation(newLanguage);
-            
+
             applyLanguageFont(newLanguage);
             setHtmlLanguage(newLanguage);
-            
+
             // Update stored values
             window.currentLanguage = newLanguage;
             window.translations = translation;
-            
+
             // Update all page content
             updatePageContent();
 
             document.dispatchEvent(new CustomEvent('languageChanged', {
                 detail: { language: newLanguage, translation }
             }));
-            
+
             console.log(`[LanguageSystem] Successfully switched to ${newLanguage}`);
             return true;
         } catch (error) {
@@ -327,7 +327,7 @@ const LanguageSystem = (() => {
             return false;
         }
     }
-    
+
     return {
         init,
         t,

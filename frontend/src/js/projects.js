@@ -95,11 +95,10 @@ const Projects = (() => {
 
         const imgLink = project.imageLink || project.url || null;
         const imageHtml = project.image
-            ? `<div class="project-card-image">${
-                imgLink
-                    ? `<a class="project-card-image-link" href="${escapeHtml(imgLink)}" target="_blank" rel="noopener noreferrer" tabindex="-1"><img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" loading="lazy" /></a>`
-                    : `<img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" loading="lazy" />`
-              }</div>`
+            ? `<div class="project-card-image">${imgLink
+                ? `<a class="project-card-image-link" href="${escapeHtml(imgLink)}" target="_blank" rel="noopener noreferrer" tabindex="-1"><img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" loading="lazy" /></a>`
+                : `<img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" loading="lazy" />`
+            }</div>`
             : `<div class="project-card-image project-card-image--placeholder"><span class="project-card-image-icon">&#9638;</span></div>`;
 
         return `
@@ -285,10 +284,10 @@ const Projects = (() => {
     }
 
     function bindSortControl() {
-        const sortToggle   = document.getElementById('sortToggle');
-        const sortCurrent  = document.getElementById('sortCurrent');
+        const sortToggle = document.getElementById('sortToggle');
+        const sortCurrent = document.getElementById('sortCurrent');
         const sortDropdown = document.getElementById('sortDropdown');
-        const sortOptions  = document.querySelectorAll('.sort-option');
+        const sortOptions = document.querySelectorAll('.sort-option');
         if (!sortToggle || !sortDropdown) return;
 
         // Sync active highlight to current sort order
@@ -302,7 +301,7 @@ const Projects = (() => {
             e.preventDefault();
             e.stopPropagation();
             const rect = sortToggle.getBoundingClientRect();
-            sortDropdown.style.top  = (rect.bottom + 4) + 'px';
+            sortDropdown.style.top = (rect.bottom + 4) + 'px';
             sortDropdown.style.left = rect.left + 'px';
             sortDropdown.classList.toggle('active');
             updateActiveOption();

@@ -1,14 +1,5 @@
-/**
- * Confetti Management System
- * Data-Oriented Design approach for confetti effects
- * Follows pattern similar to LanguageSystem
- */
-
 const Confetti = (() => {
-    // ===========================
-    // STATE (Data-Oriented Design)
-    // ===========================
-    
+
     const state = {
         confettiLib: null,
         isInitialized: false,
@@ -16,7 +7,7 @@ const Confetti = (() => {
         snowAnimationId: null,
         initAttempts: 0
     };
-    
+
     const config = {
         MAX_INIT_ATTEMPTS: 50,
         INIT_RETRY_DELAY: 100,
@@ -57,47 +48,29 @@ const Confetti = (() => {
             }
         }
     };
-    
-    // ===========================
-    // UTILITY FUNCTIONS
-    // ===========================
-    
-    /**
-     * Generate random number in range
-     */
+
     function randomInRange(min, max) {
         return Math.random() * (max - min) + min;
     }
-    
-    /**
-     * Log with consistent prefix
-     */
+
     function log(message, ...args) {
         console.log(`[Confetti] ${message}`, ...args);
     }
-    
+
     function warn(message, ...args) {
         console.warn(`[Confetti] ${message}`, ...args);
     }
-    
+
     function error(message, ...args) {
         console.error(`[Confetti] ${message}`, ...args);
     }
-    
-    // ===========================
-    // INITIALIZATION
-    // ===========================
-    
-    /**
-     * Initialize confetti library with retry mechanism
-     */
+
     function init() {
         if (state.isInitialized) {
             log('Already initialized');
             return true;
         }
-        
-        // Check if confetti library is loaded
+
         if (typeof window.confetti === 'undefined') {
             state.initAttempts++;
             if (state.initAttempts < config.MAX_INIT_ATTEMPTS) {
@@ -108,56 +81,42 @@ const Confetti = (() => {
             error(`Library not loaded after ${state.initAttempts} attempts`);
             return false;
         }
-        
+
         state.confettiLib = window.confetti;
         state.isInitialized = true;
         log('Initialized successfully');
-        
-        // Fire welcome animation after initialization
+
         setTimeout(() => {
             playWelcome();
         }, config.WELCOME_DELAY);
-        
+
         return true;
     }
-    
-    /**
-     * Check if confetti system is ready
-     */
+
     function isReady() {
         return state.isInitialized && state.confettiLib !== null;
     }
-    
-    // ===========================
-    // ANIMATION FUNCTIONS
-    // ===========================
-    
-    /**
-     * Fire confetti with given options
-     */
+
     function fire(options = {}) {
         if (!isReady()) {
             warn('Not initialized, cannot fire confetti');
             return;
         }
-        
+
         const opts = {
             zIndex: config.DEFAULT_Z_INDEX,
             ...options
         };
-        
+
         state.confettiLib(opts);
     }
-    
-    /**
-     * Play welcome burst animation
-     */
+
     function playWelcome() {
         if (!isReady()) {
             warn('Not ready for welcome animation');
             return;
         }
-        
+
         const preset = config.PRESETS.welcome;
         const animationEnd = Date.now() + preset.duration;
         const defaults = {
@@ -167,20 +126,19 @@ const Confetti = (() => {
             zIndex: config.DEFAULT_Z_INDEX,
             scalar: preset.scalar
         };
-        
+
         const intervalId = setInterval(() => {
             const timeLeft = animationEnd - Date.now();
-            
+
             if (timeLeft <= 0) {
                 clearInterval(intervalId);
                 const index = state.activeAnimations.indexOf(intervalId);
                 if (index > -1) state.activeAnimations.splice(index, 1);
                 return;
             }
-            
+
             const particleCount = preset.particleCount * (timeLeft / preset.duration);
-            
-            // Fire from each origin point
+
             preset.origins.forEach(originRange => {
                 fire({
                     ...defaults,
@@ -192,47 +150,41 @@ const Confetti = (() => {
                 });
             });
         }, preset.interval);
-        
+
         state.activeAnimations.push(intervalId);
         log('Welcome burst started');
     }
-    
-    /**
-     * Get current text color from CSS variable
-     */
+
     function getTextColor() {
         return getComputedStyle(document.documentElement)
             .getPropertyValue('--text-primary').trim();
     }
-    
-    /**
-     * Play snow effect
-     */
+
     function playSnow() {
         if (!isReady()) {
             warn('Not ready for snow animation');
             return;
         }
-        
+
         // Stop existing snow animation if running
         if (state.snowAnimationId !== null) {
             stopSnow();
         }
-        
+
         const preset = config.PRESETS.snow;
         let skew = 1;
         let frameCount = 0;
-        
+
         function frame() {
             skew = Math.max(0.8, skew - 0.001);
             frameCount++;
-            
+
             // Get current text color for snow particles
             const textColor = getTextColor();
-            
+
             // Create snow with natural movement
             const particleCount = Math.random() < 0.7 ? 1 : (Math.random() < 0.5 ? 2 : 0);
-            
+
             for (let i = 0; i < particleCount; i++) {
                 fire({
                     particleCount: preset.particleCount,
@@ -249,17 +201,14 @@ const Confetti = (() => {
                     drift: randomInRange(preset.drift[0], preset.drift[1]) + Math.sin(frameCount * 0.01) * 0.5
                 });
             }
-            
+
             state.snowAnimationId = requestAnimationFrame(frame);
         }
-        
+
         state.snowAnimationId = requestAnimationFrame(frame);
         log('Snow effect started');
     }
-    
-    /**
-     * Stop snow effect
-     */
+
     function stopSnow() {
         if (state.snowAnimationId !== null) {
             cancelAnimationFrame(state.snowAnimationId);
@@ -267,16 +216,13 @@ const Confetti = (() => {
             log('Snow effect stopped');
         }
     }
-    
-    /**
-     * Play burst at specific coordinates
-     */
+
     function playBurst(x = 0.5, y = 0.5, options = {}) {
         if (!isReady()) {
             warn('Not ready for burst');
             return;
         }
-        
+
         const preset = config.PRESETS.burst;
         fire({
             ...preset,
@@ -284,46 +230,33 @@ const Confetti = (() => {
             origin: { x, y }
         });
     }
-    
-    /**
-     * Play custom confetti animation
-     */
+
     function play(animationData) {
         if (!isReady()) {
             warn('Not ready to play animation');
             return;
         }
-        
+
         fire(animationData);
     }
-    
-    // ===========================
-    // CONTROL FUNCTIONS
-    // ===========================
-    
-    /**
-     * Stop all active animations and clear confetti
-     */
+
     function reset() {
         // Stop snow animation
         stopSnow();
-        
+
         // Clear active animation intervals
         state.activeAnimations.forEach(intervalId => {
             clearInterval(intervalId);
         });
         state.activeAnimations = [];
-        
+
         // Reset confetti library
         if (state.confettiLib && state.confettiLib.reset) {
             state.confettiLib.reset();
             log('Reset complete');
         }
     }
-    
-    /**
-     * Get current state (for debugging)
-     */
+
     function getState() {
         return {
             isInitialized: state.isInitialized,
@@ -331,47 +264,33 @@ const Confetti = (() => {
             initAttempts: state.initAttempts
         };
     }
-    
-    /**
-     * Get available presets
-     */
+
     function getPresets() {
         return Object.keys(config.PRESETS);
     }
-    
-    // ===========================
-    // PUBLIC API
-    // ===========================
-    
+
     return {
         // Initialization
         init,
         isReady,
-        
+
         // Animation controls
         play,
         playWelcome,
         playSnow,
         stopSnow,
         playBurst,
-        
+
         // Utilities
         reset,
         getState,
         getPresets,
-        
+
         // Low-level access
         fire
     };
 })();
 
-// ===========================
-// AUTO-INITIALIZATION
-// ===========================
-
-/**
- * Setup confetti system
- */
 function setupConfetti() {
     console.log('[Confetti] Starting setup');
     Confetti.init();
@@ -384,5 +303,4 @@ if (document.readyState === 'loading') {
     setupConfetti();
 }
 
-// Expose to global scope (like LanguageSystem and ThemeManager)
 window.Confetti = Confetti;

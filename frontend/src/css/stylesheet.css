@@ -1,4 +1,4 @@
-/* Kooraseru - Main Stylesheet */
+/** Main Stylesheet */
 
 :root {
     --font-family: 'Google Sans', system-ui, -apple-system, sans-serif;
@@ -33,7 +33,6 @@
     --font-size-4xl:  2.75rem;
 }
 
-/* ===== RESET ===== */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -44,7 +43,6 @@
 *:not(button):not([role="button"]):focus { outline: none; }
 button:focus, [role="button"]:focus { outline: 2px solid var(--text-link); outline-offset: 2px; }
 
-/* ===== BLOCK-SCROLL LAYOUT ===== */
 html {
     height: 100%;
     overflow: hidden;
@@ -63,7 +61,7 @@ body {
     isolation: isolate;
 }
 
-/* The scroll container lives below the fixed topbar */
+/** The scroll container lives below the fixed topbar */
 .page-scroller {
     position: fixed;
     top: var(--topbar-height);
@@ -76,7 +74,7 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
-/* Each full-height block */
+/** Each full-height block */
 .section {
     scroll-snap-align: start;
     scroll-snap-stop: always;
@@ -94,7 +92,6 @@ body {
     background-color: var(--bg-secondary);
 }
 
-/* ===== CONTAINER ===== */
 .container {
     max-width: 1100px;
     width: 100%;
@@ -103,7 +100,6 @@ body {
     position: relative;
 }
 
-/* ===== TYPOGRAPHY ===== */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 1.2;
@@ -125,7 +121,6 @@ a {
 }
 a:hover { color: var(--text-link-hover); }
 
-/* ===== SECTION HEADINGS ===== */
 .section-heading {
     text-align: center;
     margin-bottom: var(--space-xl);
@@ -141,7 +136,6 @@ a:hover { color: var(--text-link-hover); }
     margin-bottom: 0;
 }
 
-/* ===== WELCOME SECTION ===== */
 .welcome-card {
     max-width: 700px;
     text-align: center;
@@ -173,7 +167,6 @@ a:hover { color: var(--text-link-hover); }
     line-height: 1.8;
 }
 
-/* ===== PORTFOLIO / CAROUSEL ===== */
 .portfolio-controls {
     display: flex;
     align-items: center;
@@ -283,7 +276,7 @@ a:hover { color: var(--text-link-hover); }
 
 .carousel-btn:hover { background-color: var(--bg-hover); color: var(--text-link); }
 
-/* Carousel scroll track */
+/** Carousel scroll track */
 .carousel-track {
     display: flex;
     gap: var(--space-lg);
@@ -297,12 +290,12 @@ a:hover { color: var(--text-link-hover); }
 
 .carousel-track:active { cursor: grabbing; }
 
-/* Hide scrollbar visually */
+/** Hide scrollbar visually */
 .carousel-track::-webkit-scrollbar { height: 4px; }
 .carousel-track::-webkit-scrollbar-track { background: transparent; }
 .carousel-track::-webkit-scrollbar-thumb { background: var(--border-primary); border-radius: 2px; }
 
-/* Carousel dots */
+/** Carousel dots */
 .carousel-dots {
     display: flex;
     justify-content: center;
@@ -326,7 +319,6 @@ a:hover { color: var(--text-link-hover); }
     transform: scale(1.3);
 }
 
-/* ===== PROJECT CARD ===== */
 .project-card {
     scroll-snap-align: start;
     flex: 0 0 300px;
@@ -448,7 +440,7 @@ a:hover { color: var(--text-link-hover); }
     white-space: nowrap;
 }
 
-/* Tags */
+/** Tags */
 .project-tags {
     display: flex;
     flex-wrap: wrap;
@@ -464,7 +456,7 @@ a:hover { color: var(--text-link-hover); }
     white-space: nowrap;
 }
 
-/* Status badge */
+/** Status badge */
 .project-status {
     font-size: var(--font-size-xs);
     font-weight: 600;
@@ -484,14 +476,13 @@ a:hover { color: var(--text-link-hover); }
     color: var(--color-info);
 }
 
-/* Empty state */
+/** Empty state */
 .projects-empty {
     color: var(--text-tertiary);
     font-style: italic;
     padding: var(--space-xl);
 }
 
-/* ===== PROJECT MODAL ===== */
 .project-modal-overlay {
     position: fixed;
     inset: 0;
@@ -640,7 +631,6 @@ a:hover { color: var(--text-link-hover); }
 
 .project-modal-link:hover { color: var(--text-link-hover); }
 
-/* ===== SKILLS SECTION ===== */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -710,7 +700,6 @@ a:hover { color: var(--text-link-hover); }
     transition: width 0.9s ease;
 }
 
-/* ===== EXPERIENCE SECTION ===== */
 .experience-timeline {
     width: 100%;
     max-width: 700px;
@@ -778,7 +767,6 @@ a:hover { color: var(--text-link-hover); }
     margin-bottom: 0;
 }
 
-/* ===== CONTACT SECTION ===== */
 .contact-form {
     width: 100%;
     max-width: 520px;
@@ -842,7 +830,6 @@ a:hover { color: var(--text-link-hover); }
 .form-submit:hover { background: var(--text-link-hover); }
 .form-submit:active { transform: scale(0.98); }
 
-/* ===== TOAST NOTIFICATION ===== */
 .toast {
     position: fixed;
     bottom: var(--space-xl);
@@ -873,7 +860,6 @@ a:hover { color: var(--text-link-hover); }
     transform: translateX(-50%) translateY(0);
 }
 
-/* ===== UTILITIES ===== */
 .sr-only {
     position: absolute;
     width: 1px; height: 1px;
@@ -884,9 +870,7 @@ a:hover { color: var(--text-link-hover); }
     border-width: 0;
 }
 
-/* ===== MARKDOWN RENDERED CONTENT ===== */
-
-/* Inline code */
+/** Inline code */
 :is(p, li, .project-card-description, .project-modal-details) code {
     font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
     font-size: 0.875em;
@@ -896,7 +880,7 @@ a:hover { color: var(--text-link-hover); }
     color: var(--text-secondary);
 }
 
-/* Strikethrough */
+/** Strikethrough */
 :is(p, li, .project-card-description, .project-modal-details) del {
     opacity: 0.6;
     text-decoration: line-through;
