@@ -1,3 +1,5 @@
+/* globals Map */
+
 (function main(global, module, isWorker, workerSize) {
   var canUseWorker = !!(
     global.Worker &&
@@ -12,6 +14,7 @@
 
   var canUsePaths = typeof Path2D === 'function' && typeof DOMMatrix === 'function';
   var canDrawBitmap = (function () {
+    // this mostly supports ssr
     if (!global.OffscreenCanvas) {
       return false;
     }
@@ -29,8 +32,10 @@
     return true;
   })();
 
-  function noop() { }
+  function noop() {}
 
+  // create a promise if it exists, otherwise, just
+  // call the function directly
   function promise(func) {
     var ModulePromise = module.exports.Promise;
     var Prom = ModulePromise !== void 0 ? ModulePromise : global.Promise;
@@ -51,7 +56,7 @@
     // a performant manner, but also not store them forever so that we don't
     // have a memory leak
     return {
-      transform: function (bitmap) {
+      transform: function(bitmap) {
         if (skipTransform) {
           return bitmap;
         }
@@ -156,7 +161,7 @@
           worker.addEventListener('message', workerDone);
           execute(options, id);
 
-          resolves[id] = workerDone.bind(null, { data: { callback: id } });
+          resolves[id] = workerDone.bind(null, { data: { callback: id }});
         });
 
         return prom;
@@ -203,6 +208,7 @@
         try {
           worker = new Worker(URL.createObjectURL(new Blob([code])));
         } catch (e) {
+          // eslint-disable-next-line no-console
           typeof console !== 'undefined' && typeof console.warn === 'function' ? console.warn('🎊 Could not load worker', e) : null;
 
           return null;
@@ -237,6 +243,7 @@
       '#ffa62d',
       '#ff36ff'
     ],
+    // probably should be true, but back-compat
     disableForReducedMotion: false,
     scalar: 1
   };
@@ -256,7 +263,7 @@
     );
   }
 
-  function onlyPositiveInt(number) {
+  function onlyPositiveInt(number){
     return number < 0 ? 0 : Math.floor(number);
   }
 
@@ -277,13 +284,13 @@
     var val = String(str).replace(/[^0-9a-f]/gi, '');
 
     if (val.length < 6) {
-      val = val[0] + val[0] + val[1] + val[1] + val[2] + val[2];
+        val = val[0]+val[0]+val[1]+val[1]+val[2]+val[2];
     }
 
     return {
-      r: toDecimal(val.substring(0, 2)),
-      g: toDecimal(val.substring(2, 4)),
-      b: toDecimal(val.substring(4, 6))
+      r: toDecimal(val.substring(0,2)),
+      g: toDecimal(val.substring(2,4)),
+      b: toDecimal(val.substring(4,6))
     };
   }
 
@@ -595,7 +602,7 @@
         return animationObj.addFettis(fettis);
       }
 
-      animationObj = animate(canvas, fettis, resizer, size, done);
+      animationObj = animate(canvas, fettis, resizer, size , done);
 
       return animationObj.promise;
     }
@@ -781,12 +788,12 @@
       height = maxY - minY;
 
       var maxDesiredSize = 10;
-      var scale = Math.min(maxDesiredSize / width, maxDesiredSize / height);
+      var scale = Math.min(maxDesiredSize/width, maxDesiredSize/height);
 
       matrix = [
         scale, 0, 0, scale,
-        -Math.round((width / 2) + minX) * scale,
-        -Math.round((height / 2) + minY) * scale
+        -Math.round((width/2) + minX) * scale,
+        -Math.round((height/2) + minY) * scale
       ];
     }
 
@@ -799,10 +806,10 @@
 
   function shapeFromText(textData) {
     var text,
-      scalar = 1,
-      color = '#000000',
-      // see https://nolanlawson.com/2022/04/08/the-struggle-of-using-native-emoji-on-the-web/
-      fontFamily = '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "EmojiOne Color", "Android Emoji", "Twemoji Mozilla", "system emoji", sans-serif';
+        scalar = 1,
+        color = '#000000',
+        // see https://nolanlawson.com/2022/04/08/the-struggle-of-using-native-emoji-on-the-web/
+        fontFamily = '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "EmojiOne Color", "Android Emoji", "Twemoji Mozilla", "system emoji", sans-serif';
 
     if (typeof textData === 'string') {
       text = textData;
@@ -849,10 +856,10 @@
     };
   }
 
-  module.exports = function () {
+  module.exports = function() {
     return getDefaultFire().apply(this, arguments);
   };
-  module.exports.reset = function () {
+  module.exports.reset = function() {
     getDefaultFire().reset();
   };
   module.exports.create = confettiCannon;
