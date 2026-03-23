@@ -418,11 +418,11 @@ const Projects = (() => {
      * @returns {Promise<void>}
      */
     async function init() {
-
-    return {
-        init,
-        refresh: renderCarousel
-    };
+        return {
+            init,
+            refresh: renderCarousel
+        };
+    }
 })();
 
 window.Projects = Projects;
@@ -431,4 +431,4 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => Projects.init());
 } else {
     Projects.init();
-}
+};

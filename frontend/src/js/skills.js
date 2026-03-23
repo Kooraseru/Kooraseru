@@ -89,11 +89,11 @@ const Skills = (() => {
      * a listener to re-render on language changes.
      */
     function init() {
-
-    return {
-        init,
-        render: renderSkills
-    };
+        return {
+            init,
+            render: renderSkills
+        };
+    }
 })();
 
 window.Skills = Skills;
