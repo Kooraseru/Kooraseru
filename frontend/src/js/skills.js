@@ -11,8 +11,10 @@ const Skills = (() => {
         return Array.isArray(groups) ? groups : [];
     }
 
+    /**
+     * Renders all skill groups and animated progress bars into the skills grid container.
+     */
     function renderSkills() {
-        const container = document.getElementById('skillsGrid');
         if (!container) return;
 
         const groups = getSkillGroups();
@@ -82,10 +84,11 @@ const Skills = (() => {
             .replace(/'/g, '&#039;');
     }
 
+    /**
+     * Initializes the skills section by rendering skill groups and registering
+     * a listener to re-render on language changes.
+     */
     function init() {
-        renderSkills();
-        document.addEventListener('languageChanged', renderSkills);
-    }
 
     return {
         init,

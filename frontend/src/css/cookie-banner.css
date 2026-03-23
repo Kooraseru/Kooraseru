@@ -1,6 +1,6 @@
-/* Kooraseru - Cookie Banner Styling */
+/* Cookie consent banner positioned at the bottom of the viewport */
 
-/* ===== COOKIE BANNER ===== */
+/* Banner component with slide-in transition */
 .cookie-banner {
     position: fixed;
     bottom: -160px;

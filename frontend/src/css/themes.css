@@ -1,9 +1,9 @@
-/* Kooraseru - Theme Definitions */
+/* Theme variable definitions for light and dark color schemes */
 
-/* ===== DARK THEME (Default) ===== */
+/* Dark theme color variables, applied by default */
 html[data-theme="dark"],
 html[data-theme=""] {
-    color-scheme: dark;
+    color-scheme: dark; 
 
     /* Background Colors */
     --bg-primary: #1e1e1e;
@@ -29,7 +29,7 @@ html[data-theme=""] {
     --color-info: #569cd6;
 }
 
-/* ===== LIGHT THEME ===== */
+/* Light theme color variable overrides */
 html[data-theme="light"] {
     color-scheme: light;
 

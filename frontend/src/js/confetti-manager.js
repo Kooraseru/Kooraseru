@@ -5,9 +5,7 @@
  */
 
 const Confetti = (() => {
-    // ===========================
-    // STATE
-    // ===========================
+    // State
 
     const state = {
         confettiLib: null,
@@ -59,18 +57,14 @@ const Confetti = (() => {
         }
     };
 
-    // ===========================
-    // UTILITIES
-    // ===========================
+    // Utility helpers
 
     function randomInRange(min, max) { return Math.random() * (max - min) + min; }
     function log(msg, ...a)  { console.log(`[Confetti] ${msg}`, ...a); }
     function warn(msg, ...a) { console.warn(`[Confetti] ${msg}`, ...a); }
     function error(msg, ...a){ console.error(`[Confetti] ${msg}`, ...a); }
 
-    // ===========================
-    // COOKIE UTILITIES
-    // ===========================
+    // Cookie read/write utilities
 
     function getCookie(name) {
         const m = document.cookie.match(
@@ -88,9 +82,7 @@ const Confetti = (() => {
         return true;
     }
 
-    // ===========================
-    // CONFIG & IMAGE LOADING
-    // ===========================
+    // Config loading and image preloading
 
     async function loadTypesConfig() {
         try {
@@ -128,16 +120,25 @@ const Confetti = (() => {
         log('Loaded', state.loadedImages.length, 'custom images');
     }
 
-    // ===========================
-    // TYPE MANAGEMENT
-    // ===========================
+    // Active type management and dropdown population
 
     function tl(key, fallback = key) {
         return window.LanguageSystem?.t?.(key, fallback) ?? fallback;
     }
 
+    /**
+     * Returns the ID of the currently active confetti type.
+     *
+     * @returns {string} Current type ID (e.g. 'standard', 'snow', 'images', 'none').
+     */
     function getType() { return state.currentType; }
 
+    /**
+     * Sets the active confetti type, stops any running animation, and starts the new one.
+     *
+     * @param {string} id - Type ID matching an entry in confetti-types.json.
+     * @param {boolean} [save=true] - Whether to persist the selection to a cookie.
+     */
     function setType(id, save = true) {
         stopAll();
         state.currentType = id;
@@ -191,19 +192,30 @@ const Confetti = (() => {
         });
     }
 
-    // ===========================
-    // CORE ANIMATION
-    // ===========================
+    // Core animation helpers
 
+    /**
+     * Checks whether the confetti library has been loaded and the system is ready to fire.
+     *
+     * @returns {boolean} True if initialized and the library is available.
+     */
     function isReady() {
         return state.isInitialized && state.confettiLib !== null;
     }
 
+    /**
+     * Fires the confetti library with merged default z-index options.
+     *
+     * @param {Object} [options={}] - Options forwarded directly to the confetti library.
+     */
     function fire(options = {}) {
         if (!isReady()) { warn('Not initialized'); return; }
         state.confettiLib({ zIndex: config.DEFAULT_Z_INDEX, ...options });
     }
 
+    /**
+     * Stops all active animations including snow, image confetti, and queued intervals.
+     */
     function stopAll() {
         stopSnow();
         stopImageConfetti();
@@ -212,10 +224,11 @@ const Confetti = (() => {
         if (state.confettiLib?.reset) state.confettiLib.reset();
     }
 
-    // ===========================
-    // STANDARD WELCOME BURST
-    // ===========================
+    // Standard timed welcome burst from two corners
 
+    /**
+     * Plays a timed welcome burst animation from the top-left and top-right corners.
+     */
     function playWelcome() {
         if (!isReady()) { warn('Not ready for welcome'); return; }
 
@@ -254,10 +267,15 @@ const Confetti = (() => {
         log('Welcome burst started');
     }
 
-    // ===========================
-    // IMAGE CONFETTI
-    // ===========================
+    // Custom image particle animation on a dedicated canvas
 
+    /**
+     * Plays a particle animation using loaded custom images on a full-screen canvas.
+     *
+     * @param {Object} [options={}] - Animation options.
+     * @param {boolean} [options.continuous=false] - If true, particles loop indefinitely.
+     * @param {number} [options.duration=5000] - Duration in ms for non-continuous mode.
+     */
     function playImageConfetti(options = {}) {
         if (state.loadedImages.length === 0) {
             warn('No custom images — falling back to standard welcome');
@@ -340,6 +358,9 @@ const Confetti = (() => {
         log('Image confetti started', continuous ? '(continuous)' : '(burst)');
     }
 
+    /**
+     * Stops the image confetti animation and removes its canvas from the DOM.
+     */
     function stopImageConfetti() {
         if (state.imageAnimId !== null) {
             cancelAnimationFrame(state.imageAnimId);
@@ -354,14 +375,15 @@ const Confetti = (() => {
         }
     }
 
-    // ===========================
-    // SNOW
-    // ===========================
+    // Continuous snow-style particle animation
 
     function getTextColor() {
         return getComputedStyle(document.documentElement).getPropertyValue('--text-primary').trim();
     }
 
+    /**
+     * Starts a continuous snow-style animation using the current CSS text color.
+     */
     function playSnow() {
         if (!isReady()) { warn('Not ready for snow'); return; }
         if (state.snowAnimationId !== null) stopSnow();
@@ -394,6 +416,9 @@ const Confetti = (() => {
         log('Snow started');
     }
 
+    /**
+     * Stops the snow animation loop.
+     */
     function stopSnow() {
         if (state.snowAnimationId !== null) {
             cancelAnimationFrame(state.snowAnimationId);
@@ -402,9 +427,7 @@ const Confetti = (() => {
         }
     }
 
-    // ===========================
-    // PLAY CURRENT TYPE
-    // ===========================
+    // Dispatch the currently selected effect type
 
     function playCurrent() {
         switch (state.currentType) {
@@ -428,25 +451,43 @@ const Confetti = (() => {
         }
     }
 
-    // ===========================
-    // OTHER HELPERS
-    // ===========================
+    // Miscellaneous public helpers
 
+    /**
+     * Fires a confetti burst centered on the given normalized viewport coordinates.
+     *
+     * @param {number} [x=0.5] - Horizontal origin, 0–1.
+     * @param {number} [y=0.5] - Vertical origin, 0–1.
+     * @param {Object} [options={}] - Additional options merged over the burst preset.
+     */
     function playBurst(x = 0.5, y = 0.5, options = {}) {
         if (!isReady()) return;
         fire({ ...config.PRESETS.burst, ...options, origin: { x, y } });
     }
 
+    /**
+     * Fires confetti with the given raw animation data if the system is ready.
+     *
+     * @param {Object} animationData - Options passed directly to fire().
+     */
     function play(animationData) {
         if (!isReady()) return;
         fire(animationData);
     }
 
+    /**
+     * Stops all animations and resets the confetti library canvas.
+     */
     function reset() {
         stopAll();
         log('Reset complete');
     }
 
+    /**
+     * Returns a snapshot of the current system state for debugging.
+     *
+     * @returns {{ isInitialized: boolean, currentType: string, activeAnimations: number, loadedImages: number }}
+     */
     function getState() {
         return {
             isInitialized: state.isInitialized,
@@ -456,12 +497,21 @@ const Confetti = (() => {
         };
     }
 
+    /**
+     * Returns the names of all available animation presets.
+     *
+     * @returns {string[]} Array of preset name strings.
+     */
     function getPresets() { return Object.keys(config.PRESETS); }
 
-    // ===========================
-    // INITIALIZATION
-    // ===========================
+    // Initialization: load config, restore cookie state, attach library
 
+    /**
+     * Initializes the confetti system: loads type config, preloads images, restores
+     * the saved cookie preference, builds the dropdown, and waits for the library.
+     *
+     * @returns {Promise<boolean>} Resolves to true if the library loaded, false otherwise.
+     */
     async function init() {
         if (state.isInitialized) { log('Already initialized'); return true; }
 
@@ -512,9 +562,7 @@ const Confetti = (() => {
         return false;
     }
 
-    // ===========================
-    // PUBLIC API
-    // ===========================
+    // Public API
 
     return {
         init,
@@ -535,9 +583,7 @@ const Confetti = (() => {
     };
 })();
 
-// ===========================
-// AUTO-INITIALIZATION
-// ===========================
+// Auto-initialization on DOM ready
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => Confetti.init());

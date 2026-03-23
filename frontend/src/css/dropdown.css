@@ -1,6 +1,6 @@
-/* Kooraseru - Dropdown Styles */
+/* Shared dropdown styles used by theme, language, and confetti selectors */
 
-/* ===== STANDARDIZED DROPDOWN BASE ===== */
+/* Base styles shared by all dropdown panel components */
 .dropdown {
     position: fixed;
     background-color: var(--bg-secondary);
@@ -77,7 +77,7 @@
     font-family: 'Noto Sans JP', 'Google Sans', system-ui, -apple-system, sans-serif !important;
 }
 
-/* ===== LANGUAGE DROPDOWN ===== */
+/* Language selector dropdown, positioned below the topbar */
 .language-dropdown {
     top: calc(45px + var(--space-sm));
     right: var(--space-lg);
@@ -88,7 +88,7 @@
     transform: translateY(0);
 }
 
-/* ===== THEME DROPDOWN ===== */
+/* Theme selector dropdown, positioned above the toggle button */
 .theme-dropdown {
     bottom: calc(50px);
     left: 10px;
@@ -101,7 +101,7 @@
     transform: translateY(0);
 }
 
-/* ===== CONFETTI DROPDOWN ===== */
+/* Confetti type dropdown, positioned above the toggle button */
 .confetti-dropdown {
     bottom: calc(50px);
     left: 10px;

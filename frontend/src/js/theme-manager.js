@@ -5,12 +5,14 @@
 
 const ThemeManager = (() => {
     const COOKIE_NAME = 'theme';
-    const COOKIE_MAX_AGE = 31536000; // 30 days in seconds
+    const COOKIE_MAX_AGE = 31536000; // 365 days in seconds
     const DEFAULT_THEME = 'dark';
     const VALID_THEMES = ['light', 'dark'];
     
     /**
-     * Get theme from cookie
+     * Reads the saved theme from the cookie store.
+     *
+     * @returns {string|null} Saved theme name, or null if absent or invalid.
      */
     function getThemeCookie() {
         if (typeof document === 'undefined') return null;
@@ -30,7 +32,9 @@ const ThemeManager = (() => {
     }
     
     /**
-     * Set theme cookie with both expires and max-age for better compatibility
+     * Persists the selected theme to a cookie with max-age and expires for broad compatibility.
+     *
+     * @param {string} theme - Valid theme name to save.
      */
     function setThemeCookie(theme) {
         if (!VALID_THEMES.includes(theme)) {
@@ -52,7 +56,10 @@ const ThemeManager = (() => {
     }
     
     /**
-     * Apply theme to DOM
+     * Applies the given theme to the document root via the data-theme attribute.
+     *
+     * @param {string} theme - Theme name to apply. Falls back to the default if invalid.
+     * @returns {string} The theme name that was actually applied.
      */
     function applyTheme(theme) {
         if (!VALID_THEMES.includes(theme)) {
@@ -71,7 +78,9 @@ const ThemeManager = (() => {
     }
     
     /**
-     * Get theme from system preference
+     * Reads the OS-level color scheme preference.
+     *
+     * @returns {string} 'dark' or 'light' based on the prefers-color-scheme media query.
      */
     function getSystemTheme() {
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -81,7 +90,9 @@ const ThemeManager = (() => {
     }
     
     /**
-     * Get preferred theme in order: cookie > system > default
+     * Resolves the preferred theme by checking cookie, then system preference, then the default.
+     *
+     * @returns {string} The resolved theme name.
      */
     function getPreferredTheme() {
         // Check cookie first
@@ -97,7 +108,7 @@ const ThemeManager = (() => {
     }
     
     /**
-     * Initialize theme system
+     * Initializes the theme system by resolving and applying the preferred theme on page load.
      */
     function init() {
         const theme = getPreferredTheme();
@@ -106,7 +117,10 @@ const ThemeManager = (() => {
     }
     
     /**
-     * Set theme and persist to cookie
+     * Sets the active theme, persists it to a cookie, and dispatches a themeChanged event.
+     *
+     * @param {string} theme - Theme name to apply.
+     * @returns {boolean} True if the theme was applied successfully, false if the name was invalid.
      */
     function setTheme(theme) {
         console.log('[Theme] setTheme called with:', theme);
@@ -133,7 +147,9 @@ const ThemeManager = (() => {
     }
     
     /**
-     * Get current theme from DOM
+     * Returns the currently active theme read from the document root attribute.
+     *
+     * @returns {string} Current theme name, or the default theme if the attribute is absent.
      */
     function getCurrentTheme() {
         const htmlTheme = document.documentElement.getAttribute('data-theme');

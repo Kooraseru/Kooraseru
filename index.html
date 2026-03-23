@@ -25,6 +25,7 @@
 </head>
 
 <body>
+<!-- Primary navigation bar containing global site links, logo, and language selector -->
     <nav class="topbar">
         <div class="topbar-content">
             <div class="topbar-left">
@@ -62,7 +63,9 @@
             </div>
         </div>
     </nav>
+<!-- Full-viewport scrollable container with mandatory snap scrolling, positioned below the topbar -->
     <div class="page-scroller" id="pageScroller">
+        <!-- Welcome hero section -->
         <section class="section" id="welcome">
             <div class="container">
                 <div class="welcome-card">
@@ -73,6 +76,8 @@
                 </div>
             </div>
         </section>
+        <!-- Portfolio section with sortable project carousel.
+             Cards populated dynamically by projects.js -->
         <section class="section section--alt" id="portfolio">
             <div class="container">
                 <div class="section-heading">
@@ -115,6 +120,8 @@
             </div>
         </section>
 
+        <!-- Skills section with animated progress bar groups.
+             Content populated dynamically by skills.js -->
         <section class="section" id="skills">
             <div class="container">
                 <div class="section-heading">
@@ -127,6 +134,7 @@
                 </p>
             </div>
         </section>
+        <!-- Professional experience timeline -->
         <section class="section section--alt" id="experience">
             <div class="container">
                 <div class="section-heading">
@@ -148,6 +156,8 @@
                 </div>
             </div>
         </section>
+        <!-- Contact section with email form.
+             Submission handled by sendContactForm() -->
         <section class="section" id="contact">
             <div class="container">
                 <div class="section-heading">
@@ -172,6 +182,8 @@
 
     </div>
 
+    <!-- Project detail modal overlay.
+         Visibility toggled via .active class by projects.js -->
     <div class="project-modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-label=""
         data-i18n="ui.projectModal" data-i18n-attr="aria-label">
         <div class="project-modal">
@@ -181,6 +193,8 @@
         </div>
     </div>
 
+    <!-- Fixed bottom-left toggle for theme and confetti effect selection.
+         Interaction managed by setupThemeToggle() and setupConfettiDropdown() -->
     <div class="theme-toggle-container">
         <button class="theme-toggle-button" id="themeToggle" aria-label="" data-i18n="ui.themeOptions"
             data-i18n-attr="aria-label">
@@ -228,8 +242,6 @@
             </div>
         </div>
     </div>
-
-    <!-- ========== SCRIPTS ========== -->
 
     <!-- Scroll helper + hash navigation -->
     <script>

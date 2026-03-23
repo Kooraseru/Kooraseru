@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head lang="en">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Mod Mail - Terms of Service" />
+    <meta name="author" content="Kooraseru" />
+
+    <title>Terms of Service - Mod Mail - Kooraseru</title>
+    <base href="/">
+
+    <link rel="icon" href="public/images/main.png" type="image/x-icon" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" />
+    <link rel="stylesheet" href="frontend/src/css/themes.css" />
+
+    <script type="module" src="frontend/src/js/theme-manager.js"></script>
+
+    <style>
+        :root {
+            --font-family: 'Google Sans', system-ui, -apple-system, sans-serif;
+            --topbar-height: 45px;
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --radius-sm: 2px;
+            --radius-md: 4px;
+            --radius-lg: 8px;
+            --radius-xl: 16px;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.75rem;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { height: 100%; scroll-behavior: smooth; }
+
+        body {
+            min-height: 100%;
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a { color: var(--text-link); text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: var(--text-link-hover); }
+
+        .topbar {
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-secondary);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            height: var(--topbar-height);
+        }
+
+        .topbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: var(--topbar-height);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--text-primary);
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            font-family: 'Google Sans', system-ui, -apple-system, sans-serif;
+            transition: opacity 0.2s ease;
+            text-decoration: none;
+            user-select: none;
+        }
+        .logo:hover { opacity: 0.8; color: var(--text-primary); }
+        .logo-icon { width: 24px; height: 24px; display: block; }
+
+        .page-content {
+            margin-top: var(--topbar-height);
+            max-width: 800px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .breadcrumb {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xl);
+        }
+
+        .page-content h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+        }
+
+        .last-updated {
+            color: var(--text-tertiary);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .page-content h2 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-top: var(--space-2xl);
+            margin-bottom: var(--space-md);
+        }
+
+        .page-content p, .page-content ul {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+            line-height: 1.8;
+        }
+
+        .page-content ul {
+            padding-left: var(--space-xl);
+        }
+
+        .page-content li {
+            margin-bottom: var(--space-xs);
+        }
+
+        .license-block {
+            background-color: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin-top: var(--space-xl);
+            font-family: monospace;
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        .page-footer {
+            text-align: center;
+            padding: var(--space-xl) var(--space-lg);
+            color: var(--text-tertiary);
+            font-size: var(--font-size-sm);
+            border-top: 1px solid var(--border-secondary);
+            margin-top: var(--space-2xl);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="topbar">
+        <div class="topbar-content">
+            <a class="logo" href="/">
+                <img src="public/images/main.png" class="logo-icon" alt="Kooraseru logo" />
+                <span>Kooraseru</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <div class="breadcrumb">
+            <a href="/mod-mail/">Mod Mail</a> / Terms of Service
+        </div>
+
+        <h1>Terms of Service</h1>
+        <p class="last-updated">Last updated: March 20, 2026</p>
+
+        <h2>1. Acceptance of Terms</h2>
+        <p>
+            By adding Mod Mail to your Discord server or interacting with the bot, you agree to these Terms of
+            Service. If you do not agree, please remove the bot from your server.
+        </p>
+
+        <h2>2. Description of Service</h2>
+        <p>
+            Mod Mail is a Discord bot that facilitates private communication between server members and the
+            moderation team. Members can send direct messages to the bot, which are forwarded to a designated
+            staff channel for review and response.
+        </p>
+
+        <h2>3. Usage Guidelines</h2>
+        <ul>
+            <li>Do not use the bot to send spam, harassment, or any form of abusive content.</li>
+            <li>Do not attempt to exploit, reverse-engineer, or interfere with the bot's operation.</li>
+            <li>You are responsible for how the bot is configured and used within your server.</li>
+        </ul>
+
+        <h2>4. Availability</h2>
+        <p>
+            The bot is provided "as is" with no guarantee of uptime or availability. The service may be
+            modified, suspended, or discontinued at any time without prior notice.
+        </p>
+
+        <h2>5. Limitation of Liability</h2>
+        <p>
+            Kooraseru is not liable for any damages, data loss, or issues that arise from the use or inability
+            to use the bot. Use the bot at your own risk.
+        </p>
+
+        <h2>6. Changes to Terms</h2>
+        <p>
+            These terms may be updated at any time. Continued use of the bot after changes constitutes
+            acceptance of the revised terms.
+        </p>
+
+        <h2>7. License</h2>
+        <p>
+            These Terms of Service are released under the MIT License. You are free to copy, modify, and
+            redistribute them.
+        </p>
+
+        <div class="license-block">MIT License
+
+Copyright (c) 2025 Kooraseru
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</div>
+
+        <footer class="page-footer">
+            &copy; 2025 Kooraseru. All rights reserved.
+        </footer>
+    </main>
+</body>
+
+</html>

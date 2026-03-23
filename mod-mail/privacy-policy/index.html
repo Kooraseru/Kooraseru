@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head lang="en">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Mod Mail - Privacy Policy" />
+    <meta name="author" content="Kooraseru" />
+
+    <title>Privacy Policy - Mod Mail - Kooraseru</title>
+    <base href="/">
+
+    <link rel="icon" href="public/images/main.png" type="image/x-icon" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" />
+    <link rel="stylesheet" href="frontend/src/css/themes.css" />
+
+    <script type="module" src="frontend/src/js/theme-manager.js"></script>
+
+    <style>
+        :root {
+            --font-family: 'Google Sans', system-ui, -apple-system, sans-serif;
+            --topbar-height: 45px;
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --radius-sm: 2px;
+            --radius-md: 4px;
+            --radius-lg: 8px;
+            --radius-xl: 16px;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.75rem;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { height: 100%; scroll-behavior: smooth; }
+
+        body {
+            min-height: 100%;
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a { color: var(--text-link); text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: var(--text-link-hover); }
+
+        .topbar {
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-secondary);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            height: var(--topbar-height);
+        }
+
+        .topbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: var(--topbar-height);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--text-primary);
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            font-family: 'Google Sans', system-ui, -apple-system, sans-serif;
+            transition: opacity 0.2s ease;
+            text-decoration: none;
+            user-select: none;
+        }
+        .logo:hover { opacity: 0.8; color: var(--text-primary); }
+        .logo-icon { width: 24px; height: 24px; display: block; }
+
+        .page-content {
+            margin-top: var(--topbar-height);
+            max-width: 800px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .breadcrumb {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xl);
+        }
+
+        .page-content h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+        }
+
+        .last-updated {
+            color: var(--text-tertiary);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .page-content h2 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-top: var(--space-2xl);
+            margin-bottom: var(--space-md);
+        }
+
+        .page-content p, .page-content ul {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+            line-height: 1.8;
+        }
+
+        .page-content ul {
+            padding-left: var(--space-xl);
+        }
+
+        .page-content li {
+            margin-bottom: var(--space-xs);
+        }
+
+        .page-footer {
+            text-align: center;
+            padding: var(--space-xl) var(--space-lg);
+            color: var(--text-tertiary);
+            font-size: var(--font-size-sm);
+            border-top: 1px solid var(--border-secondary);
+            margin-top: var(--space-2xl);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="topbar">
+        <div class="topbar-content">
+            <a class="logo" href="/">
+                <img src="public/images/main.png" class="logo-icon" alt="Kooraseru logo" />
+                <span>Kooraseru</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <div class="breadcrumb">
+            <a href="/mod-mail/">Mod Mail</a> / Privacy Policy
+        </div>
+
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last updated: March 20, 2026</p>
+
+        <h2>1. Overview</h2>
+        <p>
+            Your privacy matters. Mod Mail is designed with a strict no-data-collection policy. This document
+            explains what information the bot accesses and how it is handled.
+        </p>
+
+        <h2>2. Data Collection</h2>
+        <p>
+            <strong>Mod Mail does not collect, store, or log any user data.</strong> The bot does not maintain
+            databases, analytics, or any form of persistent storage for messages, user IDs, server
+            information, or any other data.
+        </p>
+
+        <h2>3. Message Handling</h2>
+        <p>
+            Messages sent to the bot are forwarded directly to the designated staff channel in your Discord
+            server. The bot acts as a relay and does not retain copies of any messages after delivery.
+        </p>
+
+        <h2>4. Third-Party Services</h2>
+        <p>
+            Mod Mail does not share any information with third-party services. The bot communicates solely
+            through the Discord API to facilitate message forwarding.
+        </p>
+
+        <h2>5. Discord Data</h2>
+        <p>
+            The bot requires certain Discord permissions to function (such as reading and sending messages).
+            These permissions are used only for the bot's core functionality and nothing else. The bot accesses
+            only the information necessary to route messages between users and staff.
+        </p>
+
+        <h2>6. Children's Privacy</h2>
+        <p>
+            Mod Mail does not knowingly collect information from anyone. As the bot stores no data, there is
+            no special handling required for minors beyond Discord's own Terms of Service.
+        </p>
+
+        <h2>7. Changes to This Policy</h2>
+        <p>
+            This privacy policy may be updated at any time. Any changes will be reflected on this page with an
+            updated date. Continued use of the bot constitutes acceptance of the revised policy.
+        </p>
+
+        <h2>8. Contact</h2>
+        <p>
+            If you have questions about this privacy policy, you can reach out via the
+            <a href="/#Contact">contact form</a> on the main site.
+        </p>
+
+        <footer class="page-footer">
+            &copy; 2025 Kooraseru. All rights reserved.
+        </footer>
+    </main>
+</body>
+
+</html>

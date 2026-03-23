@@ -1,4 +1,4 @@
-/* Kooraseru - Main Stylesheet */
+/* Main stylesheet covering layout, typography, components, and responsive breakpoints */
 
 :root {
     --font-family: 'Google Sans', system-ui, -apple-system, sans-serif;
@@ -33,7 +33,7 @@
     --font-size-4xl:  2.75rem;
 }
 
-/* ===== RESET ===== */
+/* Reset styles for consistent cross-browser rendering */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -44,7 +44,7 @@
 *:not(button):not([role="button"]):focus { outline: none; }
 button:focus, [role="button"]:focus { outline: 2px solid var(--text-link); outline-offset: 2px; }
 
-/* ===== BLOCK-SCROLL LAYOUT ===== */
+/* Full-viewport block-scroll layout with mandatory vertical snap scrolling */
 html {
     height: 100%;
     overflow: hidden;
@@ -94,7 +94,7 @@ body {
     background-color: var(--bg-secondary);
 }
 
-/* ===== CONTAINER ===== */
+/* Centered content container with max-width constraint */
 .container {
     max-width: 1100px;
     width: 100%;
@@ -103,7 +103,7 @@ body {
     position: relative;
 }
 
-/* ===== TYPOGRAPHY ===== */
+/* Base typography scale, heading sizes, and link styles */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 1.2;
@@ -125,7 +125,7 @@ a {
 }
 a:hover { color: var(--text-link-hover); }
 
-/* ===== SECTION HEADINGS ===== */
+/* Section heading layout used across all content sections */
 .section-heading {
     text-align: center;
     margin-bottom: var(--space-xl);
@@ -141,7 +141,7 @@ a:hover { color: var(--text-link-hover); }
     margin-bottom: 0;
 }
 
-/* ===== WELCOME SECTION ===== */
+/* Welcome section hero card */
 .welcome-card {
     max-width: 700px;
     text-align: center;
@@ -173,7 +173,7 @@ a:hover { color: var(--text-link-hover); }
     line-height: 1.8;
 }
 
-/* ===== PORTFOLIO / CAROUSEL ===== */
+/* Portfolio section carousel controls and project card layout */
 .portfolio-controls {
     display: flex;
     align-items: center;
@@ -448,7 +448,7 @@ a:hover { color: var(--text-link-hover); }
     white-space: nowrap;
 }
 
-/* Tags */
+/* Project tag pill badges */
 .project-tags {
     display: flex;
     flex-wrap: wrap;
@@ -464,7 +464,7 @@ a:hover { color: var(--text-link-hover); }
     white-space: nowrap;
 }
 
-/* Status badge */
+/* Project status badge with active and completed color variants */
 .project-status {
     font-size: var(--font-size-xs);
     font-weight: 600;
@@ -484,14 +484,15 @@ a:hover { color: var(--text-link-hover); }
     color: var(--color-info);
 }
 
-/* Empty state */
+/* Empty projects state placeholder text */
 .projects-empty {
     color: var(--text-tertiary);
     font-style: italic;
     padding: var(--space-xl);
 }
 
-/* ===== PROJECT MODAL ===== */
+/* Project detail modal overlay and content.
+   Visibility controlled via .active class toggled by projects.js */
 .project-modal-overlay {
     position: fixed;
     inset: 0;
@@ -640,7 +641,7 @@ a:hover { color: var(--text-link-hover); }
 
 .project-modal-link:hover { color: var(--text-link-hover); }
 
-/* ===== SKILLS SECTION ===== */
+/* Skills section grid with grouped progress bars */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -710,7 +711,7 @@ a:hover { color: var(--text-link-hover); }
     transition: width 0.9s ease;
 }
 
-/* ===== EXPERIENCE SECTION ===== */
+/* Experience timeline layout */
 .experience-timeline {
     width: 100%;
     max-width: 700px;
@@ -778,7 +779,7 @@ a:hover { color: var(--text-link-hover); }
     margin-bottom: 0;
 }
 
-/* ===== CONTACT SECTION ===== */
+/* Contact form layout and input styles */
 .contact-form {
     width: 100%;
     max-width: 520px;
@@ -842,7 +843,7 @@ a:hover { color: var(--text-link-hover); }
 .form-submit:hover { background: var(--text-link-hover); }
 .form-submit:active { transform: scale(0.98); }
 
-/* ===== TOAST NOTIFICATION ===== */
+/* Toast notification shown after contact form submission */
 .toast {
     position: fixed;
     bottom: var(--space-xl);
@@ -873,7 +874,7 @@ a:hover { color: var(--text-link-hover); }
     transform: translateX(-50%) translateY(0);
 }
 
-/* ===== UTILITIES ===== */
+/* Utility classes */
 .sr-only {
     position: absolute;
     width: 1px; height: 1px;
@@ -884,9 +885,9 @@ a:hover { color: var(--text-link-hover); }
     border-width: 0;
 }
 
-/* ===== MARKDOWN RENDERED CONTENT ===== */
+/* Styles for Markdown-rendered inline elements within content regions */
 
-/* Inline code */
+/* Inline code spans from Markdown output */
 :is(p, li, .project-card-description, .project-modal-details) code {
     font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
     font-size: 0.875em;
@@ -930,7 +931,7 @@ a:hover { color: var(--text-link-hover); }
     margin-top: var(--space-xs);
 }
 
-/* ===== RESPONSIVE ===== */
+/* Responsive breakpoints for typography and layout adjustments */
 @media (max-width: 768px) {
     h1 { font-size: var(--font-size-3xl); }
     h2 { font-size: var(--font-size-2xl); }

@@ -1,6 +1,6 @@
-/* Kooraseru - Topbar & Navigation Styling */
+/* Topbar navigation bar with logo, site links, and language selector */
 
-/* ===== TOPBAR ===== */
+/* Fixed top navigation bar */
 .topbar {
     background-color: var(--bg-secondary);
     border-bottom: 1px solid var(--border-secondary);
@@ -24,7 +24,7 @@
     position: relative;
 }
 
-/* ===== LOGO — forced absolute center ===== */
+/* Logo centered absolutely, independent of surrounding nav content */
 .topbar-center {
     position: absolute;
     left: 50%;
@@ -65,7 +65,7 @@
     font-family: 'Google Sans', system-ui, -apple-system, sans-serif;
 }
 
-/* ===== NAV LEFT ===== */
+/* Left navigation link group */
 .topbar-left {
     display: flex;
     align-items: center;
@@ -110,14 +110,14 @@
     opacity: 0.8;
 }
 
-/* ===== NAV RIGHT ===== */
+/* Right navigation controls container */
 .topbar-right {
     display: flex;
     align-items: center;
     z-index: 2;
 }
 
-/* ===== LANGUAGE SELECTOR ===== */
+/* Language selector toggle button and dropdown */
 .language-selector {
     position: relative;
     display: flex;
@@ -170,7 +170,7 @@
     transform: scale(1.1);
 }
 
-/* ===== RESPONSIVE ===== */
+/* Responsive: hide nav links on narrow viewports */
 @media (max-width: 640px) {
     .nav-link { display: none; }
 }

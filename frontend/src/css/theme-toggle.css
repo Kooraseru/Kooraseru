@@ -1,6 +1,7 @@
-/* Kooraseru - Theme Toggle & Effects Selector Styling */
+/* Theme toggle button and confetti/effects selector styles.
+   Toggle state managed by setupThemeToggle() in index.html */
 
-/* ===== THEME TOGGLE CONTAINER ===== */
+/* Fixed bottom-left container housing the toggle button */
 .theme-toggle-container {
     position: fixed;
     bottom: 10px;
@@ -8,7 +9,7 @@
     z-index: 2000;
 }
 
-/* ===== THEME TOGGLE BUTTON ===== */
+/* Collapsible button that expands to reveal theme and effects selectors */
 .theme-toggle-button {
     height: 40px;
     width: auto;
@@ -52,7 +53,7 @@
     outline-offset: 0px;
 }
 
-/* ===== THEME ICON ===== */
+/* Sun icon shown when the button is collapsed */
 .theme-icon {
     width: 20px;
     height: 20px;
@@ -83,7 +84,7 @@
     fill: none;
 }
 
-/* ===== THEME BUTTON CONTENT ===== */
+/* Selector content revealed when the toggle button is expanded */
 .theme-button-content {
     display: flex;
     align-items: center;
@@ -99,7 +100,7 @@
     transition: opacity 0.15s ease;
 }
 
-/* ===== THEME SELECTOR ===== */
+/* Theme name selector within the expanded toggle */
 .theme-selector {
     background-color: transparent;
     border: 0px solid var(--border-primary);
@@ -144,7 +145,7 @@
     flex-shrink: 0;
 }
 
-/* ===== THEME LABEL ===== */
+/* Animated theme label text shown on expand */
 .theme-label {
     opacity: 0;
     max-width: 0;
@@ -159,7 +160,8 @@
     opacity: 1;
 }
 
-/* ===== CONFETTI / EFFECTS SELECTOR ===== */
+/* Effects selector for choosing confetti type.
+   Interacts with confetti-manager.js via the confettiSelector click event */
 .confetti-selector-inline {
     display: flex;
     align-items: center;

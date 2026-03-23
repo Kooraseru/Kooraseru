@@ -468,15 +468,13 @@ const Projects = (() => {
         }
     }
 
+    /**
+     * Loads projects from the current language translation, renders the carousel,
+     * and binds all sort, navigation, and modal event handlers.
+     *
+     * @returns {Promise<void>}
+     */
     async function init() {
-        await loadProjects();
-        renderCarousel();
-        bindSortControl();
-        bindCarouselNav();
-        bindModalEvents();
-        document.addEventListener('languageChanged', refreshFromLanguage);
-        console.log('[Projects] Initialized');
-    }
 
     return {
         init,

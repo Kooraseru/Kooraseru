@@ -168,9 +168,7 @@ const LanguageSystem = (() => {
         return value;
     }
     
-    // ===========================
-    // MARKDOWN PARSER
-    // ===========================
+    // Markdown parser utilities
 
     /**
      * Escape HTML special characters for safe embedding.
