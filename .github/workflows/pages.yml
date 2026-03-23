@@ -21,16 +21,18 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - uses: actions/checkout@v4
 
       - name: Prepare deployment
-      # This step prepares the files to be deployed to GitHub Pages. It creates a `dist` directory, adds a CNAME file for custom domain configuration, and copies the necessary frontend and public files into the `dist` directory.
         run: |
           mkdir -p dist
           mv CNAME dist/
           cp -r frontend dist/
           cp -r public dist/
+          cp -r mod-mail dist/
           mv index.html dist/
 
       - name: Upload Pages artifact
@@ -40,6 +42,8 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     needs: build
     environment:
       name: github-pages
