@@ -81,11 +81,6 @@ const Projects = (() => {
         return new Intl.DateTimeFormat(getCurrentLocale(), { year: 'numeric', month: 'short' }).format(date);
     }
 
-    function getProjectImageSrc(projectId) {
-        // Auto-generate local image path based on project ID
-        return `/public/images/portfolio/${projectId}.png`;
-    }
-
     function renderCard(project) {
         const startFormatted = formatDate(project.startDate, false);
         const endFormatted = project.endDate ? formatDate(project.endDate, false) : t('common.present', 'Present');
@@ -99,12 +94,12 @@ const Projects = (() => {
         ).join('');
 
         const imgLink = project.imageLink || project.url || null;
-        const imageSrc = getProjectImageSrc(project.id);
-        const imageHtml = `<div class="project-card-image">${
-            imgLink
-                ? `<a class="project-card-image-link" href="${escapeHtml(imgLink)}" target="_blank" rel="noopener noreferrer" tabindex="-1"><img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(project.title)}" loading="lazy" /></a>`
-                : `<img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(project.title)}" loading="lazy" />`
-        }</div>`;
+        const imageHtml = project.image
+            ? `<div class="project-card-image">${imgLink
+                ? `<a class="project-card-image-link" href="${escapeHtml(imgLink)}" target="_blank" rel="noopener noreferrer" tabindex="-1"><img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" loading="lazy" /></a>`
+                : `<img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" loading="lazy" />`
+            }</div>`
+            : `<div class="project-card-image project-card-image--placeholder"><span class="project-card-image-icon">&#9638;</span></div>`;
 
         return `
             <div class="project-card" data-project-id="${escapeHtml(project.id)}" role="button" tabindex="0" aria-label="${escapeHtml(project.title)}">
@@ -235,10 +230,11 @@ const Projects = (() => {
         ).join('');
 
         const imgLink = project.imageLink || project.url || null;
-        const imageSrc = getProjectImageSrc(project.id);
-        const imageHtml = imgLink
-            ? `<a class="project-modal-image-link" href="${escapeHtml(imgLink)}" target="_blank" rel="noopener noreferrer"><img class="project-modal-image" src="${escapeHtml(imageSrc)}" alt="${escapeHtml(project.title)}" data-project-id="${escapeHtml(project.id)}" /></a>`
-            : `<img class="project-modal-image" src="${escapeHtml(imageSrc)}" alt="${escapeHtml(project.title)}" data-project-id="${escapeHtml(project.id)}" />`;
+        const imageHtml = project.image
+            ? (imgLink
+                ? `<a class="project-modal-image-link" href="${escapeHtml(imgLink)}" target="_blank" rel="noopener noreferrer"><img class="project-modal-image" src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" /></a>`
+                : `<img class="project-modal-image" src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" />`)
+            : `<div class="project-modal-image project-modal-image--placeholder"><span>&#9638;</span></div>`;
 
         const urlHtml = project.url
             ? `<a class="project-modal-link" href="${escapeHtml(project.url)}" rel="noopener noreferrer">${escapeHtml(t('portfolio.viewProject', 'View Project →'))}</a>`
@@ -288,10 +284,10 @@ const Projects = (() => {
     }
 
     function bindSortControl() {
-        const sortToggle   = document.getElementById('sortToggle');
-        const sortCurrent  = document.getElementById('sortCurrent');
+        const sortToggle = document.getElementById('sortToggle');
+        const sortCurrent = document.getElementById('sortCurrent');
         const sortDropdown = document.getElementById('sortDropdown');
-        const sortOptions  = document.querySelectorAll('.sort-option');
+        const sortOptions = document.querySelectorAll('.sort-option');
         if (!sortToggle || !sortDropdown) return;
 
         // Sync active highlight to current sort order
@@ -305,7 +301,7 @@ const Projects = (() => {
             e.preventDefault();
             e.stopPropagation();
             const rect = sortToggle.getBoundingClientRect();
-            sortDropdown.style.top  = (rect.bottom + 4) + 'px';
+            sortDropdown.style.top = (rect.bottom + 4) + 'px';
             sortDropdown.style.left = rect.left + 'px';
             sortDropdown.classList.toggle('active');
             updateActiveOption();
@@ -370,63 +366,10 @@ const Projects = (() => {
         });
     }
 
-    function isLocalhost() {
-        const href = window.location.href;
-        return href.includes('localhost') || href.includes('127.0.0.1') || href.startsWith('file://');
-    }
-
-    function getImageFallbacks(projectId) {
-        const fallbacks = [];
-        
-        // Try local image first if running locally
-        if (isLocalhost()) {
-            fallbacks.push(`/public/images/portfolio/${projectId}.jpg`);
-            fallbacks.push(`/public/images/portfolio/${projectId}.png`);
-        }
-        
-        // Try GitHub raw content
-        fallbacks.push(`https://raw.githubusercontent.com/Kooraseru/Kooraseru/main/public/images/portfolio/${projectId}.jpg`);
-        fallbacks.push(`https://raw.githubusercontent.com/Kooraseru/Kooraseru/main/public/images/portfolio/${projectId}.png`);
-        
-        return fallbacks;
-    }
-
-    function tryNextFallback(img, fallbacks, index = 0) {
-        if (index >= fallbacks.length) {
-            // All fallbacks exhausted, show placeholder
-            handleImgError(img);
-            return;
-        }
-        
-        const nextSrc = fallbacks[index];
-        img.src = nextSrc;
-        img.onload = () => {
-            console.log(`[Projects] Image loaded from fallback: ${nextSrc}`);
-        };
-        img.onerror = () => {
-            tryNextFallback(img, fallbacks, index + 1);
-        };
-    }
-
     function hookImageErrors(root) {
         root.querySelectorAll('img').forEach(img => {
-            const onError = () => {
-                const projectCard = img.closest('.project-card');
-                const projectId = projectCard?.dataset.projectId || img.dataset.projectId;
-                
-                if (projectId) {
-                    const fallbacks = getImageFallbacks(projectId);
-                    tryNextFallback(img, fallbacks, 0);
-                } else {
-                    handleImgError(img);
-                }
-            };
-            
-            if (img.complete && img.naturalWidth === 0) {
-                onError();
-            } else {
-                img.addEventListener('error', onError, { once: true });
-            }
+            if (img.complete && img.naturalWidth === 0) handleImgError(img);
+            img.addEventListener('error', () => handleImgError(img), { once: true });
         });
     }
 

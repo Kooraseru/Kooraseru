@@ -8,7 +8,7 @@ const ThemeManager = (() => {
     const COOKIE_MAX_AGE = 31536000; // 365 days in seconds
     const DEFAULT_THEME = 'dark';
     const VALID_THEMES = ['light', 'dark'];
-    
+
     /**
      * Reads the saved theme from the cookie store.
      *
@@ -16,7 +16,7 @@ const ThemeManager = (() => {
      */
     function getThemeCookie() {
         if (typeof document === 'undefined') return null;
-        
+
         const cookies = document.cookie.split(';');
         for (let cookie of cookies) {
             const [name, value] = cookie.trim().split('=');
@@ -30,7 +30,7 @@ const ThemeManager = (() => {
         }
         return null;
     }
-    
+
     /**
      * Persists the selected theme to a cookie with max-age and expires for broad compatibility.
      *
@@ -41,20 +41,20 @@ const ThemeManager = (() => {
             console.warn('[Theme] Invalid theme for cookie:', theme);
             return;
         }
-        
+
         try {
             const expires = new Date();
             expires.setTime(expires.getTime() + (COOKIE_MAX_AGE * 1000));
-            
+
             const cookieString = `${COOKIE_NAME}=${encodeURIComponent(theme)}; path=/; max-age=${COOKIE_MAX_AGE}; expires=${expires.toUTCString()}; SameSite=Lax`;
             document.cookie = cookieString;
-            
+
             console.log('[Theme] Cookie set:', theme);
         } catch (error) {
             console.error('[Theme] Error setting cookie:', error);
         }
     }
-    
+
     /**
      * Applies the given theme to the document root via the data-theme attribute.
      *
@@ -66,7 +66,7 @@ const ThemeManager = (() => {
             console.warn('[Theme] Invalid theme, using default:', theme);
             theme = DEFAULT_THEME;
         }
-        
+
         try {
             document.documentElement.setAttribute('data-theme', theme);
             console.log('[Theme] Applied to DOM:', theme);
@@ -76,7 +76,7 @@ const ThemeManager = (() => {
             return DEFAULT_THEME;
         }
     }
-    
+
     /**
      * Reads the OS-level color scheme preference.
      *
@@ -88,7 +88,7 @@ const ThemeManager = (() => {
         }
         return 'light';
     }
-    
+
     /**
      * Resolves the preferred theme by checking cookie, then system preference, then the default.
      *
@@ -100,13 +100,13 @@ const ThemeManager = (() => {
         if (saved) {
             return saved;
         }
-        
+
         // Check system preference
         const system = getSystemTheme();
         console.log('[Theme] Using system preference:', system);
         return system;
     }
-    
+
     /**
      * Initializes the theme system by resolving and applying the preferred theme on page load.
      */
@@ -115,7 +115,7 @@ const ThemeManager = (() => {
         applyTheme(theme);
         console.log('[Theme] Initialization complete, current theme:', theme);
     }
-    
+
     /**
      * Sets the active theme, persists it to a cookie, and dispatches a themeChanged event.
      *
@@ -124,28 +124,28 @@ const ThemeManager = (() => {
      */
     function setTheme(theme) {
         console.log('[Theme] setTheme called with:', theme);
-        
+
         if (!VALID_THEMES.includes(theme)) {
             console.error('[Theme] Invalid theme:', theme);
             return false;
         }
-        
+
         // Apply to DOM first
         applyTheme(theme);
-        
+
         // Then save to cookie
         setThemeCookie(theme);
-        
+
         // Dispatch custom event for other listeners
         try {
             window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }));
         } catch (error) {
             console.warn('[Theme] Could not dispatch event:', error);
         }
-        
+
         return true;
     }
-    
+
     /**
      * Returns the currently active theme read from the document root attribute.
      *
@@ -155,7 +155,7 @@ const ThemeManager = (() => {
         const htmlTheme = document.documentElement.getAttribute('data-theme');
         return VALID_THEMES.includes(htmlTheme) ? htmlTheme : DEFAULT_THEME;
     }
-    
+
     return {
         init,
         setTheme,
