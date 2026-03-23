@@ -418,10 +418,19 @@ const Projects = (() => {
      * @returns {Promise<void>}
      */
     async function init() {
-        return {
-            init,
-            refresh: renderCarousel
-        };
+        await loadProjects();
+        renderCarousel();
+        bindSortControl();
+        bindCarouselNav();
+        bindModalEvents();
+        
+        // Refresh projects when language changes
+        document.addEventListener('languageChanged', () => refreshFromLanguage());
+    }
+
+    return {
+        init,
+        refresh: refreshFromLanguage
     }
 })();
 

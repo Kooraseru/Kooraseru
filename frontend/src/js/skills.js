@@ -15,6 +15,7 @@ const Skills = (() => {
      * Renders all skill groups and animated progress bars into the skills grid container.
      */
     function renderSkills() {
+        const container = document.getElementById('skillsGrid');
         if (!container) return;
 
         const groups = getSkillGroups();
@@ -89,11 +90,18 @@ const Skills = (() => {
      * a listener to re-render on language changes.
      */
     function init() {
-        return {
-            init,
-            render: renderSkills
-        };
+        renderSkills();
+        
+        // Refresh skills when language changes
+        document.addEventListener('languageChanged', () => {
+            renderSkills();
+        });
     }
+
+    return {
+        init,
+        render: renderSkills
+    };
 })();
 
 window.Skills = Skills;
