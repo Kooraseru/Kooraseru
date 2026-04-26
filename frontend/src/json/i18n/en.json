@@ -71,7 +71,7 @@
         "tags": ["HTML", "CSS", "JavaScript"],
         "startDate": "2025-10",
         "endDate": null,
-        "status": "completed",
+        "status": "active",
         "url": "https://github.com/Kooraseru-Hub/Registry",
         "details": "A script registry and runtime manager for LuaU. Acts as a module loader and bundler, in other words a Library Manager."
       },
@@ -83,6 +83,7 @@
         "startDate": "2025-12",
         "endDate": null,
         "status": "active",
+        "url": "https://github.com/Kooraseru-Hub/Mod-Mail",
         "details": "A discord bot for managing moderation tasks. Runs off of Rust on an external server. Uses the Serenity library and features a web dashboard for configuration. Currently in early development, but the bot is already functional and can be invited to servers."
       },
       {
@@ -98,12 +99,13 @@
       },
       {
         "id": "proj-005",
-        "title": "Networker",
-        "description": "A networking library for LuaU.",
+        "title": "Pipeline",
+        "description": "A pipeline library for LuaU.",
         "tags": ["LuaU"],
         "startDate": "2026-01",
         "endDate": null,
-        "status": "completed"
+        "status": "active",
+        "url": "https://github.com/Kooraseru-Hub/Pipeline"
       },
       {
         "id": "proj-006",

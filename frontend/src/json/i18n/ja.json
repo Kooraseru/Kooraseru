@@ -71,7 +71,7 @@
         "tags": ["LuaU"],
         "startDate": "2025-10",
         "endDate": null,
-        "status": "completed",
+        "status": "active",
         "url": "https://github.com/Kooraseru-Hub/Registry",
         "details": "LuaU用のスクリプトレジストリ兼ランタイム管理ツールです。モジュールのロードやバンドルを管理するライブラリマネージャーとして機能します。"
       },
@@ -83,6 +83,7 @@
         "startDate": "2025-12",
         "endDate": null,
         "status": "active",
+        "url": "https://github.com/Kooraseru-Hub/Mod-Mail",
         "details": "Discordのモデレーション管理用ボット。Rustで外部サーバー上で動作し、Serenityライブラリを使用。ウェブダッシュボードで設定可能。開発初期段階ですが、既に機能しておりサーバーに招待可能です。"
       },
       {
@@ -98,13 +99,14 @@
       },
       {
         "id": "proj-005",
-        "title": "Networker",
-        "description": "LuaU用ネットワーキングライブラリです。",
+        "title": "Pipeline",
+        "description": "LuaU用パイプラインライブラリです。",
         "tags": ["LuaU"],
         "startDate": "2026-01",
         "endDate": null,
-        "status": "completed",
-        "details": "LuaU向けに設計されたネットワーキングライブラリ。Roblox上でモジュール間通信やネットワーク操作を簡易化します。"
+        "status": "active",
+        "url": "https://github.com/Kooraseru-Hub/Pipeline",
+        "details": "LuaU向けに設計されたパイプラインライブラリです。"
       },
       {
         "id": "proj-006",
