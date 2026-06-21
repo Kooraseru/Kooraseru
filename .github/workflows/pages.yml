@@ -33,6 +33,7 @@ jobs:
           cp -r frontend dist/
           cp -r public dist/
           cp -r mod-mail dist/
+          cp -r gcloud dist/
           mv index.html dist/
 
       - name: Upload Pages artifact
