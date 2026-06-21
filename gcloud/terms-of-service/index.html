@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head lang="en">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Audit Importer Terms of Service" />
+    <meta name="author" content="Kooraseru" />
+
+    <title>Terms of Service - Audit Importer - Kooraseru</title>
+    <base href="/">
+
+    <link rel="icon" href="public/images/main.png" type="image/x-icon" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" />
+    <link rel="stylesheet" href="frontend/src/css/themes.css" />
+
+    <script type="module" src="frontend/src/js/theme-manager.js"></script>
+
+    <style>
+        :root {
+            --font-family: 'Google Sans', system-ui, -apple-system, sans-serif;
+            --topbar-height: 45px;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-3xl: 2rem;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { height: 100%; scroll-behavior: smooth; }
+
+        body {
+            min-height: 100%;
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            line-height: 1.7;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a { color: var(--text-link); text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: var(--text-link-hover); }
+
+        .topbar {
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-secondary);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            height: var(--topbar-height);
+        }
+
+        .topbar-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: var(--topbar-height);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--text-primary);
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            text-decoration: none;
+            user-select: none;
+            transition: opacity 0.2s ease;
+        }
+        .logo:hover { opacity: 0.8; color: var(--text-primary); }
+        .logo-icon { width: 24px; height: 24px; display: block; }
+
+        .page-content {
+            max-width: 760px;
+            width: 100%;
+            margin: var(--topbar-height) auto 0;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .breadcrumb {
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-xl);
+        }
+
+        h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--space-xl);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+        }
+
+        .page-footer {
+            border-top: 1px solid var(--border-secondary);
+            color: var(--text-tertiary);
+            font-size: var(--font-size-sm);
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-xl);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="topbar">
+        <div class="topbar-content">
+            <a class="logo" href="/">
+                <img src="public/images/main.png" class="logo-icon" alt="Kooraseru logo" />
+                <span>Kooraseru</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <div class="breadcrumb">
+            <a href="/gcloud/">Audit Importer</a> / Terms of Service
+        </div>
+
+        <h1>Terms of Service</h1>
+
+        <p>
+            Audit Importer is provided as-is for the purpose of importing and organizing audit information
+            within Google Sheets.
+        </p>
+        <p>
+            Users are responsible for verifying the accuracy of imported data and ensuring they have permission
+            to access and modify the spreadsheets in which the tool is used.
+        </p>
+        <p>
+            The developer provides no guarantee regarding uninterrupted availability, accuracy, or fitness for a
+            particular purpose.
+        </p>
+        <p>
+            By using Audit Importer, you agree to use the tool only for lawful purposes and only with data you
+            are authorized to access.
+        </p>
+        <p>
+            For support, contact:
+            <a href="mailto:kooraseru.social@gmail.com">kooraseru.social@gmail.com</a>
+        </p>
+
+        <footer class="page-footer">
+            &copy; 2025 Kooraseru. All rights reserved.
+        </footer>
+    </main>
+</body>
+
+</html>
