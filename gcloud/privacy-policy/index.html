@@ -103,6 +103,12 @@
             margin-bottom: var(--space-xl);
         }
 
+        h2 {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            margin: var(--space-xl) 0 var(--space-sm);
+        }
+
         p, ul {
             color: var(--text-secondary);
             margin-bottom: var(--space-md);
@@ -139,25 +145,69 @@
         <h1>Privacy Policy</h1>
 
         <p>
-            Audit Importer processes information provided by users within the Google Spreadsheet where the tool
-            is installed.
+            Audit Importer is a Google Apps Script tool bound to a specific Google Spreadsheet. It helps
+            authorized users import game audit output into structured audit worksheets inside that spreadsheet.
         </p>
-        <p>Information processed may include:</p>
+
+        <h2>Google User Data Accessed</h2>
+        <p>Audit Importer may access or interact with the following Google user data:</p>
         <ul>
-            <li>Audit data pasted by users.</li>
-            <li>Spreadsheet content required to generate audit reports.</li>
-            <li>Basic Google Apps Script execution data provided by Google.</li>
+            <li>The active Google Spreadsheet where the tool is installed.</li>
+            <li>Sheet names, rows, columns, cell values, formatting, and template sheet content in that spreadsheet.</li>
+            <li>Audit data pasted by users into the import dialog, such as user IDs, usernames, kills, deaths, assists, or similar game audit fields.</li>
+            <li>Basic Google Apps Script execution information provided by Google, such as script runtime status and error logs.</li>
         </ul>
+
+        <h2>How Google User Data Is Used</h2>
+        <p>Audit Importer uses Google user data only to provide its spreadsheet import functionality:</p>
+        <ul>
+            <li>It displays an "Import Audit" menu and dialog inside the active spreadsheet.</li>
+            <li>It reads the configured audit template sheet in the active spreadsheet.</li>
+            <li>It creates a new audit worksheet by copying the template sheet.</li>
+            <li>It writes the pasted audit rows into the new worksheet.</li>
+            <li>It preserves spreadsheet formatting needed to generate the formatted audit report.</li>
+        </ul>
+
+        <h2>OAuth Scopes Used</h2>
+        <p>Audit Importer requests the following Google OAuth scopes:</p>
+        <ul>
+            <li>
+                <strong>https://www.googleapis.com/auth/spreadsheets.currentonly</strong>:
+                used to read, copy, format, and write data only within the spreadsheet where the script is installed.
+            </li>
+            <li>
+                <strong>https://www.googleapis.com/auth/script.container.ui</strong>:
+                used to add the "Audit Tools" menu and display the import dialog inside Google Sheets.
+            </li>
+        </ul>
+
         <p>
-            Audit Importer does not sell, share, transfer, or disclose user data to third parties.
+            Audit Importer does not request access to Gmail, does not request broad Google Drive access, and
+            does not access Google Drive files outside the active spreadsheet.
         </p>
+
+        <h2>Data Storage</h2>
         <p>
             Audit Importer does not store data outside of the Google Spreadsheet where it is used and does not
             transmit audit data to external servers.
         </p>
         <p>
-            Information received from Google APIs is used solely to provide the functionality of the
-            application and is handled in accordance with the Google API Services User Data Policy.
+            Imported audit data remains in the spreadsheet selected by the user. Any retention, deletion,
+            sharing, or access control for the resulting audit worksheets is managed by the spreadsheet owner
+            through Google Sheets sharing settings.
+        </p>
+
+        <h2>Data Sharing</h2>
+        <p>
+            Audit Importer does not sell, share, transfer, or disclose Google user data or pasted audit data to
+            third parties. It does not use Google user data for advertising, analytics, profiling, or AI/ML model
+            training.
+        </p>
+
+        <h2>Google API Services User Data Policy</h2>
+        <p>
+            Audit Importer's use and transfer of information received from Google APIs adheres to the
+            Google API Services User Data Policy, including the Limited Use requirements.
         </p>
         <p>
             For privacy-related inquiries, contact:
