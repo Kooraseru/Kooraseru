@@ -55,4 +55,4 @@ logo=data:image/svg%2bxml;base64,[Base64]
 
 ## Current Activity
 
-![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=Kooraseru&hide_title=true&hide_border=true&color=FFFFFF&bg_color=0d111700&point=FFFFFF&line=FFFFFF)
+![chart](https://shieldcn.dev/chart/github/commits/kooraseru.svg?logo=false)
