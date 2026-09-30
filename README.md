@@ -1,58 +1,84 @@
-<!--
-Hi there! If you're here wondering how this README.md was formatted, just know that you can mix HTML and markdown for github's README's!
+﻿# Hi, I'm Kooraseru
 
-Feel free to copy anything here if you want to copy the exact formatting of something!
+Computer Science and Computer Engineering student. I build client software, open-source developer tools, backend systems, and cross-platform applications from design through delivery.
 
-Here's the tools used to display some of the awesome displays on the profile:
-https://github-readme-stats-fast.vercel.app
-https://shields.io/badges
-https://github-readme-activity-graph.vercel.app
--->
+<p align="center">
+  <a href="https://github.com/sponsors/Kooraseru"><img alt="GitHub Sponsors" src="https://shieldcn.dev/badge/GitHub-Sponsor-181717.svg?logo=githubsponsors" /></a>
+  <a href="https://kooraseru.com"><img alt="Website" src="https://shieldcn.dev/badge/Website-kooraseru.com-2563eb.svg?logo=false" /></a>
+</p>
 
-<h1>Hiya! <img src="https://media.tenor.com/iora7DooHl0AAAAM/vkay-hmn.gif" alt="icon" style="height:1em; vertical-align:middle;"></h1>
+## Languages
 
-Hello there! I'm **Kooraseru**! I do developer commissions and am currently a Computer Engineering and Computer Science student at Wright State University!
+### Systems programming
 
-[![GitHub Sponsors](https://img.shields.io/github/sponsors/Kooraseru?style=for-the-badge)](https://github.com/sponsors/Kooraseru)
+<p align="center">
+  <img alt="Rust" src="https://shieldcn.dev/badge/Rust-Language-ce422b.svg?logo=rust" />
+  <img alt="C" src="https://shieldcn.dev/badge/C-Language-a8b9cc.svg?logo=c" />
+  <img alt="C++" src="https://shieldcn.dev/badge/C%2B%2B-Language-00599c.svg?logo=cplusplus" />
+</p>
 
-## My Socials
-[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/users/584894715917369349)
-[![X.com](https://img.shields.io/badge/X.com-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/Kooraseru)
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@Kooraseru)
-[![Roblox](https://img.shields.io/badge/Roblox-000000?style=for-the-badge&logo=roblox&logoColor=white)](https://www.roblox.com/users/3294832549/profile)
+### Application and scripting
 
-<!--
-Sorry to whoever is reading this and wondering: wtf is with the length of the Java URL???
+<p align="center">
+  <img alt="C#" src="https://shieldcn.dev/badge/C%23-Language-512bd4.svg?logo=csharp" />
+  <img alt="Java" src="https://shieldcn.dev/badge/Java-Language-ed8b00.svg?logo=openjdk" />
+  <img alt="Python" src="https://shieldcn.dev/badge/Python-Language-3776ab.svg?logo=python" />
+  <img alt="Luau" src="https://shieldcn.dev/badge/Luau-Language-00a2ff.svg?logo=luau" />
+  <img alt="Lua" src="https://shieldcn.dev/badge/Lua-Language-2c2d72.svg?logo=lua" />
+</p>
 
-In short, since there wasn't an open stacks image this is the Base64 conversion of a svg file. If you're wondering how to convert an image to Base64, there's a few ways but I highly recommend going online to https://codebeautify.org/svg-to-base64-converter.
+### Web and data
 
-To get the correct formatting, this is what I use for SVG's based on the formatting for img.shields.io, I use the 2bxml format:
-logo=data:image/svg%2bxml;base64,[Base64]
--->
+<p align="center">
+  <img alt="TypeScript" src="https://shieldcn.dev/badge/TypeScript-Language-3178c6.svg?logo=typescript" />
+  <img alt="JavaScript" src="https://shieldcn.dev/badge/JavaScript-Language-f7df1e.svg?logo=javascript" />
+  <img alt="SQL" src="https://shieldcn.dev/badge/SQL-Language-336791.svg?logo=postgresql" />
+  <img alt="HTML" src="https://shieldcn.dev/badge/HTML-Language-e34f26.svg?logo=html5" />
+  <img alt="CSS" src="https://shieldcn.dev/badge/CSS-Language-1572b6.svg?logo=css" />
+</p>
 
-## Languages & Applications
+## Skills
 
-### Website Hosting
+### Systems and runtimes
 
-#### Front-End
-![HTML5](https://img.shields.io/badge/HTML5-d92d00?style=for-the-badge&logo=html5&logoColor=ffffff)
-![Typescript](https://img.shields.io/badge/TS-ddb700?style=for-the-badge&logo=typescript&logoColor=ffffff)
-![CSS](https://img.shields.io/badge/CSS-006bb4?style=for-the-badge&logo=css&logoColor=ffffff)
+<p align="center">
+  <img alt="Linux" src="https://shieldcn.dev/badge/Linux-System-fcc624.svg?logo=linux" />
+  <img alt="Windows" src="https://shieldcn.dev/badge/Windows-System-0078d4.svg?logo=windows" />
+  <img alt="WebAssembly" src="https://shieldcn.dev/badge/WebAssembly-Runtime-654ff0.svg?logo=webassembly" />
+  <img alt="Node.js" src="https://shieldcn.dev/badge/Node.js-Runtime-5fa04e.svg?logo=nodedotjs" />
+  <img alt="Roblox" src="https://shieldcn.dev/badge/Roblox-Platform-111111.svg?logo=roblox" />
+</p>
 
-#### Back-End
-![NodeJS](https://img.shields.io/badge/Node.js-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=ffffff)
-![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=ffffff)
+### Development tools
 
-### General
-![Python](https://img.shields.io/badge/PYTHON-3476aa?style=for-the-badge&logo=python&logoColor=ffcf3c)
-![C++](https://img.shields.io/badge/C%2B%2B-A8B9CC?style=for-the-badge&logo=cplusplus&logoColor=ffffff)
-![C#](https://img.shields.io/badge/C%23-512bd4?style=for-the-badge&logo=data:image/svg%2bxml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgMTYwIj4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjZmZmOwogICAgICB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8cmVjdCBjbGFzcz0iY2xzLTEiIHg9Ijk1LjQ0IiB5PSI3NC44NSIgd2lkdGg9IjEwLjI5IiBoZWlnaHQ9IjEwLjI5Ii8+CiAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTQxLjc1LDMyLjQ2TDkwLjI5LDIuNzZjLTYuMzctMy42OC0xNC4yMS0zLjY4LTIwLjU4LDBsLTUxLjQ2LDI5LjcxYy02LjM3LDMuNjgtMTAuMjksMTAuNDctMTAuMjksMTcuODJ2NTkuNDJjMCw3LjM1LDMuOTIsMTQuMTUsMTAuMjksMTcuODJsNTEuNDYsMjkuNzFjNi4zNywzLjY4LDE0LjIxLDMuNjgsMjAuNTgsMGw1MS40Ni0yOS43MWM2LjM3LTMuNjgsMTAuMjktMTAuNDcsMTAuMjktMTcuODJ2LTU5LjQyYzAtNy4zNS0zLjkyLTE0LjE1LTEwLjI5LTE3LjgyWk00OS4xMSw5NS40NGguMDJjMi44NCwwLDUuMTUtMi4zLDUuMTUtNS4xNGgwYzAtMi44NSwyLjMtNS4xNSw1LjE1LTUuMTVzNS4xNSwyLjMsNS4xNSw1LjE1YzAsOC41My02LjkxLDE1LjQ0LTE1LjQ0LDE1LjQ0cy0xNS40NC02LjkxLTE1LjQ0LTE1LjQ0di0yMC41OGMwLTguNTMsNi45MS0xNS40NCwxNS40NC0xNS40NHMxNS40NCw2LjkxLDE1LjQ0LDE1LjQ0YzAsMi44NC0yLjMsNS4xNS01LjE1LDUuMTVzLTUuMTUtMi4zLTUuMTUtNS4xNS0yLjMtNS4xNS01LjE1LTUuMTUtNS4xNSwyLjMtNS4xNSw1LjE1aDBzMCwyMC41OCwwLDIwLjU4YzAsMi44NCwyLjI5LDUuMTQsNS4xMyw1LjE1Wk0xMjEuMTgsOTUuNDRoLTUuMTZ2NS4xNGMwLDEuMzctLjU0LDIuNjgtMS41MSwzLjY0LTIsMi4wMS01LjI1LDIuMDItNy4yNi4wMWgtLjAxYy0uOTYtLjk4LTEuNTEtMi4yOS0xLjUxLTMuNjV2LTUuMTRoLTEwLjI5djUuMTRjMCwyLjg0LTIuMjksNS4xNC01LjEyLDUuMTVoLS4wMmMtMi44NCwwLTUuMTQtMi4yOS01LjE0LTUuMTN2LTUuMTZoLTUuMTVjLTIuODQsMC01LjE1LTIuMy01LjE1LTUuMTVzMi4zLTUuMTUsNS4xNS01LjE1aDUuMTV2LTEwLjI5aC01LjE1Yy0yLjg0LDAtNS4xNS0yLjMtNS4xNS01LjE1czIuMy01LjE1LDUuMTUtNS4xNWg1LjE1di01LjE1YzAtMi44NCwyLjMtNS4xNSw1LjE1LTUuMTVzNS4xNSwyLjMsNS4xNSw1LjE1djUuMTRoMTAuMjl2LTUuMTRjMC0yLjg0LDIuMy01LjE1LDUuMTUtNS4xNXM1LjE1LDIuMyw1LjE1LDUuMTV2NS4xNGg1LjE1YzEuMzYsMCwyLjY3LjU0LDMuNjQsMS41MSwyLjAxLDIsMi4wMiw1LjI1LjAxLDcuMjZoLS4wMWMtLjk2Ljk4LTIuMjcsMS41Mi0zLjY0LDEuNTJoLTUuMTV2MTAuMjloNS4xNWMyLjg0LDAsNS4xNCwyLjMxLDUuMTUsNS4xNGgwYzAsMi44NC0yLjMsNS4xNC01LjEzLDUuMTVaIi8+Cjwvc3ZnPg==&logoColor=ffffff)
-![Java](https://img.shields.io/badge/Java-d36601?style=for-the-badge&logo=data:image/svg%2bxml;base64,PCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KDTwhLS0gVXBsb2FkZWQgdG86IFNWRyBSZXBvLCB3d3cuc3ZncmVwby5jb20sIFRyYW5zZm9ybWVkIGJ5OiBTVkcgUmVwbyBNaXhlciBUb29scyAtLT4KPHN2ZyBoZWlnaHQ9IjgwMHB4IiB3aWR0aD0iODAwcHgiIHZlcnNpb249IjEuMSIgaWQ9IkNhcGFfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmlld0JveD0iMCAwIDUwMi42MzIgNTAyLjYzMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjZmZmZmZmIj4KDTxnIGlkPSJTVkdSZXBvX2JnQ2FycmllciIgc3Ryb2tlLXdpZHRoPSIwIi8+Cg08ZyBpZD0iU1ZHUmVwb190cmFjZXJDYXJyaWVyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KDTxnIGlkPSJTVkdSZXBvX2ljb25DYXJyaWVyIj4gPGc+IDxnPiA8cGF0aCBzdHlsZT0iZmlsbDojZmZmZmZmOyIgZD0iTTI0MC44NjQsMjY5Ljg5NGMwLDAtMjguMDItNTMuOTkyLTI2Ljk4NS05My40NDVjMC43NTUtMjguMTkzLDY0LjMyNC01Ni4wNjIsODkuMjgxLTk2LjUyOSBDMzI4LjA3NCwzOS40MzEsMzAwLjA1NCwwLDMwMC4wNTQsMHM2LjIzNCwyOS4wNzctMTAuMzc2LDU5LjE0N2MtMTYuNjA5LDMwLjExMy03Ny45MTQsNDcuNzc5LTEwMS43NDksOTkuNjc5IFMyNDAuODY0LDI2OS44OTQsMjQwLjg2NCwyNjkuODk0eiIvPiA8cGF0aCBzdHlsZT0iZmlsbDojZmZmZmZmOyIgZD0iTTM0NS43NDEsMTA1Ljg2OWMwLDAtOTUuNDk0LDM2LjM0Ny05NS40OTQsNzcuODQ5YzAsNDEuNTQ1LDI1LjkyOCw1NS4wMjcsMzAuMTEzLDY4LjUwOSBjNC4xNDIsMTMuNTI1LTcuMjY5LDM2LjM0Ny03LjI2OSwzNi4zNDdzMzcuMzYxLTI1Ljk1LDMxLjEwNS01Ni4wNjJjLTYuMjM0LTMwLjExMy0zNS4yOS0zOS40NzUtMTguNjU5LTY5LjU0NCBDMjk2LjY0NiwxNDIuNzk5LDM0NS43NDEsMTA1Ljg2OSwzNDUuNzQxLDEwNS44Njl6Ii8+IDxwYXRoIHN0eWxlPSJmaWxsOiNmZmZmZmY7IiBkPSJNMjMwLjUxLDMyNC43NDhjODguMjQ2LTMuMTQ5LDEyMC40My0zMC45OTcsMTIwLjQzLTMwLjk5NyBjLTU3LjA3NiwxNS41NTMtMjA4LjY1NCwxNC41MzktMjA5LjcxMSwzLjEyOGMtMS4wMTQtMTEuNDExLDQ2LjcwMS0yMC43NzMsNDYuNzAxLTIwLjc3M3MtNzQuNzIxLDAtODAuOTU1LDE4LjY4IEMxMDAuNzQsMzEzLjQ2NywxNDIuMzI4LDMyNy44MzMsMjMwLjUxLDMyNC43NDh6Ii8+IDxwYXRoIHN0eWxlPSJmaWxsOiNmZmZmZmY7IiBkPSJNMzU4LjE4NywzNjguNDk0YzAsMCw4Ni4zNjktMTguNDIxLDc3LjgyNy02NS4zMzhjLTEwLjM1NC01Ny4xMTktNzAuNTgtMjQuOTM2LTcwLjU4LTI0LjkzNiBzNDIuNjAyLDAsNDYuNzIyLDI1LjkyOEM0MTYuMzIsMzMwLjA5OCwzNTguMTg3LDM2OC40OTQsMzU4LjE4NywzNjguNDk0eiIvPiA8cGF0aCBzdHlsZT0iZmlsbDojZmZmZmZmOyIgZD0iTTMxNS42MjgsMzQzLjYwMWMwLDAtMjEuNzY1LDUuNzE2LTU0LjAxMyw5LjM0Yy00My4yMjgsNC44NTMtOTUuNDk0LDEuMDE0LTk5LjY1Ny02LjI1NiBjLTQuMDk4LTcuMjY5LDcuMjY5LTExLjQxMSw3LjI2OS0xMS40MTFjLTUxLjkyMSwxMi40NjgtMjMuNTEyLDM0LjIzMywzNy4zMzksMzguNDE4YzUyLjE1OCwzLjU1OSwxMjkuNzkxLTE1LjU3NCwxMjkuNzkxLTE1LjU3NCBMMzE1LjYyOCwzNDMuNjAxeiIvPiA8cGF0aCBzdHlsZT0iZmlsbDojZmZmZmZmOyIgZD0iTTE4MS43MzgsMzg4Ljk0M2MwLDAtMjMuNTU1LDAuNjY5LTI0LjkzNiwxMy4xMzdjLTEuMzU5LDEyLjM4MiwxNC40OTYsMjMuNTEyLDcyLjY1LDI2Ljk2NCBjNTguMTMzLDMuNDUxLDk4Ljk4OC0xNS44OTgsOTguOTg4LTE1Ljg5OGwtMjYuMjk1LTE1Ljk2MmMwLDAtMTYuNjMxLDMuNDk0LTQyLjIzNiw2Ljk0NiBjLTI1LjYyNiwzLjQ3My03OC4xNzMtMi43ODMtODAuMjQzLTcuNTkzQzE3Ny41NTMsMzkxLjY4MiwxODEuNzM4LDM4OC45NDMsMTgxLjczOCwzODguOTQzeiIvPiA8cGF0aCBzdHlsZT0iZmlsbDojZmZmZmZmOyIgZD0iTTQwNy45OTQsNDQ1LjAwNWM4Ljk5NS05LjcwNy0yLjc4My0xNy4zMjEtMi43ODMtMTcuMzIxczQuMTQyLDQuODUzLTEuMzM3LDEwLjM3NiBjLTUuNTQ0LDUuNTIyLTU2LjA4NCwxOS4zNDktMTM3LjA2MSwyMy41MTJjLTgwLjk1NSw0LjE2My0xNjguODU2LTcuNjE1LTE3MS42MzktMTcuOTkgYy0yLjY5Ni0xMC4zNzYsNDUuMDE4LTE4LjY1OSw0NS4wMTgtMTguNjU5Yy01LjUyMiwwLjY5LTcxLjk2LDIuMDcxLTc0LjA3NCwyMC4wODJjLTIuMDcxLDE3Ljk2OCwyOS4wNTYsMzIuNTA3LDE1My42NywzMi41MDcgQzM0NC4zMzksNDc3LjQ5MSwzOTkuMDQyLDQ1NC42NDcsNDA3Ljk5NCw0NDUuMDA1eiIvPiA8cGF0aCBzdHlsZT0iZmlsbDojZmZmZmZmOyIgZD0iTTM1OS41NjgsNDg1LjgxN2MtNTQuNjgyLDExLjA0NC0yMjAuNzM0LDQuMDc3LTIyMC43MzQsNC4wNzdzMTA3LjkxOSwyNS42MjYsMjMxLjEwOSw0LjE4NSBjNTguODg4LTEwLjI2OCw2Mi4zMTgtMzguNzYzLDYyLjMxOC0zOC43NjNTNDE0LjI1LDQ3NC43MDgsMzU5LjU2OCw0ODUuODE3eiIvPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDxnPiA8L2c+IDwvZz4gPC9nPgoNPC9zdmc+&logoColor=ffffff)
+<p align="center">
+  <img alt="Git" src="https://shieldcn.dev/badge/Git-Tool-f05032.svg?logo=git" />
+  <img alt="GitHub" src="https://shieldcn.dev/badge/GitHub-Tool-181717.svg?logo=github" />
+  <img alt="GitHub Actions" src="https://shieldcn.dev/badge/GitHub_Actions-Tool-2088ff.svg?logo=githubactions" />
+  <img alt="VS Code" src="https://shieldcn.dev/badge/VS_Code-Tool-007acc.svg?logo=visualstudiocode" />
+  <img alt="Visual Studio" src="https://shieldcn.dev/badge/Visual_Studio-Tool-5c2d91.svg?logo=visualstudio" />
+  <img alt="CMake" src="https://shieldcn.dev/badge/CMake-Tool-064f8c.svg?logo=cmake" />
+  <img alt="Qt 6" src="https://shieldcn.dev/badge/Qt_6-Tool-41cd52.svg?logo=qt" />
+  <img alt="Postman" src="https://shieldcn.dev/badge/Postman-Tool-ff6c37.svg?logo=postman" />
+  <img alt="REDCap" src="https://shieldcn.dev/badge/REDCap-Tool-9d2235.svg?logo=false" />
+</p>
 
-### Games and Modding
-![Lua](https://img.shields.io/badge/Lua-000080?style=for-the-badge&logo=lua&logoColor=ffffff)
-![LuaU](https://img.shields.io/badge/LuaU-00A2FF?style=for-the-badge&logo=luau&logoColor=ffffff)
+### Databases
 
-## Current Activity
+<p align="center">
+  <img alt="PostgreSQL" src="https://shieldcn.dev/badge/PostgreSQL-Database-4169e1.svg?logo=postgresql" />
+  <img alt="MySQL" src="https://shieldcn.dev/badge/MySQL-Database-4479a1.svg?logo=mysql" />
+</p>
 
-![chart](https://shieldcn.dev/chart/github/commits/kooraseru.svg?logo=false)
+## Connect
+
+<p align="center">
+  <a href="https://discord.com/users/584894715917369349"><img alt="Discord" src="https://shieldcn.dev/badge/Discord-Connect-5865f2.svg?logo=discord" /></a>
+  <a href="https://x.com/Kooraseru"><img alt="X" src="https://shieldcn.dev/badge/X-Follow-111111.svg?logo=x" /></a>
+  <a href="https://www.youtube.com/@Kooraseru"><img alt="YouTube" src="https://shieldcn.dev/badge/YouTube-Watch-ff0000.svg?logo=youtube" /></a>
+  <a href="https://www.roblox.com/users/3294832549/profile"><img alt="Roblox" src="https://shieldcn.dev/badge/Roblox-Profile-111111.svg?logo=roblox" /></a>
+</p>
+
+<p align="center">
+  <img alt="GitHub commit history" src="https://shieldcn.dev/chart/github/commits/kooraseru.svg?logo=false" />
+</p>

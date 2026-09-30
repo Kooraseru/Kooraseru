@@ -1,9 +1,10 @@
-name: Deploy site to GitHub Pages
+﻿name: Build and deploy site
 
 on:
+  pull_request:
+    branches: [main]
   push:
-    branches:
-      - "**"
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -12,44 +13,41 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  group: github-pages
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - uses: actions/checkout@v4
-
-      - name: Prepare deployment
+      - name: Install Lune
+        run: |
+          curl -fsSL https://github.com/lune-org/lune/releases/download/v0.10.4/lune-0.10.4-linux-x86_64.zip -o lune.zip
+          unzip -q lune.zip lune
+          chmod +x lune
+          sudo mv lune /usr/local/bin/lune
+      - name: Generate and verify project catalog
+        run: |
+          lune run src/scripts/build_projects.luau
+          lune run src/scripts/build_projects.luau --check
+      - name: Assemble site
         run: |
           mkdir -p dist
-          mv CNAME dist/
-          cp -r frontend dist/
-          cp -r public dist/
-          cp -r mod-mail dist/
-          cp -r gcloud dist/
-          mv index.html dist/
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+          cp -R src/index.html src/css src/js src/i18n src/gcloud src/mod-mail src/confetti-types.json src/projects.json dist/
+          cp -R assets dist/assets
+          cp CNAME dist/CNAME
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
   deploy:
-    runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    if: github.event_name != 'pull_request'
     needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4

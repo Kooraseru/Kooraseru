@@ -7,6 +7,9 @@
 .DS_Store
 .env.local
 
+# KERO KNOWLEDGE SYSTEM
+.KERO
+
 # OS
 Thumbs.db
 .AppleDouble

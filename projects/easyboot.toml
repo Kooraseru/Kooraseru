@@ -1,0 +1,7 @@
+id = "proj-012"
+title = "EasyBoot"
+description = "Bootloader that orders startup work and coordinates dependencies."
+details = "Bootloader that orders startup work and coordinates dependencies."
+status = "unreleased"
+tags = ["Luau", "Initialization"]
+# image = "public/images/portfolio/example.png"
