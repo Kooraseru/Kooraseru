@@ -1,8 +1,0 @@
-id = "proj-010"
-title = "Registry"
-description = "Runtime manager for shared modules, services, and dependency access."
-details = "Runtime manager for shared modules, services, and dependency access."
-status = "released"
-tags = ["Luau", "Runtime Architecture"]
-link = "https://github.com/Kooraseru-Hub/Registry"
-# image = "public/images/portfolio/example.png"

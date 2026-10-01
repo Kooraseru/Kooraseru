@@ -1,7 +1,0 @@
-id = "proj-014"
-title = "EasyScheduler"
-description = "Server-side scheduling with validation and abuse-resistant client-triggered workloads."
-details = "Server-side scheduling with validation and abuse-resistant client-triggered workloads."
-status = "unreleased"
-tags = ["Luau", "Scheduling"]
-# image = "public/images/portfolio/example.png"

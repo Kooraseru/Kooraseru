@@ -1,7 +1,0 @@
-id = "proj-009"
-title = "Arbor"
-description = "Type-aware runtime for discovering and accessing shared modules and services."
-details = "Type-aware runtime for discovering and accessing shared modules and services."
-status = "released"
-tags = ["Luau", "Runtime Architecture"]
-# image = "public/images/portfolio/example.png"

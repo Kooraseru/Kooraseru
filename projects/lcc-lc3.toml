@@ -1,7 +1,0 @@
-id = "proj-004"
-title = "lcc-lc3"
-description = "LC-3 compiler and toolchain work, including ARM64 development-host compatibility."
-details = "LC-3 compiler and toolchain work, including ARM64 development-host compatibility."
-status = "released"
-tags = ["C", "LC-3", "ARM64"]
-# image = "public/images/portfolio/example.png"

@@ -1,5 +1,0 @@
-local Render = require("./render")
-Render.locales(".")
-Render.catalog(".", "site")
-Render.Build()
-print("Localization catalogs are valid")

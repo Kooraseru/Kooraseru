@@ -1,7 +1,0 @@
-id = "proj-006"
-title = "Glyph"
-description = "Font rasterization and atlas-based text rendering on programmable image buffers."
-details = "Font rasterization and atlas-based text rendering on programmable image buffers."
-status = "unreleased"
-tags = ["Luau", "Rasterization"]
-# image = "public/images/portfolio/example.png"

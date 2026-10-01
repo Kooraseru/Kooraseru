@@ -40,7 +40,7 @@ jobs:
           include-hidden-files: true
 
   publish:
-    if: github.event_name == 'push' && github.ref_name == 'source'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref_name == 'source'
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -53,7 +53,7 @@ jobs:
           path: .heap/generated-main
       - name: Update main branch
         run: |
-          git worktree add .heap/main-worktree main
+          git worktree add -B main .heap/main-worktree origin/main
           rsync -a --delete --exclude=.git .heap/generated-main/ .heap/main-worktree/
           cd .heap/main-worktree
           git add -A
@@ -63,15 +63,22 @@ jobs:
           fi
 
   deploy:
-    if: github.event_name == 'push' && github.ref_name == 'main'
+    needs: [build, publish]
+    if: always() && ((github.ref_name == 'source' && needs.publish.result == 'success') || (github.ref_name == 'main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')))
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        if: github.ref_name == 'main'
+      - uses: actions/download-artifact@v4
+        if: github.ref_name == 'source'
+        with:
+          name: generated-main
+          path: .heap/generated-main
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: ${{ github.ref_name == 'source' && '.heap/generated-main' || '.' }}
       - id: deployment
         uses: actions/deploy-pages@v4

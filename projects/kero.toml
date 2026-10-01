@@ -1,7 +1,0 @@
-id = "proj-002"
-title = "KERO"
-description = "Cross-platform knowledge and publication system with deterministic policy enforcement and reproducible Windows/Linux x86-64 and ARM64 releases."
-details = "Cross-platform knowledge and publication system with deterministic policy enforcement and reproducible Windows/Linux x86-64 and ARM64 releases."
-status = "released"
-tags = ["Rust", "Qt 6", "CMake", "GitHub Actions"]
-# image = "public/images/portfolio/example.png"

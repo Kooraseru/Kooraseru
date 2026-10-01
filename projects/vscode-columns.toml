@@ -1,8 +1,0 @@
-id = "proj-003"
-title = "vscode-columns"
-description = "Extends VS Code editor behavior through workbench and renderer integration with a local WebSocket bridge."
-details = "Extends VS Code editor behavior through workbench and renderer integration with a local WebSocket bridge."
-status = "released"
-tags = ["TypeScript", "VS Code", "WebSocket"]
-link = "https://github.com/Kooraseru/vscode-editor-columns"
-# image = "public/images/portfolio/example.png"

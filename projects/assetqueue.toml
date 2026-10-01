@@ -1,7 +1,0 @@
-id = "proj-013"
-title = "AssetQueue"
-description = "Need-driven asset preloading integrated with staged initialization."
-details = "Need-driven asset preloading integrated with staged initialization."
-status = "unreleased"
-tags = ["Luau", "Asset Management"]
-# image = "public/images/portfolio/example.png"

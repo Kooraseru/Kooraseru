@@ -1,8 +1,0 @@
-id = "proj-001"
-title = "Clinical Trials Lookup Tool"
-description = "Collaborative clinical-trials software with Vanderbilt for querying and managing trial data."
-details = "Collaborative clinical-trials software with Vanderbilt for querying and managing trial data."
-status = "released"
-tags = ["Rust", "REDCap"]
-link = "https://github.com/Kooraseru/Clinical-Trials-Lookup"
-# image = "public/images/portfolio/example.png"
