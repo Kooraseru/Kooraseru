@@ -37,8 +37,11 @@ async function getAccessToken(env) {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body,
   });
-  if (!response.ok) throw new Error(`Gmail token request failed: ${response.status}`);
-  const result = await response.json();
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    const code = typeof result.error === "string" ? result.error : "unknown_error";
+    throw new Error(`Gmail token request failed (${response.status}): ${code}`);
+  }
   if (!result.access_token) throw new Error("Gmail token response lacked an access token");
   return result.access_token;
 }
