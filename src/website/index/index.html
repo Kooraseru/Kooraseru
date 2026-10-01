@@ -172,13 +172,16 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="contactTopic" data-i18n="contact.topicLabel">{{l10n:site.contact.topicLabel}}</label>
-                        <select class="form-input" id="contactTopic" required>
-                            <option value="" data-i18n="contact.topicPlaceholder">{{l10n:site.contact.topicPlaceholder}}</option>
-                            <option value="commission" data-i18n="contact.topics.commission">{{l10n:site.contact.topics.commission}}</option>
-                            <option value="collaboration" data-i18n="contact.topics.collaboration">{{l10n:site.contact.topics.collaboration}}</option>
-                            <option value="question" data-i18n="contact.topics.question">{{l10n:site.contact.topics.question}}</option>
-                            <option value="other" data-i18n="contact.topics.other">{{l10n:site.contact.topics.other}}</option>
-                        </select>
+                        <div class="form-select-wrap">
+                            <select class="form-input" id="contactTopic" required>
+                                <option value="" data-i18n="contact.topicPlaceholder">{{l10n:site.contact.topicPlaceholder}}</option>
+                                <option value="commission" data-i18n="contact.topics.commission">{{l10n:site.contact.topics.commission}}</option>
+                                <option value="collaboration" data-i18n="contact.topics.collaboration">{{l10n:site.contact.topics.collaboration}}</option>
+                                <option value="question" data-i18n="contact.topics.question">{{l10n:site.contact.topics.question}}</option>
+                                <option value="other" data-i18n="contact.topics.other">{{l10n:site.contact.topics.other}}</option>
+                            </select>
+                            <svg class="form-select-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="contactSubject" data-i18n="contact.subjectLabel">{{l10n:site.contact.subjectLabel}}</label>

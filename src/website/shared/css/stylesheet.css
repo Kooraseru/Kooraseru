@@ -844,6 +844,32 @@ a:hover { color: var(--text-link-hover); }
     width: 100%;
 }
 
+.form-select-wrap {
+    position: relative;
+}
+
+.form-select-wrap select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: calc(var(--space-lg) + 24px);
+    cursor: pointer;
+}
+
+.form-select-chevron {
+    position: absolute;
+    top: 50%;
+    right: var(--space-md);
+    width: 18px;
+    height: 18px;
+    transform: translateY(-50%);
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
 .contact-honeypot {
     position: absolute;
     left: -10000px;
