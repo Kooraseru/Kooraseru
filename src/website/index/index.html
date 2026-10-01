@@ -171,16 +171,22 @@
                             data-i18n="contact.emailPlaceholder" data-i18n-attr="placeholder" autocomplete="email" />
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="contactTopic" data-i18n="contact.topicLabel">{{l10n:site.contact.topicLabel}}</label>
+                        <label class="form-label" for="contactTopicToggle" data-i18n="contact.topicLabel">{{l10n:site.contact.topicLabel}}</label>
                         <div class="form-select-wrap">
-                            <select class="form-input" id="contactTopic" required>
-                                <option value="" data-i18n="contact.topicPlaceholder">{{l10n:site.contact.topicPlaceholder}}</option>
-                                <option value="commission" data-i18n="contact.topics.commission">{{l10n:site.contact.topics.commission}}</option>
-                                <option value="collaboration" data-i18n="contact.topics.collaboration">{{l10n:site.contact.topics.collaboration}}</option>
-                                <option value="question" data-i18n="contact.topics.question">{{l10n:site.contact.topics.question}}</option>
-                                <option value="other" data-i18n="contact.topics.other">{{l10n:site.contact.topics.other}}</option>
-                            </select>
+                            <input type="hidden" id="contactTopic" name="topic" value="" />
+                            <button class="form-input form-topic-toggle" id="contactTopicToggle" type="button"
+                                aria-haspopup="listbox" aria-expanded="false" aria-controls="contactTopicDropdown">
+                                <span id="contactTopicCurrent" data-i18n="contact.topicPlaceholder">{{l10n:site.contact.topicPlaceholder}}</span>
+                            </button>
                             <svg class="form-select-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+                            <div class="dropdown topic-dropdown" id="contactTopicDropdown" role="listbox" aria-label="{{l10n:site.contact.topicLabel}}" data-i18n="contact.topicLabel" data-i18n-attr="aria-label">
+                                <div class="dropdown-content">
+                                    <button type="button" class="dropdown-option topic-option" role="option" data-topic="commission" data-i18n="contact.topics.commission">{{l10n:site.contact.topics.commission}}</button>
+                                    <button type="button" class="dropdown-option topic-option" role="option" data-topic="collaboration" data-i18n="contact.topics.collaboration">{{l10n:site.contact.topics.collaboration}}</button>
+                                    <button type="button" class="dropdown-option topic-option" role="option" data-topic="question" data-i18n="contact.topics.question">{{l10n:site.contact.topics.question}}</button>
+                                    <button type="button" class="dropdown-option topic-option" role="option" data-topic="other" data-i18n="contact.topics.other">{{l10n:site.contact.topics.other}}</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -452,6 +458,70 @@
     </script>
 
     <script>
+        function setupTopicDropdown() {
+            const wrap = document.querySelector('.form-select-wrap');
+            const toggle = document.getElementById('contactTopicToggle');
+            const dropdown = document.getElementById('contactTopicDropdown');
+            const current = document.getElementById('contactTopicCurrent');
+            const placeholder = current.textContent;
+            const input = document.getElementById('contactTopic');
+            const options = Array.from(dropdown.querySelectorAll('.topic-option'));
+
+            function close() {
+                dropdown.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+            }
+
+            function select(value) {
+                input.value = value;
+                const option = options.find(item => item.dataset.topic === value);
+                current.dataset.i18n = option?.dataset.i18n || 'contact.topicPlaceholder';
+                current.textContent = option?.textContent || window.LanguageSystem?.t('contact.topicPlaceholder', placeholder) || placeholder;
+                options.forEach(item => item.setAttribute('aria-selected', String(item === option)));
+                close();
+            }
+
+            toggle.addEventListener('click', () => {
+                const open = dropdown.classList.toggle('active');
+                toggle.setAttribute('aria-expanded', String(open));
+            });
+            toggle.addEventListener('keydown', event => {
+                if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+                    event.preventDefault();
+                    dropdown.classList.add('active');
+                    toggle.setAttribute('aria-expanded', 'true');
+                    options[event.key === 'ArrowDown' ? 0 : options.length - 1].focus();
+                }
+            });
+            dropdown.addEventListener('click', event => {
+                const option = event.target.closest('.topic-option');
+                if (!option) return;
+                select(option.dataset.topic);
+                toggle.focus();
+            });
+            dropdown.addEventListener('keydown', event => {
+                if (event.key === 'Escape') {
+                    close();
+                    toggle.focus();
+                } else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+                    event.preventDefault();
+                    const index = options.indexOf(document.activeElement);
+                    options[(index + (event.key === 'ArrowDown' ? 1 : -1) + options.length) % options.length].focus();
+                }
+            });
+            document.addEventListener('click', event => {
+                if (!wrap.contains(event.target)) close();
+            });
+            document.getElementById('contactForm').addEventListener('reset', () => {
+                queueMicrotask(() => select(''));
+            });
+            select('');
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', setupTopicDropdown);
+        } else { setupTopicDropdown(); }
+
         async function sendContactForm(e) {
             e.preventDefault();
 
@@ -473,6 +543,11 @@
             }
 
             const topic = document.getElementById('contactTopic').value;
+            if (!topic) {
+                document.getElementById('contactTopicToggle').focus();
+                showToast(window.LanguageSystem?.t('contact.topicPlaceholder', 'Select a topic') || 'Select a topic', 'error');
+                return;
+            }
             const subject = document.getElementById('contactSubject').value.trim();
             const website = document.getElementById('contactWebsite').value;
             if (!form.reportValidity()) return;

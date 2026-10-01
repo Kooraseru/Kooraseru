@@ -848,11 +848,33 @@ a:hover { color: var(--text-link-hover); }
     position: relative;
 }
 
-.form-select-wrap select {
+.form-topic-toggle {
     appearance: none;
-    -webkit-appearance: none;
+    display: flex;
+    align-items: center;
+    min-height: 44px;
     padding-right: calc(var(--space-lg) + 24px);
     cursor: pointer;
+    text-align: left;
+}
+
+.topic-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    transform: translateY(-6px);
+}
+
+.topic-dropdown.active {
+    transform: translateY(0);
+}
+
+.topic-option[aria-selected="true"] {
+    background-color: var(--bg-hover);
+    color: var(--text-link);
 }
 
 .form-select-chevron {
