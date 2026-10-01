@@ -78,10 +78,6 @@ ja-JP = "断る"
 en-US = "This site uses cookies to save your preferences."
 ja-JP = "このサイトは設定を保存するためにCookieを使用します。"
 
-[direction.values]
-en-US = "ltr"
-ja-JP = "ltr"
-
 [experience.entries.job1.company.values]
 en-US = "Kooraseru & Co"
 ja-JP = "Kooraseru & Co"
@@ -121,22 +117,6 @@ ja-JP = "アート: @pabobingu on X"
 [home.welcome.values]
 en-US = "Welcome to my personal website!"
 ja-JP = "私の個人サイトへようこそ！"
-
-[language.values]
-en-US = "en"
-ja-JP = "ja"
-
-[languageName.values]
-en-US = "English"
-ja-JP = "日本語"
-
-[languageSelector.english.values]
-en-US = "English"
-ja-JP = "English"
-
-[languageSelector.japanese.values]
-en-US = "日本語"
-ja-JP = "日本語"
 
 [nav.contact.values]
 en-US = "Contact"

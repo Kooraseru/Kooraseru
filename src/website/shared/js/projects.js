@@ -8,11 +8,6 @@
         isLoaded: false
     };
 
-    const LANG_TO_LOCALE = {
-        en: 'en-US',
-        ja: 'ja-JP'
-    };
-
     function t(key, fallback = key) {
         if (window.LanguageSystem && typeof window.LanguageSystem.t === 'function') {
             return window.LanguageSystem.t(key, fallback);
@@ -21,23 +16,24 @@
     }
 
     function getCurrentLocale() {
-        const lang = window.LanguageSystem && typeof window.LanguageSystem.getCurrentLanguage === 'function'
-            ? window.LanguageSystem.getCurrentLanguage()
-            : 'en';
-        return LANG_TO_LOCALE[lang] || 'en-US';
+        return window.LanguageSystem?.getCurrentLanguage?.() || document.documentElement.lang;
     }
 
     async function loadProjects() {
         try {
             if (!state.catalog) {
-                const response = await fetch('/projects.json');
-                if (!response.ok) throw new Error(`Project catalog returned ${response.status}`);
-                state.catalog = await response.json();
+                const { parse } = await import('https://cdn.jsdelivr.net/npm/smol-toml@1.9.0/dist/index.js');
+                const files = document.querySelector('meta[name="project-files"]')?.content.split(',').filter(Boolean) || [];
+                state.catalog = await Promise.all(files.map(async filename => {
+                    const response = await fetch(`/projects/${encodeURIComponent(filename)}`);
+                    if (!response.ok) throw new Error(`${filename} returned ${response.status}`);
+                    return parse(await response.text());
+                }));
             }
-            const language = window.LanguageSystem?.getCurrentLanguage?.() || 'en';
+            const language = window.LanguageSystem?.getCurrentLanguage?.();
             state.projects = state.catalog.map(project => ({
                 ...project,
-                ...project[language],
+                ...(project.translations?.[language] || {}),
                 url: project.link,
                 status: project.status === 'released' ? 'completed' : 'active'
             }));
@@ -425,14 +421,13 @@
      * @returns {Promise<void>}
      */
     async function init() {
+        document.addEventListener('languageChanged', () => refreshFromLanguage());
         await loadProjects();
         renderCarousel();
         bindSortControl();
         bindCarouselNav();
         bindModalEvents();
         
-        // Refresh projects when language changes
-        document.addEventListener('languageChanged', () => refreshFromLanguage());
     }
 
     return {

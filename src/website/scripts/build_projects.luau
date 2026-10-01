@@ -1,14 +1,17 @@
--- Compile top-level project TOML files into the site's JSON catalog.
+-- Validate top-level project TOML files published directly with the site.
 local fs = require("@lune/fs")
 local serde = require("@lune/serde")
-local process = require("@lune/process")
+local Render = require("../../../i18n/render")
 
-local output = ".heap/pages/projects.json"
 local projects = {}
 local ids = {}
 local required = { "id", "title", "description", "details", "status", "tags" }
 local allowed = { id = true, title = true, description = true, details = true, status = true,
-    tags = true, link = true, image = true, startDate = true, endDate = true, en = true, ja = true }
+    tags = true, link = true, image = true, startDate = true, endDate = true, translations = true }
+local localeKeys = {}
+for _, locale in Render.locales(".").locales do
+    localeKeys[locale.key] = true
+end
 
 for _, name in fs.readDir("projects") do
     if name:match("%.toml$") then
@@ -26,16 +29,18 @@ for _, name in fs.readDir("projects") do
         for _, tag in project.tags do
             assert(type(tag) == "string", name .. ": tags must contain strings")
         end
+        if project.translations then
+            for localeKey, values in project.translations do
+                assert(localeKeys[localeKey], name .. ": undeclared locale " .. localeKey)
+                assert(type(values) == "table", name .. ": translation must be a table")
+                for key, value in values do
+                    assert((key == "title" or key == "description" or key == "details")
+                        and type(value) == "string", name .. ": invalid translation " .. key)
+                end
+            end
+        end
         table.insert(projects, project)
     end
 end
 
-table.sort(projects, function(a, b) return a.id < b.id end)
-local content = serde.encode("json", projects)
-if table.find(process.args, "--check") then
-    assert(fs.isFile(output) and serde.encode("json", serde.decode("json", fs.readFile(output))) == content,
-        output .. " is stale; run lune run src/website/scripts/build_projects.luau")
-else
-    fs.writeDir(".heap/pages")
-    fs.writeFile(output, content .. "\n")
-end
+print("Validated " .. #projects .. " project TOML files")

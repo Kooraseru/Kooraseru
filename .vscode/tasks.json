@@ -2,10 +2,10 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Publish: Test locally",
+      "label": "Website: Build preview",
       "type": "process",
       "command": "lune",
-      "args": ["run", "src/website/scripts/publish_test.luau"],
+      "args": ["run", "src/website/scripts/build_site.luau"],
       "group": { "kind": "test", "isDefault": true },
       "problemMatcher": []
     }

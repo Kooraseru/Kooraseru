@@ -1,4 +1,4 @@
--- Render TOML localization catalogs into the browser's locale JSON files.
+-- Read and validate TOML localization catalogs for the site build.
 local fs = require("@lune/fs")
 local serde = require("@lune/serde")
 
@@ -8,53 +8,51 @@ local function readToml(path)
     return serde.decode("toml", fs.readFile(path))
 end
 
-local function flatten(node, path, result)
+local function flatten(node, path, result, defaultLocale)
     if node.values then
         assert(path ~= "", "localization key cannot be empty")
-        assert(type(node.values["en-US"]) == "string", path .. " is missing en-US")
+        assert(type(node.values[defaultLocale]) == "string", path .. " is missing " .. defaultLocale)
         result[path] = node.values
         return
     end
     for key, child in node do
         assert(type(child) == "table", "invalid localization node: " .. key)
-        flatten(child, path == "" and key or path .. "." .. key, result)
+        flatten(child, path == "" and key or path .. "." .. key, result, defaultLocale)
     end
-end
-
-local function assign(root, path, value)
-    local parts = string.split(path, ".")
-    local node = root
-    for index = 1, #parts - 1 do
-        node[parts[index]] = node[parts[index]] or {}
-        node = node[parts[index]]
-    end
-    node[parts[#parts]] = value
 end
 
 function Render.locales(root)
     local path = (root or ".") .. "/i18n/locales.toml"
-    local locales = readToml(path).locales
-    assert(#locales > 0, path .. " contains no locales")
+    local config = readToml(path)
+    local locales = config.locales
+    assert(type(locales) == "table" and #locales > 0, path .. " contains no locales")
+    assert(type(config.default) == "string", path .. " has no default locale")
     local seen = {}
     for _, locale in locales do
-        assert(locale.key and locale.language and locale.file and not seen[locale.key], "invalid or duplicate locale entry")
+        assert(type(locale.key) == "string" and type(locale.language) == "string"
+            and type(locale.htmlLang) == "string"
+            and type(locale.fontFamily) == "string" and not seen[locale.key],
+            "invalid or duplicate locale entry")
         seen[locale.key] = true
     end
-    return locales
+    assert(seen[config.default], "default locale is not declared")
+    return config
 end
 
 function Render.catalog(root, name)
     local result = {}
-    flatten(readToml((root or ".") .. "/i18n/" .. name .. ".toml"), "", result)
+    local config = Render.locales(root)
+    flatten(readToml((root or ".") .. "/i18n/" .. name .. ".toml"), "", result, config.default)
     return result
 end
 
 function Render.text(root, template, locale, links)
     local catalog = Render.catalog(root, "site")
+    local defaultLocale = Render.locales(root).default
     local output = template:gsub("{{%s*l10n:site%.([%w_.%-]+)%s*}}", function(key)
         local values = catalog[key]
         assert(values, "unknown localization key: site." .. key)
-        local value = values[locale] or values["en-US"]
+        local value = values[locale or defaultLocale] or values[defaultLocale]
         assert(value, "missing localization: site." .. key)
         return value
     end)
@@ -66,44 +64,18 @@ function Render.text(root, template, locale, links)
     return output
 end
 
-function Render.Build()
-    local locales = Render.locales(".")
-    local catalog = Render.catalog(".", "site")
-    local skills = readToml("i18n/skills.toml").groups
-    local output = {}
-    local seen = {}
-    for _, locale in locales do
-        assert(not seen[locale.key], "duplicate locale: " .. locale.key)
-        seen[locale.key] = true
-        local document = {
-            language = string.sub(locale.key, 1, 2),
-            languageName = locale.language,
-            direction = "ltr",
-        }
-        for key, values in catalog do
-            assign(document, key, values[locale.key] or values["en-US"])
+function Render.validate(root)
+    local declared = {}
+    for _, locale in Render.locales(root).locales do declared[locale.key] = true end
+    local catalog = Render.catalog(root, "site")
+    for key, values in catalog do
+        for localeKey, value in values do
+            assert(declared[localeKey] and type(value) == "string", "invalid locale value: " .. key .. "." .. localeKey)
         end
-        document.skills.groups = {}
-        for _, group in skills do
-            local title = catalog[group.titleKey]
-            assert(title, "unknown skills title: " .. group.titleKey)
-            local items = {}
-            for _, name in group.items do table.insert(items, { name = name }) end
-            table.insert(document.skills.groups, {
-                title = title[locale.key] or title["en-US"],
-                items = items,
-            })
-        end
-        output[locale.file] = serde.encode("json", document) .. "\n"
     end
-    return output
-end
-
-function Render.Write(directory)
-    fs.writeDir(directory)
-    local output = Render.Build()
-    for filename, content in output do
-        fs.writeFile(directory .. "/" .. filename, content)
+    local skills = readToml((root or ".") .. "/i18n/skills.toml").groups
+    for _, group in skills do
+        assert(catalog[group.titleKey], "unknown skills title: " .. group.titleKey)
     end
 end
 

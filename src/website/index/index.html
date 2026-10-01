@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
-<html lang="{{l10n:site.language}}" data-theme="dark">
+<html lang="en" data-theme="dark">
 
-<head lang="{{l10n:site.language}}">
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="My personal website!">
@@ -21,6 +21,7 @@
 
     <script type="module" src="js/theme-manager.js"></script>
 
+    <meta name="project-files" content="{{project:files}}" />
     <script type="module" src="js/language-system.js"></script>
 </head>
 
@@ -46,18 +47,13 @@
                 <div class="language-selector">
                     <button class="language-toggle-button" id="languageToggle" aria-label="{{l10n:site.ui.languageToggle}}"
                         data-i18n="ui.languageToggle" data-i18n-attr="aria-label">
-                        <span class="language-current" id="languageCurrent" data-lang="en"></span>
+                        <span class="language-current" id="languageCurrent"></span>
                         <svg class="language-icon" viewBox="0 0 24 24">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
                     <div class="dropdown language-dropdown" id="languageDropdown">
-                        <div class="dropdown-content">
-                            <a class="dropdown-option language-option language-option-en" data-lang="en"
-                                data-i18n="languageSelector.english">{{l10n:site.languageSelector.english}}</a>
-                            <a class="dropdown-option language-option language-option-ja" data-lang="ja"
-                                data-i18n="languageSelector.japanese">{{l10n:site.languageSelector.japanese}}</a>
-                        </div>
+                        <div class="dropdown-content"></div>
                     </div>
                 </div>
             </div>
@@ -424,9 +420,7 @@
     <script>
         function setupLanguageDropdown() {
             var languageToggle = document.getElementById('languageToggle');
-            var languageCurrent = document.getElementById('languageCurrent');
             var languageDropdown = document.getElementById('languageDropdown');
-            var languageOptions = document.querySelectorAll('.language-option');
             if (!languageToggle || !languageDropdown) return;
 
             languageToggle.addEventListener('click', function (e) {
@@ -434,20 +428,14 @@
                 languageDropdown.classList.toggle('active');
             });
 
-            languageOptions.forEach(function (option) {
-                option.addEventListener('click', async function (e) {
-                    e.preventDefault(); e.stopPropagation();
-                    var selectedLang = this.dataset.lang;
-                    if (typeof LanguageSystem !== 'undefined' && LanguageSystem.switchLanguage) {
-                        var ok = await LanguageSystem.switchLanguage(selectedLang);
-                        if (ok && languageCurrent) {
-                            languageCurrent.textContent = this.textContent;
-                            languageCurrent.dataset.lang = selectedLang;
-                            languageCurrent.style.fontFamily = window.getComputedStyle(this).fontFamily;
-                        }
-                    }
-                    languageDropdown.classList.remove('active');
-                });
+            languageDropdown.addEventListener('click', async function (e) {
+                var option = e.target.closest('.language-option');
+                if (!option) return;
+                e.preventDefault(); e.stopPropagation();
+                if (typeof LanguageSystem !== 'undefined' && LanguageSystem.switchLanguage) {
+                    await LanguageSystem.switchLanguage(option.dataset.lang);
+                }
+                languageDropdown.classList.remove('active');
             });
 
             document.addEventListener('click', function (e) {
@@ -455,31 +443,9 @@
             });
         }
 
-        async function initializeLanguageUI() {
-            try {
-                if (typeof LanguageSystem !== 'undefined') {
-                    if (!window.translations) {
-                        await LanguageSystem.init();
-                    }
-                    LanguageSystem.updatePageContent();
-
-                    var currentLang = LanguageSystem.getCurrentLanguage();
-                    var langCurrent = document.getElementById('languageCurrent');
-                    if (langCurrent) {
-                        var matchOpt = document.querySelector('.language-option[data-lang="' + currentLang + '"]');
-                        if (matchOpt) {
-                            langCurrent.textContent = matchOpt.textContent;
-                            langCurrent.dataset.lang = currentLang;
-                            langCurrent.style.fontFamily = window.getComputedStyle(matchOpt).fontFamily;
-                        }
-                    }
-                }
-            } catch (err) { console.error('[Init] Language UI error:', err); }
-        }
-
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', function () { setupLanguageDropdown(); initializeLanguageUI(); });
-        } else { setupLanguageDropdown(); initializeLanguageUI(); }
+            document.addEventListener('DOMContentLoaded', setupLanguageDropdown);
+        } else { setupLanguageDropdown(); }
     </script>
 
     <script>
@@ -558,7 +524,7 @@
     <script>if (typeof module !== 'undefined' && module.exports) { window.confetti = module.exports; }</script>
     <script src="js/confetti-manager.js"></script>
 
-    <script src="js/projects.js"></script>
+    <script type="module" src="js/projects.js"></script>
     <script src="js/skills.js"></script>
 
 

@@ -1,4 +1,6 @@
+default = "en-US"
+
 locales = [
-  { key = "en-US", language = "English", file = "en.json" },
-  { key = "ja-JP", language = "日本語", file = "ja.json" },
+  { key = "en-US", language = "English", htmlLang = "en", direction = "ltr", fontFamily = "'Google Sans', system-ui, -apple-system, sans-serif" },
+  { key = "ja-JP", language = "日本語", htmlLang = "ja", direction = "ltr", fontFamily = "'Noto Sans JP', 'Google Sans', system-ui, -apple-system, sans-serif" },
 ]
