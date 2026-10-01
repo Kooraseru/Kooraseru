@@ -48,8 +48,8 @@
                     <button class="language-toggle-button" id="languageToggle" aria-label="{{l10n:site.ui.languageToggle}}"
                         data-i18n="ui.languageToggle" data-i18n-attr="aria-label">
                         <span class="language-current" id="languageCurrent"></span>
-                        <svg class="language-icon" viewBox="0 0 24 24">
-                            <polyline points="6 9 12 15 18 9"></polyline>
+                        <svg class="language-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m6 9 6 6 6-6"></path>
                         </svg>
                     </button>
                     <div class="dropdown language-dropdown" id="languageDropdown">
@@ -87,8 +87,8 @@
                         <div class="sort-selector">
                             <button class="sort-toggle-button" id="sortToggle" aria-haspopup="listbox">
                                 <span class="sort-current" id="sortCurrent" data-i18n="portfolio.sortNewest">{{l10n:site.portfolio.sortNewest}}</span>
-                                <svg class="sort-icon" viewBox="0 0 24 24">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                <svg class="sort-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="m6 9 6 6 6-6"></path>
                                 </svg>
                             </button>
                             <div class="dropdown sort-dropdown" id="sortDropdown">
@@ -105,9 +105,9 @@
                     </div>
                     <div class="carousel-nav">
                         <button class="carousel-btn" id="carouselPrev" aria-label="{{l10n:site.ui.carouselPrev}}" data-i18n="ui.carouselPrev"
-                            data-i18n-attr="aria-label">&#8592;</button>
+                            data-i18n-attr="aria-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg></button>
                         <button class="carousel-btn" id="carouselNext" aria-label="{{l10n:site.ui.carouselNext}}" data-i18n="ui.carouselNext"
-                            data-i18n-attr="aria-label">&#8594;</button>
+                            data-i18n-attr="aria-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button>
                     </div>
                 </div>
 
@@ -232,8 +232,8 @@
             <span class="theme-button-content">
                 <div class="theme-selector" id="themeSelector">
                     <span class="theme-current" data-i18n="themeOptions.dark"></span>
-                    <svg class="theme-dropdown-icon" viewBox="0 0 24 24">
-                        <polyline points="6 9 12 15 18 9"></polyline>
+                    <svg class="theme-dropdown-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6"></path>
                     </svg>
                 </div>
                 <div class="theme-divider"></div>
@@ -241,8 +241,8 @@
                     <span class="confetti-selector-label" data-i18n="confetti.label"></span>
                     <div class="confetti-current-wrap">
                         <span class="confetti-current" id="confettiCurrent" data-i18n="confetti.types.standard">Standard</span>
-                        <svg class="theme-dropdown-icon" viewBox="0 0 24 24">
-                            <polyline points="6 9 12 15 18 9"></polyline>
+                        <svg class="theme-dropdown-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m6 9 6 6 6-6"></path>
                         </svg>
                     </div>
                 </div>

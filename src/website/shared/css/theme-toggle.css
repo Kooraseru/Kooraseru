@@ -137,6 +137,7 @@
 .theme-dropdown-icon {
     width: 12px;
     height: 12px;
+    display: block;
     stroke: var(--text-secondary);
     stroke-width: 2;
     stroke-linecap: round;
