@@ -7,7 +7,7 @@ This repository contains the website, contact Worker, and GitHub profile README.
 - `main` is the only editable and published branch. Do not create generated publication branches.
 - `.heap/pages/` is the locally assembled website and the Pages deployment artifact. `.heap/` is ignored by Git and stays available for preview until the next build.
 - The single VS Code task, **Website: Build preview**, assembles `.heap/pages/`. VS Code Live Preview serves it as the root on port 3000.
-- `.github/workflows/pages.yml` is the one deployment workflow: validate source, build one website, deploy GitHub Pages, then deploy the Cloudflare contact Worker. Pull requests run validation and build without deploying.
+- `.github/workflows/pages.yml` validates source, builds one website, and deploys GitHub Pages. Pull requests run validation and build without deploying. Cloudflare Builds deploys the contact Worker directly from the same `main` branch and the `src/email-system/cloudflare/` root directory.
 
 ## Source layout
 
@@ -28,7 +28,7 @@ Add locale metadata to `i18n/locales.toml` and interface text to `i18n/site.toml
 
 Use Lune for repository scripts and publication. Before editing Luau, read the applicable language guidance under the mounted `.kero` language instructions, starting with `luau-system.md`, and the relevant file, structure, and language concept documents. That guidance is language policy, not this site's product or repository topology.
 
-The browser posts contact details to `https://contact.kooraseru.com/`. Keep Gmail credentials in Cloudflare Worker secrets. The unified deployment workflow uses GitHub secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` only for CI authentication. Never put secrets in website files, project TOML, source code, or Wrangler vars.
+The browser posts contact details to `https://contact.kooraseru.com/`. Keep Gmail credentials in Cloudflare Worker runtime secrets. Cloudflare Builds manages its own deployment token; GitHub Actions needs no Cloudflare credentials. Never put secrets in website files, project TOML, source code, or Wrangler vars.
 
 ## Validation
 
