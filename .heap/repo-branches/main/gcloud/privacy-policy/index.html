@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head lang="en">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Audit Importer Privacy Policy" />
+    <meta name="author" content="Kooraseru" />
+
+    <title>Privacy Policy - Audit Importer - Kooraseru</title>
+    <base href="/">
+
+    <link rel="icon" href="assets/main.png" type="image/x-icon" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" />
+    <link rel="stylesheet" href="css/themes.css" />
+
+    <script type="module" src="js/theme-manager.js"></script>
+
+    <style>
+        :root {
+            --font-family: 'Google Sans', system-ui, -apple-system, sans-serif;
+            --topbar-height: 45px;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-3xl: 2rem;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { height: 100%; scroll-behavior: smooth; }
+
+        body {
+            min-height: 100%;
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            line-height: 1.7;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a { color: var(--text-link); text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: var(--text-link-hover); }
+
+        .topbar {
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-secondary);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            height: var(--topbar-height);
+        }
+
+        .topbar-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: var(--topbar-height);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--text-primary);
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            text-decoration: none;
+            user-select: none;
+            transition: opacity 0.2s ease;
+        }
+        .logo:hover { opacity: 0.8; color: var(--text-primary); }
+        .logo-icon { width: 24px; height: 24px; display: block; }
+
+        .page-content {
+            max-width: 760px;
+            width: 100%;
+            margin: var(--topbar-height) auto 0;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .breadcrumb {
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-xl);
+        }
+
+        h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--space-xl);
+        }
+
+        h2 {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            margin: var(--space-xl) 0 var(--space-sm);
+        }
+
+        p, ul {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+        }
+
+        ul { padding-left: var(--space-xl); }
+        li { margin-bottom: var(--space-sm); }
+
+        .page-footer {
+            border-top: 1px solid var(--border-secondary);
+            color: var(--text-tertiary);
+            font-size: var(--font-size-sm);
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-xl);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="topbar">
+        <div class="topbar-content">
+            <a class="logo" href="/">
+                <img src="assets/main.png" class="logo-icon" alt="Kooraseru logo" />
+                <span>Kooraseru</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <div class="breadcrumb">
+            <a href="/gcloud/">Audit Importer</a> / Privacy Policy
+        </div>
+
+        <h1>Privacy Policy</h1>
+
+        <p>
+            Audit Importer is a Google Apps Script tool bound to a specific Google Spreadsheet. It helps
+            authorized users import game audit output into structured audit worksheets inside that spreadsheet.
+        </p>
+
+        <h2>Google User Data Accessed</h2>
+        <p>Audit Importer may access or interact with the following Google user data:</p>
+        <ul>
+            <li>The active Google Spreadsheet where the tool is installed.</li>
+            <li>Sheet names, rows, columns, cell values, formatting, and template sheet content in that spreadsheet.</li>
+            <li>Audit data pasted by users into the import dialog, such as user IDs, usernames, kills, deaths, assists, or similar game audit fields.</li>
+            <li>Basic Google Apps Script execution information provided by Google, such as script runtime status and error logs.</li>
+        </ul>
+
+        <h2>How Google User Data Is Used</h2>
+        <p>Audit Importer uses Google user data only to provide its spreadsheet import functionality:</p>
+        <ul>
+            <li>It displays an "Import Audit" menu and dialog inside the active spreadsheet.</li>
+            <li>It reads the configured audit template sheet in the active spreadsheet.</li>
+            <li>It creates a new audit worksheet by copying the template sheet.</li>
+            <li>It writes the pasted audit rows into the new worksheet.</li>
+            <li>It preserves spreadsheet formatting needed to generate the formatted audit report.</li>
+        </ul>
+
+        <h2>OAuth Scopes Used</h2>
+        <p>Audit Importer requests the following Google OAuth scopes:</p>
+        <ul>
+            <li>
+                <strong>https://www.googleapis.com/auth/spreadsheets.currentonly</strong>:
+                used to read, copy, format, and write data only within the spreadsheet where the script is installed.
+            </li>
+            <li>
+                <strong>https://www.googleapis.com/auth/script.container.ui</strong>:
+                used to add the "Audit Tools" menu and display the import dialog inside Google Sheets.
+            </li>
+        </ul>
+
+        <p>
+            Audit Importer does not request access to Gmail, does not request broad Google Drive access, and
+            does not access Google Drive files outside the active spreadsheet.
+        </p>
+
+        <h2>Data Storage</h2>
+        <p>
+            Audit Importer does not store data outside of the Google Spreadsheet where it is used and does not
+            transmit audit data to external servers.
+        </p>
+        <p>
+            Imported audit data remains in the spreadsheet selected by the user. Any retention, deletion,
+            sharing, or access control for the resulting audit worksheets is managed by the spreadsheet owner
+            through Google Sheets sharing settings.
+        </p>
+
+        <h2>Data Sharing</h2>
+        <p>
+            Audit Importer does not sell, share, transfer, or disclose Google user data or pasted audit data to
+            third parties. It does not use Google user data for advertising, analytics, profiling, or AI/ML model
+            training.
+        </p>
+
+        <h2>Google API Services User Data Policy</h2>
+        <p>
+            Audit Importer's use and transfer of information received from Google APIs adheres to the
+            Google API Services User Data Policy, including the Limited Use requirements.
+        </p>
+        <p>
+            For privacy-related inquiries, contact:
+            <a href="mailto:kooraseru.social@gmail.com">kooraseru.social@gmail.com</a>
+        </p>
+
+        <footer class="page-footer">
+            &copy; 2025 Kooraseru. All rights reserved.
+        </footer>
+    </main>
+</body>
+
+</html>
