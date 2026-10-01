@@ -8,6 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: write
   contents: write
   pages: write
   id-token: write
@@ -61,24 +62,21 @@ jobs:
             git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Publish website from source'
             git push origin main
           fi
+      - name: Trigger deployment from main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref main
 
   deploy:
-    needs: [build, publish]
-    if: always() && ((github.ref_name == 'source' && needs.publish.result == 'success') || (github.ref_name == 'main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')))
+    if: github.ref_name == 'main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-        if: github.ref_name == 'main'
-      - uses: actions/download-artifact@v4
-        if: github.ref_name == 'source'
-        with:
-          name: generated-main
-          path: .heap/generated-main
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ github.ref_name == 'source' && '.heap/generated-main' || '.' }}
+          path: .
       - id: deployment
         uses: actions/deploy-pages@v4
