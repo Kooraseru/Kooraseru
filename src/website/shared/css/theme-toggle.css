@@ -49,8 +49,8 @@
 }
 
 .theme-toggle-button:focus {
-    outline: 0px solid var(--text-link);
-    outline-offset: 0px;
+    outline: 2px solid var(--text-link);
+    outline-offset: 2px;
 }
 
 /* Sun icon shown when the button is collapsed */

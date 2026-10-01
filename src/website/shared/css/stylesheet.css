@@ -859,12 +859,6 @@ a:hover { color: var(--text-link-hover); }
 }
 
 .topic-dropdown {
-    position: absolute;
-    top: calc(100% + 4px);
-    left: 0;
-    width: 100%;
-    min-width: 0;
-    max-width: none;
     transform: translateY(-6px);
 }
 

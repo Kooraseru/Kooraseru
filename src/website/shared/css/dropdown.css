@@ -20,6 +20,16 @@
     visibility: visible;
 }
 
+/* The contact topic menu is anchored to its field, not the viewport. */
+.dropdown.topic-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+}
+
 .dropdown-content {
     display: flex;
     flex-direction: column;
