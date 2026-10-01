@@ -1,23 +1,24 @@
-﻿name: Build and deploy site
+﻿name: Build and publish website
 
 on:
   pull_request:
-    branches: [main]
+    branches: [source]
   push:
-    branches: [main]
+    branches: [source, main]
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 concurrency:
-  group: github-pages
+  group: website-publication
   cancel-in-progress: false
 
 jobs:
   build:
+    if: github.event_name == 'pull_request' || github.ref_name == 'source'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,27 +28,50 @@ jobs:
           unzip -q lune.zip lune
           chmod +x lune
           sudo mv lune /usr/local/bin/lune
-      - name: Generate and verify project catalog
-        run: |
-          lune run src/scripts/build_projects.luau
-          lune run src/scripts/build_projects.luau --check
-      - name: Assemble site
-        run: |
-          mkdir -p dist
-          cp -R src/index.html src/css src/js src/i18n src/gcloud src/mod-mail src/confetti-types.json src/projects.json dist/
-          cp -R assets dist/assets
-          cp CNAME dist/CNAME
-      - uses: actions/upload-pages-artifact@v3
+      - name: Validate localization
+        run: lune run i18n/validate.luau
+      - name: Test publication
+        run: lune run src/website/scripts/publish_test.luau
+      - uses: actions/upload-artifact@v4
+        if: github.event_name != 'pull_request'
         with:
-          path: dist
+          name: generated-main
+          path: .heap/repo-branches/main
+          include-hidden-files: true
+
+  publish:
+    if: github.event_name == 'push' && github.ref_name == 'source'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: generated-main
+          path: .heap/generated-main
+      - name: Update main branch
+        run: |
+          git worktree add .heap/main-worktree main
+          rsync -a --delete --exclude=.git .heap/generated-main/ .heap/main-worktree/
+          cd .heap/main-worktree
+          git add -A
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Publish website from source'
+            git push origin main
+          fi
 
   deploy:
-    if: github.event_name != 'pull_request'
-    needs: build
+    if: github.event_name == 'push' && github.ref_name == 'main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
       - id: deployment
         uses: actions/deploy-pages@v4

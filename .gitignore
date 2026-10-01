@@ -1,5 +1,4 @@
-# IDE
-.vscode/
+﻿# IDE
 .idea/
 *.swp
 *.swo
@@ -21,7 +20,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Keep these!
-!public/js/
-!public/.github/
-!public/index.html
+# Local Worker secrets
+src/email-system/cloudflare/.dev.vars*
+src/email-system/cloudflare/.env*
+
+# Generated pages and worktrees
+.heap/

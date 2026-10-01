@@ -1,0 +1,338 @@
+[common.present.values]
+en-US = "Present"
+ja-JP = "現在"
+
+[confetti.label.values]
+en-US = "Effects"
+ja-JP = "エフェクト"
+
+[confetti.types.images.values]
+en-US = "Images"
+ja-JP = "画像"
+
+[confetti.types.none.values]
+en-US = "None"
+ja-JP = "なし"
+
+[confetti.types.snow.values]
+en-US = "Snow"
+ja-JP = "雪"
+
+[confetti.types.standard.values]
+en-US = "Welcome Only"
+ja-JP = "標準"
+
+[contact.emailLabel.values]
+en-US = "Email"
+ja-JP = "メールアドレス"
+
+[contact.emailPlaceholder.values]
+en-US = "your@email.com"
+ja-JP = "your@email.com"
+
+[contact.mailSubject.values]
+en-US = "Website contact"
+ja-JP = "サイトからのお問い合わせ"
+
+[contact.mailSubjectFrom.values]
+en-US = "Website contact from {email}"
+ja-JP = "{email} からのお問い合わせ"
+
+[contact.messageLabel.values]
+en-US = "Message"
+ja-JP = "メッセージ"
+
+[contact.messagePlaceholder.values]
+en-US = "Say hello..."
+ja-JP = "こんにちは！"
+
+[contact.sendButton.values]
+en-US = "Send"
+ja-JP = "送信"
+
+[contact.subtitle.values]
+en-US = "Get in touch!"
+ja-JP = "お気軽にご連絡ください。"
+
+[contact.title.values]
+en-US = "Contact"
+ja-JP = "お問い合わせ"
+
+[contact.toastEmptyMessage.values]
+en-US = "Please write a message first."
+ja-JP = "先にメッセージを書いてください。"
+
+[contact.toastSent.values]
+en-US = "Message sent."
+ja-JP = "メッセージを送信しました。"
+
+[cookies.accept.values]
+en-US = "Accept"
+ja-JP = "同意する"
+
+[cookies.decline.values]
+en-US = "Decline"
+ja-JP = "断る"
+
+[cookies.message.values]
+en-US = "This site uses cookies to save your preferences."
+ja-JP = "このサイトは設定を保存するためにCookieを使用します。"
+
+[direction.values]
+en-US = "ltr"
+ja-JP = "ltr"
+
+[experience.entries.job1.company.values]
+en-US = "Kooraseru & Co"
+ja-JP = "Kooraseru & Co"
+
+[experience.entries.job1.description.values]
+en-US = "Design and deliver commissioned web applications, backend services, automation, and developer tooling; own architecture, implementation, client communication, and maintenance."
+ja-JP = "Design and deliver commissioned web applications, backend services, automation, and developer tooling; own architecture, implementation, client communication, and maintenance."
+
+[experience.entries.job1.duration.values]
+en-US = "Software Developer / Independent Contractor | 2023–Present"
+ja-JP = "ソフトウェア開発者・個人契約 | 2023年–現在"
+
+[experience.entries.job1.role.values]
+en-US = "Software Developer / Independent Contractor"
+ja-JP = "Software Developer / Independent Contractor"
+
+[experience.subtitle.values]
+en-US = "Where I've been and what I've done."
+ja-JP = "これまでの経歴と取り組み。"
+
+[experience.title.values]
+en-US = "Experience"
+ja-JP = "経験"
+
+[home.greeting.values]
+en-US = "Hiya!"
+ja-JP = "やあ！"
+
+[home.intro.values]
+en-US = "Computer Science and Computer Engineering double major with paid software contracting experience. I focus on systems, developer tooling, backend architecture, and cross-platform software."
+ja-JP = "Computer Science and Computer Engineering double major with paid software contracting experience. I focus on systems, developer tooling, backend architecture, and cross-platform software."
+
+[home.notice.values]
+en-US = "Art by @pabobingu on X (formerly Twitter)."
+ja-JP = "アート: @pabobingu on X"
+
+[home.welcome.values]
+en-US = "Welcome to my personal website!"
+ja-JP = "私の個人サイトへようこそ！"
+
+[language.values]
+en-US = "en"
+ja-JP = "ja"
+
+[languageName.values]
+en-US = "English"
+ja-JP = "日本語"
+
+[languageSelector.english.values]
+en-US = "English"
+ja-JP = "English"
+
+[languageSelector.japanese.values]
+en-US = "日本語"
+ja-JP = "日本語"
+
+[nav.contact.values]
+en-US = "Contact"
+ja-JP = "お問い合わせ"
+
+[nav.devlog.values]
+en-US = "Devlog"
+ja-JP = "開発ログ"
+
+[nav.experience.values]
+en-US = "Experience"
+ja-JP = "経験"
+
+[nav.home.values]
+en-US = "Home"
+ja-JP = "ホーム"
+
+[nav.projects.values]
+en-US = "Projects"
+ja-JP = "プロジェクト"
+
+[nav.skills.values]
+en-US = "Skills"
+ja-JP = "スキル"
+
+[particleToggle.label.values]
+en-US = "Confetti!"
+ja-JP = "紙吹雪！"
+
+[portfolio.empty.values]
+en-US = "No projects yet."
+ja-JP = "まだプロジェクトはありません。"
+
+[portfolio.projectLabel.values]
+en-US = "Project"
+ja-JP = "プロジェクト"
+
+[portfolio.sortActive.values]
+en-US = "Active First"
+ja-JP = "進行中順"
+
+[portfolio.sortLabel.values]
+en-US = "Sort by:"
+ja-JP = "並び替え："
+
+[portfolio.sortNewest.values]
+en-US = "Newest First"
+ja-JP = "新しい順"
+
+[portfolio.sortOldest.values]
+en-US = "Oldest First"
+ja-JP = "古い順"
+
+[portfolio.status.active.values]
+en-US = "Unreleased"
+ja-JP = "未公開"
+
+[portfolio.status.completed.values]
+en-US = "Released"
+ja-JP = "公開済み"
+
+[portfolio.subtitle.values]
+en-US = "A selection of things I've built."
+ja-JP = "これまでに制作したものの一部です。"
+
+[portfolio.title.values]
+en-US = "Portfolio & Projects"
+ja-JP = "ポートフォリオ & プロジェクト"
+
+[portfolio.viewProject.values]
+en-US = "View Project →"
+ja-JP = "プロジェクトを見る →"
+
+[scrollPrompt.text.values]
+en-US = "Scroll to Discover"
+ja-JP = "スクロールして見る"
+
+[skills.body.values]
+en-US = "Technologies used across client work and open-source projects."
+ja-JP = "Technologies used across client work and open-source projects."
+
+[skills.groupDatabases.values]
+en-US = "Databases"
+ja-JP = "データベース"
+
+[skills.groupLanguages.values]
+en-US = "Languages"
+ja-JP = "言語"
+
+[skills.groupSystems.values]
+en-US = "Systems and runtimes"
+ja-JP = "システムとランタイム"
+
+[skills.groupTools.values]
+en-US = "Tools"
+ja-JP = "ツール"
+
+[skills.subtitle.values]
+en-US = "Technologies and tools I'm comfortable with."
+ja-JP = "扱いに慣れている技術やツール。"
+
+[skills.title.values]
+en-US = "Skills"
+ja-JP = "スキル"
+
+[themeOptions.dark.values]
+en-US = "Dark"
+ja-JP = "ダーク"
+
+[themeOptions.light.values]
+en-US = "Light"
+ja-JP = "ライト"
+
+[themeToggle.label.values]
+en-US = "Theme"
+ja-JP = "テーマ"
+
+[topbar.about.values]
+en-US = "About"
+ja-JP = "概要"
+
+[topbar.contact.values]
+en-US = "Contact"
+ja-JP = "お問い合わせ"
+
+[topbar.logoAlt.values]
+en-US = "Kooraseru"
+ja-JP = "Kooraseru"
+
+[ui.carouselNext.values]
+en-US = "Next project"
+ja-JP = "次のプロジェクト"
+
+[ui.carouselPrev.values]
+en-US = "Previous project"
+ja-JP = "前のプロジェクト"
+
+[ui.close.values]
+en-US = "Close"
+ja-JP = "閉じる"
+
+[ui.languageToggle.values]
+en-US = "Select language"
+ja-JP = "言語を選択"
+
+[ui.projectModal.values]
+en-US = "Project details"
+ja-JP = "プロジェクト詳細"
+
+[ui.themeOptions.values]
+en-US = "Theme options"
+ja-JP = "テーマ設定"
+[contact.nameLabel.values]
+en-US = "Name"
+ja-JP = "お名前"
+
+[contact.namePlaceholder.values]
+en-US = "Your name"
+ja-JP = "お名前"
+
+[contact.topicLabel.values]
+en-US = "Topic"
+ja-JP = "お問い合わせ内容"
+
+[contact.topicPlaceholder.values]
+en-US = "Select a topic"
+ja-JP = "内容を選択"
+
+[contact.topics.commission.values]
+en-US = "Commission"
+ja-JP = "制作依頼"
+
+[contact.topics.collaboration.values]
+en-US = "Collaboration"
+ja-JP = "共同開発"
+
+[contact.topics.question.values]
+en-US = "Question"
+ja-JP = "質問"
+
+[contact.topics.other.values]
+en-US = "Other"
+ja-JP = "その他"
+
+[contact.subjectLabel.values]
+en-US = "Subject"
+ja-JP = "件名"
+
+[contact.subjectPlaceholder.values]
+en-US = "What is this about?"
+ja-JP = "件名を入力"
+
+[contact.toastFailed.values]
+en-US = "Message could not be sent. Please try again."
+ja-JP = "送信できませんでした。もう一度お試しください。"
+
+[contact.toastRateLimit.values]
+en-US = "Too many messages. Please try again later."
+ja-JP = "送信回数が多すぎます。しばらくしてからお試しください。"

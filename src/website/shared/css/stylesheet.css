@@ -1,4 +1,4 @@
-/* Main stylesheet covering layout, typography, components, and responsive breakpoints */
+﻿/* Main stylesheet covering layout, typography, components, and responsive breakpoints */
 
 :root {
     --font-family: 'Google Sans', system-ui, -apple-system, sans-serif;
@@ -285,6 +285,7 @@ a:hover { color: var(--text-link-hover); }
 
 /* Carousel scroll track */
 .carousel-track {
+    --carousel-card-width: 300px;
     display: flex;
     gap: var(--space-lg);
     overflow-x: scroll;
@@ -293,6 +294,11 @@ a:hover { color: var(--text-link-hover); }
     padding-bottom: var(--space-md);
     -webkit-overflow-scrolling: touch;
     cursor: grab;
+}
+
+.carousel-track::after {
+    content: '';
+    flex: 0 0 max(0px, calc(100% - var(--carousel-card-width)));
 }
 
 .carousel-track:active { cursor: grabbing; }
@@ -329,7 +335,7 @@ a:hover { color: var(--text-link-hover); }
 /* ===== PROJECT CARD ===== */
 .project-card {
     scroll-snap-align: start;
-    flex: 0 0 300px;
+    flex: 0 0 var(--carousel-card-width);
     background: var(--bg-secondary);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
@@ -339,6 +345,15 @@ a:hover { color: var(--text-link-hover); }
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     user-select: none;
+}
+
+.project-card--text-only .project-card-body {
+    min-height: 280px;
+    padding: var(--space-lg);
+}
+
+.project-card--text-only .project-card-description {
+    -webkit-line-clamp: 6;
 }
 
 .project-card:hover {
@@ -468,19 +483,20 @@ a:hover { color: var(--text-link-hover); }
 .project-status {
     font-size: var(--font-size-xs);
     font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 999px;
+    padding: 5px 10px;
+    border: 1px solid currentColor;
+    border-radius: 6px;
     white-space: nowrap;
     flex-shrink: 0;
 }
 
 .project-status--active {
-    background: rgba(78, 201, 176, 0.15);
+    background: rgba(78, 201, 176, 0.1);
     color: var(--color-success);
 }
 
 .project-status--completed {
-    background: rgba(86, 156, 214, 0.12);
+    background: rgba(86, 156, 214, 0.1);
     color: var(--color-info);
 }
 
@@ -815,6 +831,14 @@ a:hover { color: var(--text-link-hover); }
     width: 100%;
 }
 
+.contact-honeypot {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
 .form-input:focus,
 .form-textarea:focus {
     outline: 2px solid var(--text-link);
@@ -936,12 +960,12 @@ a:hover { color: var(--text-link-hover); }
     h1 { font-size: var(--font-size-3xl); }
     h2 { font-size: var(--font-size-2xl); }
     .section { padding: var(--space-xl) var(--space-md); }
-    .project-card { flex: 0 0 260px; }
+    .carousel-track { --carousel-card-width: 260px; }
     .skills-grid { grid-template-columns: 1fr; }
     .welcome-card { padding: var(--space-xl) var(--space-lg); }
 }
 
 @media (max-width: 480px) {
-    .project-card { flex: 0 0 88vw; }
+    .carousel-track { --carousel-card-width: 88vw; }
     .portfolio-controls { flex-direction: column; align-items: flex-start; }
 }

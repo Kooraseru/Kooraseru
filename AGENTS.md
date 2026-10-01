@@ -1,32 +1,34 @@
 ﻿# Kooraseru website repository guidance
 
-This repository contains the Kooraseru website and the GitHub profile README. The root `README.md` is the profile shown on GitHub; it is never a generic site or build README.
+This repository contains the website, contact Worker, and GitHub profile README. The root `README.md` is the public profile README, including on generated `main`.
 
-## Branch and publication
+## Branches and generated output
 
-- `main` is the only working and publication branch. Make website, profile, and workflow changes here.
-- `.github/workflows/pages.yml` builds the site from `main` and deploys the assembled artifact through GitHub Pages.
-- Keep the GitHub profile README at the repository root. Keep `CNAME` in the published site root.
+- Edit the `source` branch. The `main` branch is generated publication output.
+- `.heap/pages/` is the locally assembled website. `.heap/repo-branches/main/` is a local preview of the generated `main` tree. `.heap/` is ignored by Git and remains available for debugging until the next task run.
+- The single VS Code task, **Publish: Test locally**, validates and assembles both directories. VS Code Live Preview serves `.heap/pages/` as its root on port 3000.
+- `.github/workflows/pages.yml` validates `source`, publishes the generated tree to `main`, and deploys `main` through GitHub Pages. Do not edit generated files on `main`.
+
 ## Source layout
 
-- `src/` contains the website HTML, CSS, JavaScript, locale JSON, and the Lune catalog generator.
-- `assets/` contains images and other static media.
-- `projects/` is **top-level** and contains one TOML file per project. It does not belong under `src/`.
-- `src/projects.json` is generated browser data. Edit project TOML files, then run `lune run src/scripts/build_projects.luau`; do not hand-edit the JSON.
-- `src/gcloud/` and `src/mod-mail/` contain existing public pages and must remain available after publication.
+- `projects/*.toml` is the only editable project catalog. The build generates `.heap/pages/projects.json` for the browser. Do not commit generated JSON.
+- `i18n/locales.toml` declares locales. `i18n/site.toml` contains `[key.values]` localization entries; `i18n/render.luau` and `i18n/validate.luau` follow the `vscode-editor-columns` catalog workflow. `i18n/skills.toml` holds locale-neutral skill lists.
+- `src/website/index/index.html` is the home page template. It uses `{{l10n:site.key}}` placeholders, rendered from TOML during the build. `src/website/shared/` contains shared CSS and JavaScript; `src/website/mod-mail/` contains existing public pages; `src/website/CNAME` owns the custom domain.
+- `src/email-system/gcloud/` contains the existing public GCloud pages. `src/email-system/cloudflare/` contains the contact Worker and Wrangler configuration.
+- `assets/confetti/` contains the four confetti images. There is no manifest or confetti type JSON; the effect list lives in the client code.
 
-## Projects and localization
+## Project and localization changes
 
-Each `projects/*.toml` file owns its carousel title, description, details, status, tags, and optional `link`, `image`, and dates. Required top-level fields are `id`, `title`, `description`, `details`, `status`, and `tags`. Use `released` or `unreleased` for status. Only link to a project when a public URL is known. Optional `[ja]` fields can translate title, description, and details; the top-level English fields are the fallback.
+Project TOML requires `id`, `title`, `description`, `details`, `status`, and `tags`. Use `released` or `unreleased`; optional `link`, `image`, and dates are only included when real values are known. Optional `[ja]` values override the English title, description, and details. Keep project data out of i18n catalogs.
 
-Site interface text lives in `src/i18n/en.json` and `src/i18n/ja.json`. Preserve the existing language switch behavior and key structure when editing the site. Update both locale files for new interface text. Project records must stay out of locale JSON.
+Add interface text to `i18n/site.toml`, supplying `en-US` and `ja-JP` values. Use a matching placeholder in HTML when text belongs in the built page. Lune generates browser locale JSON into `.heap/pages/i18n/`; do not keep `en.json` or `ja.json` in source.
 
-## Luau and Lune rules
+## Lune and Worker
 
-Use **Lune** for repository scripts and GitHub Actions. Do not introduce Python into the build. The workflow installs a pinned Lune binary directly. Before editing Luau, read the applicable language guidance under `.kero/mnt/global/language/luau/`: start with `luau-system.md`, then the relevant file, structure, and language concept documents. `.kero/mnt/global/language/language-system.md` explains ownership and exception routing.
+Use Lune for repository scripts and publication. Before editing Luau, read the applicable language guidance under `.kero/mnt/global/language/luau/`, starting with `luau-system.md`, and the relevant file, structure, and language concept documents. The mounted guidance is language policy, not this site's product or repository topology.
 
-The mounted guidance is language policy, not a description of this website. Apply relevant rules to Luau code; do not copy the old KERO product or repository topology from previous guidance. Keep generated files under generator ownership. Do not use `any` as a shortcut for type errors. Use the naming and file-role rules in the mount where applicable.
+The browser posts contact details to `https://contact.kooraseru.com/`. Keep Gmail credentials in Cloudflare Worker secrets. The Worker deployment workflow uses GitHub secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` only for CI authentication. Never put secrets in website files, project TOML, source code, or Wrangler vars.
 
 ## Validation
 
-After project changes, run `lune run src/scripts/build_projects.luau` and `lune run src/scripts/build_projects.luau --check`. Check that links and assets in assembled output resolve from the site root. Preserve the root profile README and the existing legal pages when changing publication steps.
+Run `lune run i18n/validate.luau` and the VS Code publication task. Check Live Preview at `http://127.0.0.1:3000/`, including `/ja/`, project cards, contact fields, and the existing `/mod-mail/` and `/gcloud/` pages. Preserve the profile README and legal pages when changing publication.

@@ -30,7 +30,7 @@
     async function loadProjects() {
         try {
             if (!state.catalog) {
-                const response = await fetch('projects.json');
+                const response = await fetch('/projects.json');
                 if (!response.ok) throw new Error(`Project catalog returned ${response.status}`);
                 state.catalog = await response.json();
             }
@@ -110,10 +110,10 @@
                 ? `<a class="project-card-image-link" href="${escapeHtml(imgLink)}" target="_blank" rel="noopener noreferrer" tabindex="-1"><img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" loading="lazy" /></a>`
                 : `<img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" loading="lazy" />`
             }</div>`
-            : `<div class="project-card-image project-card-image--placeholder"><span class="project-card-image-icon">&#9638;</span></div>`;
+            : '';
 
         return `
-            <div class="project-card" data-project-id="${escapeHtml(project.id)}" role="button" tabindex="0" aria-label="${escapeHtml(project.title)}">
+            <div class="project-card${project.image ? '' : ' project-card--text-only'}" data-project-id="${escapeHtml(project.id)}" role="button" tabindex="0" aria-label="${escapeHtml(project.title)}">
                 ${imageHtml}
                 <div class="project-card-body">
                     <div class="project-card-header">
@@ -185,7 +185,7 @@
         if (!container) return;
         const cards = container.querySelectorAll('.project-card');
         if (cards[index]) {
-            cards[index].scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+            container.scrollTo({ left: cards[index].offsetLeft - cards[0].offsetLeft, behavior: 'smooth' });
             state.currentIndex = index;
             updateActiveDot();
         }
@@ -206,11 +206,11 @@
             clearTimeout(scrollTimer);
             scrollTimer = setTimeout(() => {
                 const cards = container.querySelectorAll('.project-card');
-                const containerLeft = container.getBoundingClientRect().left;
+                const firstLeft = cards[0]?.offsetLeft || 0;
                 let closestIndex = 0;
                 let closestDist = Infinity;
                 cards.forEach((card, i) => {
-                    const dist = Math.abs(card.getBoundingClientRect().left - containerLeft);
+                    const dist = Math.abs(card.offsetLeft - firstLeft - container.scrollLeft);
                     if (dist < closestDist) {
                         closestDist = dist;
                         closestIndex = i;
@@ -245,7 +245,7 @@
             ? (imgLink
                 ? `<a class="project-modal-image-link" href="${escapeHtml(imgLink)}" target="_blank" rel="noopener noreferrer"><img class="project-modal-image" src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" /></a>`
                 : `<img class="project-modal-image" src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" />`)
-            : `<div class="project-modal-image project-modal-image--placeholder"><span>&#9638;</span></div>`;
+            : '';
 
         const urlHtml = project.url
             ? `<a class="project-modal-link" href="${escapeHtml(project.url)}" rel="noopener noreferrer">${escapeHtml(t('portfolio.viewProject', 'View Project â†’'))}</a>`
@@ -258,7 +258,7 @@
                     <h2 class="project-modal-title">${escapeHtml(project.title)}</h2>
                     <span class="project-status ${statusClass}">${statusLabel}</span>
                 </div>
-                <span class="project-modal-dates">${startFormatted} &ndash; ${endFormatted}</span>
+                ${project.startDate ? `<span class="project-modal-dates">${startFormatted} &ndash; ${endFormatted}</span>` : ''}
                 <p class="project-modal-details">${renderMarkdown(project.details || project.description)}</p>
                 <div class="project-tags">${tagsHtml}</div>
                 ${urlHtml}
@@ -387,15 +387,11 @@
     function handleImgError(img) {
         const cardWrap = img.closest('.project-card-image');
         if (cardWrap) {
-            cardWrap.innerHTML = '<span class="project-card-image-icon">&#9638;</span>';
-            cardWrap.classList.add('project-card-image--placeholder');
+            cardWrap.remove();
             return;
         }
         const modalWrap = img.closest('.project-modal-image-link') || img;
-        const placeholder = document.createElement('div');
-        placeholder.className = 'project-modal-image project-modal-image--placeholder';
-        placeholder.innerHTML = '<span>&#9638;</span>';
-        modalWrap.replaceWith(placeholder);
+        modalWrap.remove();
     }
 
     function escapeHtml(str) {

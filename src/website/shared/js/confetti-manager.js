@@ -85,22 +85,15 @@ const Confetti = (() => {
     // Config loading and image preloading
 
     async function loadTypesConfig() {
-        try {
-            const res = await fetch('/confetti-types.json');
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            state.typesConfig = await res.json();
-            log('Types loaded:', state.typesConfig.types.map(t => t.id).join(', '));
-        } catch (err) {
-            warn('Could not load confetti-types.json, using defaults:', err.message);
-            state.typesConfig = {
-                types: [
-                    { id: 'none',     labelKey: 'confetti.types.none'     },
-                    { id: 'standard', labelKey: 'confetti.types.standard' },
-                    { id: 'snow',     labelKey: 'confetti.types.snow'     }
-                ],
-                images: []
-            };
-        }
+        state.typesConfig = {
+            types: [
+                { id: 'none', labelKey: 'confetti.types.none' },
+                { id: 'standard', labelKey: 'confetti.types.standard' },
+                { id: 'snow', labelKey: 'confetti.types.snow' },
+                { id: 'images', labelKey: 'confetti.types.images' }
+            ],
+            images: ['1.png', '2.png', '3.png', '4.png']
+        };
     }
 
     async function loadCustomImages() {
@@ -113,7 +106,7 @@ const Confetti = (() => {
                 img.crossOrigin = 'anonymous';
                 img.onload = () => resolve(img);
                 img.onerror = () => { warn('Failed to load confetti image:', filename); resolve(null); };
-                img.src = `/assets/images/confetti/${filename}`;
+                img.src = `/assets/confetti/${filename}`;
             })
         ));
         state.loadedImages = loaded.filter(Boolean);
@@ -136,7 +129,7 @@ const Confetti = (() => {
     /**
      * Sets the active confetti type, stops any running animation, and starts the new one.
      *
-     * @param {string} id - Type ID matching an entry in confetti-types.json.
+     * @param {string} id - Configured effect ID.
      * @param {boolean} [save=true] - Whether to persist the selection to a cookie.
      */
     function setType(id, save = true) {

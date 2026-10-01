@@ -39,6 +39,7 @@ const LanguageSystem = (() => {
      * @returns {string} Language code (en, ja, etc.)
      */
     function getLanguage() {
+        if (window.location.pathname === '/ja' || window.location.pathname.startsWith('/ja/')) return 'ja';
         const subdomain = getCurrentSubdomain();
         
         // Map subdomains to languages
@@ -84,7 +85,7 @@ const LanguageSystem = (() => {
      */
     async function loadTranslation(language) {
         try {
-            const response = await fetch(`i18n/${language}.json`);
+            const response = await fetch(`/i18n/${language}.json`);
             if (!response.ok) {
                 console.warn(`Translation not found for ${language}, using default`);
                 return loadTranslation(DEFAULT_LANGUAGE);
@@ -300,30 +301,9 @@ const LanguageSystem = (() => {
             return false;
         }
         
-        try {
-            console.log(`[LanguageSystem] Switching to ${newLanguage}`);
-            const translation = await loadTranslation(newLanguage);
-            
-            applyLanguageFont(newLanguage);
-            setHtmlLanguage(newLanguage);
-            
-            // Update stored values
-            window.currentLanguage = newLanguage;
-            window.translations = translation;
-            
-            // Update all page content
-            updatePageContent();
-
-            document.dispatchEvent(new CustomEvent('languageChanged', {
-                detail: { language: newLanguage, translation }
-            }));
-            
-            console.log(`[LanguageSystem] Successfully switched to ${newLanguage}`);
-            return true;
-        } catch (error) {
-            console.error(`Failed to switch language to ${newLanguage}:`, error);
-            return false;
-        }
+        const destination = newLanguage === 'ja' ? '/ja/' : '/';
+        window.location.assign(destination + window.location.hash);
+        return true;
     }
     
     return {

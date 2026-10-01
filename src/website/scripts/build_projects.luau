@@ -3,7 +3,7 @@ local fs = require("@lune/fs")
 local serde = require("@lune/serde")
 local process = require("@lune/process")
 
-local output = "src/projects.json"
+local output = ".heap/pages/projects.json"
 local projects = {}
 local ids = {}
 local required = { "id", "title", "description", "details", "status", "tags" }
@@ -34,7 +34,8 @@ table.sort(projects, function(a, b) return a.id < b.id end)
 local content = serde.encode("json", projects)
 if table.find(process.args, "--check") then
     assert(fs.isFile(output) and serde.encode("json", serde.decode("json", fs.readFile(output))) == content,
-        output .. " is stale; run lune run src/scripts/build_projects")
+        output .. " is stale; run lune run src/website/scripts/build_projects.luau")
 else
+    fs.writeDir(".heap/pages")
     fs.writeFile(output, content .. "\n")
 end

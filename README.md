@@ -15,6 +15,7 @@ Computer Science and Computer Engineering student. I build client software, open
   <img alt="Rust" src="https://shieldcn.dev/badge/Rust-Language-ce422b.svg?logo=rust" />
   <img alt="C" src="https://shieldcn.dev/badge/C-Language-a8b9cc.svg?logo=c" />
   <img alt="C++" src="https://shieldcn.dev/badge/C%2B%2B-Language-00599c.svg?logo=cplusplus" />
+  <img alt="Zig" src="https://shieldcn.dev/badge/Zig-Language-f7a41d.svg?logo=zig" />
 </p>
 
 ### Application and scripting
@@ -35,6 +36,16 @@ Computer Science and Computer Engineering student. I build client software, open
   <img alt="SQL" src="https://shieldcn.dev/badge/SQL-Language-336791.svg?logo=postgresql" />
   <img alt="HTML" src="https://shieldcn.dev/badge/HTML-Language-e34f26.svg?logo=html5" />
   <img alt="CSS" src="https://shieldcn.dev/badge/CSS-Language-1572b6.svg?logo=css" />
+  <img alt="Super" src="https://shieldcn.dev/badge/Super-Language-7c3aed.svg?logo=false" />
+  <img alt="MCSS" src="https://shieldcn.dev/badge/MCSS-Language-2563eb.svg?logo=false" />
+</p>
+
+### Data and documentation formats
+
+<p align="center">
+  <img alt="TOML" src="https://shieldcn.dev/badge/TOML-Format-9c4221.svg?logo=toml" />
+  <img alt="JSON" src="https://shieldcn.dev/badge/JSON-Format-444444.svg?logo=json" />
+  <img alt="Markdown" src="https://shieldcn.dev/badge/Markdown-Format-111111.svg?logo=markdown" />
 </p>
 
 ## Skills
@@ -45,7 +56,7 @@ Computer Science and Computer Engineering student. I build client software, open
   <img alt="Linux" src="https://shieldcn.dev/badge/Linux-System-fcc624.svg?logo=linux" />
   <img alt="Windows" src="https://shieldcn.dev/badge/Windows-System-0078d4.svg?logo=windows" />
   <img alt="WebAssembly" src="https://shieldcn.dev/badge/WebAssembly-Runtime-654ff0.svg?logo=webassembly" />
-  <img alt="Node.js" src="https://shieldcn.dev/badge/Node.js-Runtime-5fa04e.svg?logo=nodedotjs" />
+  <img alt="Bun" src="https://shieldcn.dev/badge/Bun-Runtime-fbf0df.svg?logo=bun" />
   <img alt="Roblox" src="https://shieldcn.dev/badge/Roblox-Platform-111111.svg?logo=roblox" />
 </p>
 
@@ -76,7 +87,7 @@ Computer Science and Computer Engineering student. I build client software, open
   <a href="https://discord.com/users/584894715917369349"><img alt="Discord" src="https://shieldcn.dev/badge/Discord-Connect-5865f2.svg?logo=discord" /></a>
   <a href="https://x.com/Kooraseru"><img alt="X" src="https://shieldcn.dev/badge/X-Follow-111111.svg?logo=x" /></a>
   <a href="https://www.youtube.com/@Kooraseru"><img alt="YouTube" src="https://shieldcn.dev/badge/YouTube-Watch-ff0000.svg?logo=youtube" /></a>
-  <a href="https://www.roblox.com/users/3294832549/profile"><img alt="Roblox" src="https://shieldcn.dev/badge/Roblox-Profile-111111.svg?logo=roblox" /></a>
+  <a href="https://devforum.roblox.com/u/kooraseru/summary"><img alt="Roblox" src="https://shieldcn.dev/badge/Roblox-Profile-111111.svg?logo=roblox" /></a>
 </p>
 
 <p align="center">
