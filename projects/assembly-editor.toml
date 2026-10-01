@@ -1,0 +1,7 @@
+id = "proj-005"
+title = "assembly-editor"
+description = "Assembly-focused editor and development tooling."
+details = "Assembly-focused editor and development tooling."
+status = "unreleased"
+tags = ["Assembly", "Developer Tooling"]
+# image = "public/images/portfolio/example.png"

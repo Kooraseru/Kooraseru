@@ -1,0 +1,7 @@
+id = "proj-007"
+title = "LayeredAnimations"
+description = "Cost-conscious layered animation across approximately 10,000 rigs."
+details = "Cost-conscious layered animation across approximately 10,000 rigs."
+status = "unreleased"
+tags = ["Luau", "Animation Systems"]
+# image = "public/images/portfolio/example.png"

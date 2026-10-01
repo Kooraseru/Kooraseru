@@ -1,0 +1,7 @@
+id = "proj-008"
+title = "WorldSampler"
+description = "Chunked world capture and map baking with bounded runtime, preview, and export tooling."
+details = "Chunked world capture and map baking with bounded runtime, preview, and export tooling."
+status = "unreleased"
+tags = ["Luau", "Rendering"]
+# image = "public/images/portfolio/example.png"

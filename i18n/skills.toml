@@ -1,0 +1,15 @@
+[[groups]]
+titleKey = "skills.groupLanguages"
+items = ["Rust", "C", "C++", "Zig", "C#", "Java", "Python", "Luau", "Lua", "TypeScript", "JavaScript", "HTML", "CSS", "SQL", "Super", "MCSS", "TOML", "JSON", "Markdown"]
+
+[[groups]]
+titleKey = "skills.groupSystems"
+items = ["Linux", "Windows", "WebAssembly", "Bun", "Roblox"]
+
+[[groups]]
+titleKey = "skills.groupTools"
+items = ["Git", "GitHub", "GitHub Actions", "VS Code", "Visual Studio", "CMake", "Qt 6", "Postman", "REDCap"]
+
+[[groups]]
+titleKey = "skills.groupDatabases"
+items = ["PostgreSQL", "MySQL"]

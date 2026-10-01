@@ -1,25 +1,22 @@
-﻿name: Build and publish website
+name: Publish website and contact Worker
 
 on:
   pull_request:
-    branches: [source]
+    branches: [main]
   push:
-    branches: [source, main]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
-  actions: write
-  contents: write
-  pages: write
-  id-token: write
+  contents: read
 
 concurrency:
-  group: website-publication
+  group: website-and-worker-publication
   cancel-in-progress: false
 
 jobs:
-  build:
-    if: github.event_name == 'pull_request' || github.ref_name == 'source'
+  validate:
+    name: 01 · Validate source
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,54 +26,71 @@ jobs:
           unzip -q lune.zip lune
           chmod +x lune
           sudo mv lune /usr/local/bin/lune
-      - name: Validate localization
+      - uses: oven-sh/setup-bun@v2
+      - name: Validate localization catalogs
         run: lune run i18n/validate.luau
-      - name: Test publication
-        run: lune run src/website/scripts/publish_test.luau
-      - uses: actions/upload-artifact@v4
-        if: github.event_name != 'pull_request'
-        with:
-          name: generated-main
-          path: .heap/repo-branches/main
-          include-hidden-files: true
+      - name: Check Worker syntax
+        run: bun build src/email-system/cloudflare/contact.js --target browser --outfile /tmp/contact-worker.js
 
-  publish:
-    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref_name == 'source'
-    needs: build
+  build:
+    name: 02 · Assemble website
+    needs: validate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/download-artifact@v4
-        with:
-          name: generated-main
-          path: .heap/generated-main
-      - name: Update main branch
+      - name: Install Lune
         run: |
-          git worktree add -B main .heap/main-worktree origin/main
-          rsync -a --delete --exclude=.git .heap/generated-main/ .heap/main-worktree/
-          cd .heap/main-worktree
-          git add -A
-          if ! git diff --cached --quiet; then
-            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Publish website from source'
-            git push origin main
-          fi
-      - name: Trigger deployment from main
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run pages.yml --ref main
+          curl -fsSL https://github.com/lune-org/lune/releases/download/v0.10.4/lune-0.10.4-linux-x86_64.zip -o lune.zip
+          unzip -q lune.zip lune
+          chmod +x lune
+          sudo mv lune /usr/local/bin/lune
+      - name: Build single website
+        run: lune run src/website/scripts/build_site.luau
+      - uses: actions/upload-artifact@v4
+        if: github.event_name != 'pull_request'
+        with:
+          name: website-pages
+          path: .heap/pages
 
-  deploy:
-    if: github.ref_name == 'main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+  deploy_website:
+    name: 03 · Deploy website
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref_name == 'main'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: website-pages
+          path: .heap/pages
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: .heap/pages
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  deploy_worker:
+    name: 04 · Deploy contact Worker
+    needs: deploy_website
+    if: github.event_name != 'pull_request' && github.ref_name == 'main'
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Cloudflare credentials
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::Set CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID as repository Actions secrets."
+            exit 1
+          fi
+      - uses: oven-sh/setup-bun@v2
+      - name: Publish Worker code
+        run: bunx wrangler@4.128.0 deploy --config src/email-system/cloudflare/wrangler.jsonc

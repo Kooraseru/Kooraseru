@@ -1,0 +1,8 @@
+id = "proj-011"
+title = "Pipeline"
+description = "Client-server networking middleware for serialization, validation, and structured communication."
+details = "Client-server networking middleware for serialization, validation, and structured communication."
+status = "released"
+tags = ["Luau", "Networking"]
+link = "https://github.com/Kooraseru-Hub/Pipeline"
+# image = "public/images/portfolio/example.png"

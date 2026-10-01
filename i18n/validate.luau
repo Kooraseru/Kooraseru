@@ -1,0 +1,5 @@
+local Render = require("./render")
+Render.locales(".")
+Render.catalog(".", "site")
+Render.validate(".")
+print("Localization catalogs are valid")
