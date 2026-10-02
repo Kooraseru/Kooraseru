@@ -5,67 +5,110 @@ on:
     branches: [main]
     paths:
       - design/**
+      - releases/**
       - .github/workflows/design-package.yml
   push:
     branches: [main]
     paths:
       - design/**
+      - releases/**
       - .github/workflows/design-package.yml
-  release:
-    types: [published]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: design-package-publication
+  cancel-in-progress: false
+
 jobs:
   validate:
-    name: Check package contents
+    name: Check release and package
     runs-on: ubuntu-latest
+    outputs:
+      id: ${{ steps.plan.outputs.id }}
+      version: ${{ steps.plan.outputs.version }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Install Lune
+        run: |
+          curl -fsSL https://github.com/lune-org/lune/releases/download/v0.10.4/lune-0.10.4-linux-x86_64.zip -o lune.zip
+          unzip -q lune.zip lune
+          chmod +x lune
+          sudo mv lune /usr/local/bin/lune
+      - name: Validate release records
+        run: lune run releases/validate.luau
+      - name: Resolve newest listed release
+        id: plan
+        run: lune run releases/plan.luau >> "$GITHUB_OUTPUT"
+      - name: Generate package changelog
+        run: lune run releases/build.luau
       - name: Check package archive
         working-directory: design
-        run: npm pack --dry-run --json > /tmp/design-pack.json
-      - name: Check required CSS entry points
+        env:
+          PACKAGE_VERSION: ${{ steps.plan.outputs.version }}
         run: |
-          node - <<'NODE'
-          const pack = require('/tmp/design-pack.json')[0];
-          const files = new Set(pack.files.map(file => file.path));
-          for (const path of ['core.css', 'home.css', 'service.css', 'components.css', 'themes/dark.css', 'themes/light.css', 'themes.toml']) {
-            if (!files.has(path)) throw new Error(`Missing from package: ${path}`);
-          }
-          NODE
+          npm pkg set version="$PACKAGE_VERSION"
+          npm pack --dry-run --json > "$RUNNER_TEMP/design-pack.json"
+          node -e 'const pack=require(process.env.RUNNER_TEMP+"/design-pack.json")[0]; const files=new Set(pack.files.map(file=>file.path)); for(const path of ["CHANGELOG.md","core.css","home.css","service.css","components.css","themes/dark.css","themes/light.css","themes.toml"]) if(!files.has(path)) throw Error(`Missing from package: ${path}`)'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: design-changelog
+          path: design/CHANGELOG.md
 
   publish:
-    name: Publish to GitHub Packages
+    name: Publish newest listed release
     needs: validate
-    if: github.event_name == 'release'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           registry-url: https://npm.pkg.github.com
           scope: '@kooraseru'
-      - name: Check release version and branch
+      - uses: actions/download-artifact@v4
+        with:
+          name: design-changelog
+          path: design
+      - name: Check published package and release
+        id: existing
         env:
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_ID: ${{ needs.validate.outputs.id }}
+          PACKAGE_VERSION: ${{ needs.validate.outputs.version }}
         run: |
-          PACKAGE_VERSION="$(node -p "require('./design/package.json').version")"
-          test "$RELEASE_TAG" = "design-v$PACKAGE_VERSION"
-          git fetch origin main
-          git merge-base --is-ancestor "$GITHUB_SHA" origin/main
+          if npm view "@kooraseru/design@$PACKAGE_VERSION" version --registry=https://npm.pkg.github.com >/dev/null 2>&1; then
+            echo 'package_exists=true' >> "$GITHUB_OUTPUT"
+          fi
+          if gh release view "design-$RELEASE_ID" --json tagName >/dev/null 2>&1; then
+            echo 'release_exists=true' >> "$GITHUB_OUTPUT"
+          fi
       - name: Publish package
+        if: steps.existing.outputs.package_exists != 'true'
         working-directory: design
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm publish
+          PACKAGE_VERSION: ${{ needs.validate.outputs.version }}
+        run: |
+          npm pkg set version="$PACKAGE_VERSION"
+          npm publish
+      - name: Create GitHub release
+        if: steps.existing.outputs.release_exists != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_ID: ${{ needs.validate.outputs.id }}
+        run: |
+          gh release create "design-$RELEASE_ID" \
+            --target "$GITHUB_SHA" \
+            --title "Design $RELEASE_ID" \
+            --notes-file "releases/records/$RELEASE_ID.md"

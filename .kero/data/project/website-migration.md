@@ -18,11 +18,13 @@ this website. Source files remain inspectable by concept; generated files stay
 under `.heap/`. Preserve the current Pages, Worker, and legal-page publication
 paths during migration.
 
-The `design/` directory now contains the versioned GitHub npm package
-`@kooraseru/design`. The `Design package` workflow validates its archive on
-normal changes and publishes on a matching `design-v<version>` GitHub release.
-Consumers should pin an exact package version. The website still builds from
-local source and does not depend on the package registry.
+The `design/` directory now contains the GitHub npm package
+`@kooraseru/design`. Authored IDs in `releases/list.toml` and their record
+files define package versions and GitHub release notes. The Luau release
+scripts validate the records and generate the ignored `CHANGELOG.md`; the Design package workflow
+publishes the newest listed release from `main` when it is not already
+published. Consumers should pin an exact package version. The website still
+builds from local source and does not depend on the package registry.
 
 ## Migration sequence
 

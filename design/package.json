@@ -1,6 +1,6 @@
 {
   "name": "@kooraseru/design",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Kooraseru web design tokens, themes, components, and page styles",
   "license": "UNLICENSED",
   "repository": {
@@ -12,6 +12,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "files": [
+    "CHANGELOG.md",
     "*.css",
     "themes/*.css",
     "patterns/*.css",

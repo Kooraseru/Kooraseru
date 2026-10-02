@@ -28,3 +28,7 @@ src/email-system/cloudflare/.env*
 
 # Local site artifact
 .heap/
+
+# Generated release notes
+/CHANGELOG.md
+/design/CHANGELOG.md
