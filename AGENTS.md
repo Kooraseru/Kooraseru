@@ -16,7 +16,7 @@ This repository contains the website, contact Worker, and GitHub profile README.
 - `src/website/index/index.html` is the one home page template. The build fills its `{{l10n:site.key}}` placeholders with the configured default locale for static fallback and inserts the available project filenames. Browser JavaScript reads the `site_language` cookie and the published TOML catalogs, then replaces text in place. Do not generate locale-specific HTML routes or hardcode supported locale lists in HTML or JavaScript.
 - `src/website/shared/` contains shared CSS and JavaScript; `src/website/mod-mail/` contains existing public pages; `src/website/CNAME` owns the custom domain.
 - `src/email-system/gcloud/` contains existing public GCloud pages. `src/email-system/cloudflare/` contains the contact Worker and Wrangler configuration.
-- `assets/confetti/` contains four confetti images. There is no manifest or confetti type JSON; the effect list lives in client code.
+- `assets/confetti/` contains confetti images. There is no manifest or confetti type JSON; the effect list lives in client code.
 
 ## Project and localization changes
 

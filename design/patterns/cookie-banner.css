@@ -1,0 +1,78 @@
+/* Cookie consent banner positioned at the bottom of the viewport */
+
+/* Banner component with slide-in transition */
+.cookie-banner {
+    position: fixed;
+    bottom: -160px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background-color: var(--ks-surface-card);
+    border: 1px solid var(--ks-border-control);
+    border-radius: var(--ks-radius-lg);
+    padding: var(--ks-space-md) var(--ks-space-lg);
+    box-shadow: var(--ks-shadow-overlay);
+    display: flex;
+    align-items: center;
+    gap: var(--ks-space-lg);
+    max-width: 600px;
+    width: calc(100% - 2 * var(--ks-space-xl));
+    transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cookie-banner--visible {
+    bottom: var(--ks-space-xl);
+}
+
+.cookie-banner-text {
+    color: var(--ks-text-secondary);
+    font-size: var(--ks-font-size-sm);
+    font-family: var(--ks-font-family-lang, var(--ks-font-family));
+    flex: 1;
+    margin: 0;
+}
+
+.cookie-banner-actions {
+    display: flex;
+    gap: var(--ks-space-sm);
+    flex-shrink: 0;
+}
+
+.cookie-btn {
+    padding: var(--ks-space-xs) var(--ks-space-md);
+    border-radius: var(--ks-radius-sm);
+    font-size: var(--ks-font-size-sm);
+    font-family: var(--ks-font-family-lang, var(--ks-font-family));
+    cursor: pointer;
+    border: 1px solid var(--ks-border-control);
+    transition: all 0.2s ease;
+}
+
+.cookie-btn--accept {
+    background-color: var(--ks-text-link);
+    color: white;
+    border-color: var(--ks-text-link);
+}
+
+.cookie-btn--accept:hover { opacity: 0.85; }
+
+.cookie-btn--decline {
+    background-color: transparent;
+    color: var(--ks-text-secondary);
+}
+
+.cookie-btn--decline:hover {
+    background-color: var(--ks-surface-hover);
+    color: var(--ks-text-primary);
+}
+
+@media (max-width: 640px) {
+    .cookie-banner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--ks-space-sm);
+    }
+    .cookie-banner-actions {
+        justify-content: flex-end;
+    }
+}

@@ -1,0 +1,7 @@
+@import url("./core.css");
+@import url("./patterns/topbar.css") layer(patterns);
+@import url("./patterns/dropdown.css") layer(patterns);
+@import url("./patterns/theme-toggle.css") layer(patterns);
+@import url("./patterns/cookie-banner.css") layer(patterns);
+@import url("./pages/home.css") layer(pages);
+

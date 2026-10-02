@@ -1,0 +1,50 @@
+:root {
+    --ks-font-family: 'Google Sans', system-ui, -apple-system, sans-serif;
+    --ks-font-family-lang: var(--ks-font-family);
+    --ks-topbar-height: 45px;
+
+    --ks-space-xs: 0.25rem;
+    --ks-space-sm: 0.5rem;
+    --ks-space-md: 1rem;
+    --ks-space-lg: 1.5rem;
+    --ks-space-xl: 2rem;
+    --ks-space-2xl: 3rem;
+
+    --ks-radius-sm: 2px;
+    --ks-radius-md: 4px;
+    --ks-radius-lg: 8px;
+    --ks-radius-xl: 16px;
+
+    --ks-font-size-xs: 0.75rem;
+    --ks-font-size-sm: 0.875rem;
+    --ks-font-size-base: 1rem;
+    --ks-font-size-lg: 1.125rem;
+    --ks-font-size-xl: 1.25rem;
+    --ks-font-size-2xl: 1.5rem;
+    --ks-font-size-3xl: 2rem;
+    --ks-font-size-4xl: 2.75rem;
+
+    --ks-shadow-none: none;
+    --ks-shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --ks-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --ks-shadow-raised: 0 2px 8px rgba(0, 0, 0, 0.18), 0 6px 24px rgba(0, 0, 0, 0.12);
+    --ks-shadow-overlay: 0 10px 15px rgba(0, 0, 0, 0.15);
+}
+
+body {
+    font-family: var(--ks-font-family-lang);
+    font-size: var(--ks-font-size-base);
+    line-height: 1.6;
+    background: var(--ks-surface-page);
+    color: var(--ks-text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a { color: var(--ks-text-link); text-decoration: none; }
+a:hover { color: var(--ks-text-link-hover); }
+:focus-visible { outline: 2px solid var(--ks-focus-ring); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+

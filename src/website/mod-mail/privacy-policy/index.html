@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" data-ks-theme="dark">
 
 <head lang="en">
     <meta charset="UTF-8" />
@@ -13,151 +13,17 @@
     <link rel="icon" href="assets/main.png" type="image/x-icon" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" />
-    <link rel="stylesheet" href="css/themes.css" />
+
+    <link rel="stylesheet" href="design/service.css" />
 
     <script type="module" src="js/theme-manager.js"></script>
-
-    <style>
-        :root {
-            --font-family: 'Google Sans', system-ui, -apple-system, sans-serif;
-            --topbar-height: 45px;
-            --space-xs: 0.25rem;
-            --space-sm: 0.5rem;
-            --space-md: 1rem;
-            --space-lg: 1.5rem;
-            --space-xl: 2rem;
-            --space-2xl: 3rem;
-            --radius-sm: 2px;
-            --radius-md: 4px;
-            --radius-lg: 8px;
-            --radius-xl: 16px;
-            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-            --font-size-xs: 0.75rem;
-            --font-size-sm: 0.875rem;
-            --font-size-base: 1rem;
-            --font-size-lg: 1.125rem;
-            --font-size-xl: 1.25rem;
-            --font-size-2xl: 1.5rem;
-            --font-size-3xl: 2rem;
-            --font-size-4xl: 2.75rem;
-        }
-
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html { height: 100%; scroll-behavior: smooth; }
-
-        body {
-            min-height: 100%;
-            font-family: var(--font-family);
-            font-size: var(--font-size-base);
-            line-height: 1.6;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        a { color: var(--text-link); text-decoration: none; transition: color 0.2s ease; }
-        a:hover { color: var(--text-link-hover); }
-
-        .topbar {
-            background-color: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-secondary);
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow-sm);
-            height: var(--topbar-height);
-        }
-
-        .topbar-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 var(--space-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: var(--topbar-height);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            color: var(--text-primary);
-            font-size: var(--font-size-lg);
-            font-weight: 700;
-            font-family: 'Google Sans', system-ui, -apple-system, sans-serif;
-            transition: opacity 0.2s ease;
-            text-decoration: none;
-            user-select: none;
-        }
-        .logo:hover { opacity: 0.8; color: var(--text-primary); }
-        .logo-icon { width: 24px; height: 24px; display: block; }
-
-        .page-content {
-            margin-top: var(--topbar-height);
-            max-width: 800px;
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            padding: var(--space-2xl) var(--space-lg);
-        }
-
-        .breadcrumb {
-            font-size: var(--font-size-sm);
-            color: var(--text-secondary);
-            margin-bottom: var(--space-xl);
-        }
-
-        .page-content h1 {
-            font-size: var(--font-size-3xl);
-            font-weight: 700;
-            margin-bottom: var(--space-sm);
-        }
-
-        .last-updated {
-            color: var(--text-tertiary);
-            font-size: var(--font-size-sm);
-            margin-bottom: var(--space-2xl);
-        }
-
-        .page-content h2 {
-            font-size: var(--font-size-xl);
-            font-weight: 600;
-            margin-top: var(--space-2xl);
-            margin-bottom: var(--space-md);
-        }
-
-        .page-content p, .page-content ul {
-            color: var(--text-secondary);
-            margin-bottom: var(--space-md);
-            line-height: 1.8;
-        }
-
-        .page-content ul {
-            padding-left: var(--space-xl);
-        }
-
-        .page-content li {
-            margin-bottom: var(--space-xs);
-        }
-
-        .page-footer {
-            text-align: center;
-            padding: var(--space-xl) var(--space-lg);
-            color: var(--text-tertiary);
-            font-size: var(--font-size-sm);
-            border-top: 1px solid var(--border-secondary);
-            margin-top: var(--space-2xl);
-        }
-    </style>
 </head>
 
-<body>
-    <nav class="topbar">
-        <div class="topbar-content">
-            <a class="logo" href="/">
-                <img src="assets/main.png" class="logo-icon" alt="Kooraseru logo" />
+<body class="service-page" data-service="mod-mail" data-page-kind="legal">
+    <nav class="ks-topbar">
+        <div class="ks-topbar__inner">
+            <a class="ks-brand" href="/">
+                <img src="assets/main.png" class="ks-brand__icon" alt="Kooraseru logo" />
                 <span>Kooraseru</span>
             </a>
         </div>

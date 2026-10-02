@@ -110,10 +110,6 @@ ja-JP = "やあ！"
 en-US = "Computer Science and Computer Engineering double major with paid software contracting experience. I focus on systems, developer tooling, backend architecture, and cross-platform software."
 ja-JP = "Computer Science and Computer Engineering double major with paid software contracting experience. I focus on systems, developer tooling, backend architecture, and cross-platform software."
 
-[home.notice.values]
-en-US = "Art by @pabobingu on X (formerly Twitter)."
-ja-JP = "アート: @pabobingu on X"
-
 [home.welcome.values]
 en-US = "Welcome to my personal website!"
 ja-JP = "私の個人サイトへようこそ！"
@@ -153,6 +149,22 @@ ja-JP = "まだプロジェクトはありません。"
 [portfolio.projectLabel.values]
 en-US = "Project"
 ja-JP = "プロジェクト"
+
+[portfolio.search.values]
+en-US = "Search projects"
+ja-JP = "プロジェクトを検索"
+
+[portfolio.noResults.values]
+en-US = "No matching projects."
+ja-JP = "一致するプロジェクトはありません。"
+
+[portfolio.nextImage.values]
+en-US = "Next image"
+ja-JP = "次の画像"
+
+[portfolio.previousImage.values]
+en-US = "Previous image"
+ja-JP = "前の画像"
 
 [portfolio.sortActive.values]
 en-US = "Active First"

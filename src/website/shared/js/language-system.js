@@ -64,7 +64,7 @@ const LanguageSystem = (() => {
      * @param {string} language - Language code
      */
     function applyLanguageFont(locale) {
-        document.documentElement.style.setProperty('--font-family-lang', locale.fontFamily);
+        document.documentElement.style.setProperty('--ks-font-family-lang', locale.fontFamily);
         document.body.style.fontFamily = locale.fontFamily;
     }
     

@@ -7,7 +7,9 @@
 .env.local
 
 # KERO KNOWLEDGE SYSTEM
-.KERO
+/.kero/mnt/
+/.kero/.runtime/
+/.kero/config
 
 # OS
 Thumbs.db

@@ -1,0 +1,8 @@
+@layer reset, foundation, themes, components, patterns, pages;
+
+@import url("./reset.css") layer(reset);
+@import url("./foundation.css") layer(foundation);
+@import url("./themes/dark.css") layer(themes);
+@import url("./themes/light.css") layer(themes);
+@import url("./components.css") layer(components);
+

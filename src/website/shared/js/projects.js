@@ -2,6 +2,8 @@
     const state = {
         projects: [],
         sortOrder: 'newest',
+        searchQuery: '',
+        scrollTargets: [0],
         currentIndex: 0,
         modalOpen: false,
         activeProjectId: null,
@@ -48,7 +50,10 @@
     }
 
     function getSortedProjects() {
-        const list = [...state.projects];
+        const query = state.searchQuery.trim().toLocaleLowerCase();
+        const list = state.projects.filter(project => !query || [
+            project.title, project.description, project.details, ...(project.tags || [])
+        ].some(value => String(value || '').toLocaleLowerCase().includes(query)));
         switch (state.sortOrder) {
             case 'newest':
                 return list.sort((a, b) => {
@@ -87,6 +92,43 @@
         return new Intl.DateTimeFormat(getCurrentLocale(), { year: 'numeric', month: 'short' }).format(date);
     }
 
+    function getProjectImages(project) {
+        return Array.isArray(project.images) && project.images.length
+            ? project.images.filter(Boolean)
+            : (project.image ? [project.image] : []);
+    }
+
+    function renderImages(project, modal = false) {
+        const images = getProjectImages(project);
+        if (!images.length) return '';
+        const wrapper = modal ? 'project-modal-image-carousel' : 'project-card-image';
+        const imageClass = modal ? 'project-modal-image' : '';
+        const slides = images.map((src, index) =>
+            `<img class="${imageClass}" src="${escapeHtml(src)}" alt="${escapeHtml(project.title)} ${index + 1}" loading="lazy" ${index ? 'hidden' : ''} />`
+        ).join('');
+        const controls = images.length > 1 ? `
+            <button class="project-image-nav project-image-nav--prev" type="button" aria-label="${escapeHtml(t('portfolio.previousImage', 'Previous image'))}">‹</button>
+            <button class="project-image-nav project-image-nav--next" type="button" aria-label="${escapeHtml(t('portfolio.nextImage', 'Next image'))}">›</button>
+            <span class="project-image-count">1 / ${images.length}</span>` : '';
+        return `<div class="${wrapper} project-image-carousel" data-image-index="0">${slides}${controls}</div>`;
+    }
+
+    function bindImageCarousels(root) {
+        root.querySelectorAll('.project-image-carousel').forEach(carousel => {
+            carousel.querySelectorAll('.project-image-nav').forEach(button => {
+                button.addEventListener('click', event => {
+                    event.stopPropagation();
+                    const slides = [...carousel.querySelectorAll('img')];
+                    const direction = button.classList.contains('project-image-nav--next') ? 1 : -1;
+                    const index = (Number(carousel.dataset.imageIndex) + direction + slides.length) % slides.length;
+                    slides.forEach((slide, i) => { slide.hidden = i !== index; });
+                    carousel.dataset.imageIndex = index;
+                    carousel.querySelector('.project-image-count').textContent = `${index + 1} / ${slides.length}`;
+                });
+            });
+        });
+    }
+
     function renderCard(project) {
         const startFormatted = formatDate(project.startDate, false);
         const endFormatted = project.endDate ? formatDate(project.endDate, false) : t('common.present', 'Present');
@@ -100,16 +142,10 @@
             `<span class="project-tag">${escapeHtml(tag)}</span>`
         ).join('');
 
-        const imgLink = project.imageLink || project.url || null;
-        const imageHtml = project.image
-            ? `<div class="project-card-image">${imgLink
-                ? `<a class="project-card-image-link" href="${escapeHtml(imgLink)}" target="_blank" rel="noopener noreferrer" tabindex="-1"><img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" loading="lazy" /></a>`
-                : `<img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" loading="lazy" />`
-            }</div>`
-            : '';
+        const imageHtml = renderImages(project);
 
         return `
-            <div class="project-card${project.image ? '' : ' project-card--text-only'}" data-project-id="${escapeHtml(project.id)}" role="button" tabindex="0" aria-label="${escapeHtml(project.title)}">
+            <div class="project-card ks-card${imageHtml ? '' : ' project-card--text-only'}" data-project-id="${escapeHtml(project.id)}" role="button" tabindex="0" aria-label="${escapeHtml(project.title)}">
                 ${imageHtml}
                 <div class="project-card-body">
                     <div class="project-card-header">
@@ -133,36 +169,31 @@
 
         const sorted = getSortedProjects();
         if (sorted.length === 0) {
-            container.innerHTML = `<p class="projects-empty">${escapeHtml(t('portfolio.empty', 'No projects yet.'))}</p>`;
+            container.innerHTML = `<p class="projects-empty">${escapeHtml(t(state.searchQuery ? 'portfolio.noResults' : 'portfolio.empty', state.searchQuery ? 'No matching projects.' : 'No projects yet.'))}</p>`;
+            if (dots) dots.innerHTML = '';
+            state.scrollTargets = [0];
+            state.currentIndex = 0;
+            updateActiveDot();
             return;
         }
 
         container.innerHTML = sorted.map(renderCard).join('');
+        container.scrollLeft = 0;
+        bindImageCarousels(container);
 
         // Graceful image fallback
         hookImageErrors(container);
 
-        // Rebuild dots
-        if (dots) {
-            const dotPrefix = escapeHtml(t('portfolio.projectLabel', 'Project'));
-            dots.innerHTML = sorted.map((_, i) =>
-                `<button class="carousel-dot${i === 0 ? ' active' : ''}" data-index="${i}" aria-label="${dotPrefix} ${i + 1}"></button>`
-            ).join('');
-            dots.querySelectorAll('.carousel-dot').forEach(dot => {
-                dot.addEventListener('click', () => {
-                    scrollToCard(parseInt(dot.dataset.index));
-                });
-            });
-        }
+        updateScrollTargets();
 
         // Attach card click listeners
         container.querySelectorAll('.project-card').forEach(card => {
             card.addEventListener('click', (e) => {
-                // Don't open modal if the click was on the image link
-                if (e.target.closest('.project-card-image-link')) return;
+                if (e.target.closest('.project-image-nav')) return;
                 openModal(card.dataset.projectId);
             });
             card.addEventListener('keydown', e => {
+                if (e.target !== card) return;
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     openModal(card.dataset.projectId);
@@ -170,21 +201,49 @@
             });
         });
 
-        // Reset scroll
-        state.currentIndex = 0;
-        updateActiveDot();
-        bindScrollSync();
     }
 
     function scrollToCard(index) {
         const container = document.getElementById('projectsCarousel');
         if (!container) return;
-        const cards = container.querySelectorAll('.project-card');
-        if (cards[index]) {
-            container.scrollTo({ left: cards[index].offsetLeft - cards[0].offsetLeft, behavior: 'smooth' });
+        if (state.scrollTargets[index] !== undefined) {
+            container.scrollTo({ left: state.scrollTargets[index], behavior: 'smooth' });
             state.currentIndex = index;
             updateActiveDot();
         }
+    }
+
+    function updateScrollTargets() {
+        const container = document.getElementById('projectsCarousel');
+        const dots = document.getElementById('carouselDots');
+        if (!container) return;
+        const cards = [...container.querySelectorAll('.project-card')];
+        const maxScroll = Math.max(0, container.scrollWidth - container.clientWidth);
+        const firstLeft = cards[0]?.offsetLeft || 0;
+        state.scrollTargets = [...new Set(cards.map(card =>
+            Math.min(maxScroll, card.offsetLeft - firstLeft)
+        ))];
+        if (!state.scrollTargets.length) state.scrollTargets = [0];
+        if (state.scrollTargets.at(-1) !== maxScroll) state.scrollTargets.push(maxScroll);
+        const dotPrefix = escapeHtml(t('portfolio.projectLabel', 'Project'));
+        if (dots) {
+            dots.innerHTML = state.scrollTargets.map((_, i) =>
+                `<button class="carousel-dot" data-index="${i}" aria-label="${dotPrefix} ${i + 1}"></button>`
+            ).join('');
+            dots.querySelectorAll('.carousel-dot').forEach(dot =>
+                dot.addEventListener('click', () => scrollToCard(Number(dot.dataset.index)))
+            );
+        }
+        syncScrollPosition();
+    }
+
+    function syncScrollPosition() {
+        const container = document.getElementById('projectsCarousel');
+        if (!container) return;
+        state.currentIndex = state.scrollTargets.reduce((best, target, index) =>
+            Math.abs(target - container.scrollLeft) < Math.abs(state.scrollTargets[best] - container.scrollLeft)
+                ? index : best, 0);
+        updateActiveDot();
     }
 
     function updateActiveDot() {
@@ -192,6 +251,10 @@
         dots.forEach((dot, i) => {
             dot.classList.toggle('active', i === state.currentIndex);
         });
+        const prev = document.getElementById('carouselPrev');
+        const next = document.getElementById('carouselNext');
+        if (prev) prev.disabled = state.currentIndex === 0;
+        if (next) next.disabled = state.currentIndex >= state.scrollTargets.length - 1;
     }
 
     function bindScrollSync() {
@@ -201,19 +264,7 @@
         container.addEventListener('scroll', () => {
             clearTimeout(scrollTimer);
             scrollTimer = setTimeout(() => {
-                const cards = container.querySelectorAll('.project-card');
-                const firstLeft = cards[0]?.offsetLeft || 0;
-                let closestIndex = 0;
-                let closestDist = Infinity;
-                cards.forEach((card, i) => {
-                    const dist = Math.abs(card.offsetLeft - firstLeft - container.scrollLeft);
-                    if (dist < closestDist) {
-                        closestDist = dist;
-                        closestIndex = i;
-                    }
-                });
-                state.currentIndex = closestIndex;
-                updateActiveDot();
+                syncScrollPosition();
             }, 80);
         }, { passive: true });
     }
@@ -236,12 +287,7 @@
             `<span class="project-tag">${escapeHtml(tag)}</span>`
         ).join('');
 
-        const imgLink = project.imageLink || project.url || null;
-        const imageHtml = project.image
-            ? (imgLink
-                ? `<a class="project-modal-image-link" href="${escapeHtml(imgLink)}" target="_blank" rel="noopener noreferrer"><img class="project-modal-image" src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" /></a>`
-                : `<img class="project-modal-image" src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}" />`)
-            : '';
+        const imageHtml = renderImages(project, true);
 
         const urlHtml = project.url
             ? `<a class="project-modal-link" href="${escapeHtml(project.url)}" rel="noopener noreferrer">${escapeHtml(t('portfolio.viewProject', 'View Project â†’'))}</a>`
@@ -267,6 +313,7 @@
         state.activeProjectId = projectId;
 
         // Graceful image fallback
+        bindImageCarousels(modalContent);
         hookImageErrors(modalContent);
 
         modal.querySelector('.project-modal-close')?.focus();
@@ -342,7 +389,6 @@
 
         if (prev) {
             prev.addEventListener('click', () => {
-                const sorted = getSortedProjects();
                 const newIndex = Math.max(0, state.currentIndex - 1);
                 scrollToCard(newIndex);
             });
@@ -350,8 +396,7 @@
 
         if (next) {
             next.addEventListener('click', () => {
-                const sorted = getSortedProjects();
-                const newIndex = Math.min(sorted.length - 1, state.currentIndex + 1);
+                const newIndex = Math.min(state.scrollTargets.length - 1, state.currentIndex + 1);
                 scrollToCard(newIndex);
             });
         }
@@ -381,6 +426,23 @@
     }
 
     function handleImgError(img) {
+        const carousel = img.closest('.project-image-carousel');
+        if (carousel) {
+            const slides = [...carousel.querySelectorAll('img')];
+            img.remove();
+            const remaining = slides.length - 1;
+            if (!remaining) {
+                carousel.remove();
+                return;
+            }
+            const index = Math.min(Number(carousel.dataset.imageIndex), remaining - 1);
+            carousel.dataset.imageIndex = index;
+            carousel.querySelectorAll('img').forEach((slide, i) => { slide.hidden = i !== index; });
+            const count = carousel.querySelector('.project-image-count');
+            if (count) count.textContent = `${index + 1} / ${remaining}`;
+            if (remaining === 1) carousel.querySelectorAll('.project-image-nav, .project-image-count').forEach(el => el.remove());
+            return;
+        }
         const cardWrap = img.closest('.project-card-image');
         if (cardWrap) {
             cardWrap.remove();
@@ -407,6 +469,8 @@
 
     async function refreshFromLanguage() {
         await loadProjects();
+        const search = document.getElementById('projectSearch');
+        if (search) search.setAttribute('aria-label', t('portfolio.search', 'Search projects'));
         renderCarousel();
         syncSortCurrentLabel();
         if (state.modalOpen && state.activeProjectId) {
@@ -426,6 +490,12 @@
         renderCarousel();
         bindSortControl();
         bindCarouselNav();
+        bindScrollSync();
+        window.addEventListener('resize', updateScrollTargets);
+        document.getElementById('projectSearch')?.addEventListener('input', event => {
+            state.searchQuery = event.target.value;
+            renderCarousel();
+        });
         bindModalEvents();
         
     }

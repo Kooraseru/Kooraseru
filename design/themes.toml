@@ -1,0 +1,9 @@
+default = "dark"
+themes = ["dark", "light"]
+roles = [
+  "surface-page", "surface-card", "surface-menu", "surface-selected", "surface-raised", "surface-hover",
+  "text-primary", "text-secondary", "text-tertiary", "text-link", "text-link-hover",
+  "border-control", "border-subtle", "focus-ring",
+  "status-success", "status-error", "status-warning", "status-info",
+  "action", "action-hover", "action-text", "action-discord", "action-discord-hover",
+]

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" data-ks-theme="dark">
 
 <head>
     <meta charset="UTF-8" />
@@ -13,11 +13,7 @@
     <link rel="icon" href="assets/main.png" type="image/x-icon" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" />
-    <link rel="stylesheet" href="css/stylesheet.css" />
-    <link rel="stylesheet" href="css/themes.css" />
-    <link rel="stylesheet" href="css/topbar.css" />
-    <link rel="stylesheet" href="css/dropdown.css" />
-    <link rel="stylesheet" href="css/theme-toggle.css" />
+    <link rel="stylesheet" href="design/home.css" />
 
     <script type="module" src="js/theme-manager.js"></script>
 
@@ -64,11 +60,10 @@
         <!-- Welcome hero section -->
         <section class="section" id="welcome">
             <div class="container">
-                <div class="welcome-card">
+                <div class="welcome-card ks-card">
                     <h1 data-i18n="home.greeting">{{l10n:site.home.greeting}}</h1>
                     <h2 data-i18n="home.welcome">{{l10n:site.home.welcome}}</h2>
                     <p data-i18n="home.intro">{{l10n:site.home.intro}}</p>
-                    <a href="https://x.com/pabobingu" target="_blank" rel="noopener noreferrer" data-i18n="home.notice">{{l10n:site.home.notice}}</a>
                 </div>
             </div>
         </section>
@@ -85,7 +80,7 @@
                     <div class="sort-control">
                         <span class="sort-label" data-i18n="portfolio.sortLabel">{{l10n:site.portfolio.sortLabel}}</span>
                         <div class="sort-selector">
-                            <button class="sort-toggle-button" id="sortToggle" aria-haspopup="listbox">
+                            <button class="sort-toggle-button ks-field" id="sortToggle" aria-haspopup="listbox">
                                 <span class="sort-current" id="sortCurrent" data-i18n="portfolio.sortNewest">{{l10n:site.portfolio.sortNewest}}</span>
                                 <svg class="sort-icon" viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="m6 9 6 6 6-6"></path>
@@ -103,10 +98,11 @@
                             </div>
                         </div>
                     </div>
+                    <input class="project-search ks-field" id="projectSearch" type="search" aria-label="{{l10n:site.portfolio.search}}" placeholder="{{l10n:site.portfolio.search}}" data-i18n="portfolio.search" data-i18n-attr="placeholder" />
                     <div class="carousel-nav">
-                        <button class="carousel-btn" id="carouselPrev" aria-label="{{l10n:site.ui.carouselPrev}}" data-i18n="ui.carouselPrev"
+                        <button class="carousel-btn ks-button" id="carouselPrev" aria-label="{{l10n:site.ui.carouselPrev}}" data-i18n="ui.carouselPrev"
                             data-i18n-attr="aria-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg></button>
-                        <button class="carousel-btn" id="carouselNext" aria-label="{{l10n:site.ui.carouselNext}}" data-i18n="ui.carouselNext"
+                        <button class="carousel-btn ks-button" id="carouselNext" aria-label="{{l10n:site.ui.carouselNext}}" data-i18n="ui.carouselNext"
                             data-i18n-attr="aria-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button>
                     </div>
                 </div>
@@ -125,7 +121,7 @@
                     <p data-i18n="skills.subtitle">{{l10n:site.skills.subtitle}}</p>
                 </div>
                 <div class="skills-grid" id="skillsGrid"></div>
-                <p style="color:var(--text-secondary);font-size:var(--font-size-sm);margin-top:var(--space-xl);text-align:center;max-width:600px;margin-left:auto;margin-right:auto"
+                <p class="skills-intro"
                     data-i18n="skills.body">{{l10n:site.skills.body}}</p>
             </div>
         </section>
@@ -162,19 +158,19 @@
                 <form class="contact-form" id="contactForm" onsubmit="sendContactForm(event);">
                     <div class="form-group">
                         <label class="form-label" for="contactName" data-i18n="contact.nameLabel">{{l10n:site.contact.nameLabel}}</label>
-                        <input class="form-input" type="text" id="contactName" maxlength="80" required autocomplete="name" placeholder="{{l10n:site.contact.namePlaceholder}}"
+                        <input class="form-input ks-field" type="text" id="contactName" maxlength="80" required autocomplete="name" placeholder="{{l10n:site.contact.namePlaceholder}}"
                             data-i18n="contact.namePlaceholder" data-i18n-attr="placeholder" />
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="contactEmail" data-i18n="contact.emailLabel">{{l10n:site.contact.emailLabel}}</label>
-                        <input class="form-input" type="email" id="contactEmail" maxlength="254" required placeholder="{{l10n:site.contact.emailPlaceholder}}"
+                        <input class="form-input ks-field" type="email" id="contactEmail" maxlength="254" required placeholder="{{l10n:site.contact.emailPlaceholder}}"
                             data-i18n="contact.emailPlaceholder" data-i18n-attr="placeholder" autocomplete="email" />
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="contactTopicToggle" data-i18n="contact.topicLabel">{{l10n:site.contact.topicLabel}}</label>
                         <div class="form-select-wrap">
                             <input type="hidden" id="contactTopic" name="topic" value="" />
-                            <button class="form-input form-topic-toggle" id="contactTopicToggle" type="button"
+                            <button class="form-input ks-field form-topic-toggle" id="contactTopicToggle" type="button"
                                 aria-haspopup="listbox" aria-expanded="false" aria-controls="contactTopicDropdown">
                                 <span id="contactTopicCurrent" data-i18n="contact.topicPlaceholder">{{l10n:site.contact.topicPlaceholder}}</span>
                             </button>
@@ -191,19 +187,19 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="contactSubject" data-i18n="contact.subjectLabel">{{l10n:site.contact.subjectLabel}}</label>
-                        <input class="form-input" type="text" id="contactSubject" maxlength="100" required placeholder="{{l10n:site.contact.subjectPlaceholder}}"
+                        <input class="form-input ks-field" type="text" id="contactSubject" maxlength="100" required placeholder="{{l10n:site.contact.subjectPlaceholder}}"
                             data-i18n="contact.subjectPlaceholder" data-i18n-attr="placeholder" />
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="contactMessage" data-i18n="contact.messageLabel">{{l10n:site.contact.messageLabel}}</label>
-                        <textarea class="form-textarea" id="contactMessage" minlength="10" maxlength="800" required placeholder="{{l10n:site.contact.messagePlaceholder}}"
+                        <textarea class="form-textarea ks-field" id="contactMessage" minlength="10" maxlength="800" required placeholder="{{l10n:site.contact.messagePlaceholder}}"
                             data-i18n="contact.messagePlaceholder" data-i18n-attr="placeholder"></textarea>
                     </div>
                     <div class="contact-honeypot" aria-hidden="true">
                         <label for="contactWebsite">Website</label>
                         <input id="contactWebsite" type="text" tabindex="-1" autocomplete="off" />
                     </div>
-                    <button class="form-submit" type="submit" data-i18n="contact.sendButton">{{l10n:site.contact.sendButton}}</button>
+                    <button class="form-submit ks-button" data-variant="primary" type="submit" data-i18n="contact.sendButton">{{l10n:site.contact.sendButton}}</button>
                 </form>
             </div>
         </section>
@@ -214,7 +210,7 @@
          Visibility toggled via .active class by projects.js -->
     <div class="project-modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-label="{{l10n:site.ui.projectModal}}"
         data-i18n="ui.projectModal" data-i18n-attr="aria-label">
-        <div class="project-modal">
+        <div class="project-modal ks-dialog">
             <button class="project-modal-close" id="projectModalClose" aria-label="{{l10n:site.ui.close}}" data-i18n="ui.close"
                 data-i18n-attr="aria-label">&times;</button>
             <div id="projectModalContent"></div>
@@ -260,8 +256,7 @@
 
         <div class="dropdown theme-dropdown" id="themeDropdown">
             <div class="dropdown-content">
-                <button class="dropdown-option theme-option" data-theme="light" data-i18n="themeOptions.light">{{l10n:site.themeOptions.light}}</button>
-                <button class="dropdown-option theme-option" data-theme="dark" data-i18n="themeOptions.dark">{{l10n:site.themeOptions.dark}}</button>
+                {{theme:options}}
             </div>
         </div>
         <div class="dropdown confetti-dropdown" id="confettiDropdown">

@@ -1,0 +1,26 @@
+:root[data-ks-theme="light"] {
+    color-scheme: light;
+    --ks-surface-page: #ffffff;
+    --ks-surface-card: #f3f3f3;
+    --ks-surface-menu: var(--ks-surface-page);
+    --ks-surface-selected: var(--ks-surface-card);
+    --ks-surface-raised: #e8e8e8;
+    --ks-surface-hover: #e0e0e0;
+    --ks-text-primary: #1e1e1e;
+    --ks-text-secondary: #666666;
+    --ks-text-tertiary: #777777;
+    --ks-text-link: #0066cc;
+    --ks-text-link-hover: #0052a3;
+    --ks-border-control: #d0d0d0;
+    --ks-border-subtle: #e0e0e0;
+    --ks-focus-ring: #0052a3;
+    --ks-status-success: #107c10;
+    --ks-status-error: #e81123;
+    --ks-status-warning: #ff8c00;
+    --ks-status-info: #0078d4;
+    --ks-action: #0066cc;
+    --ks-action-hover: #0052a3;
+    --ks-action-text: #ffffff;
+    --ks-action-discord: #5865f2;
+    --ks-action-discord-hover: #4752c4;
+}

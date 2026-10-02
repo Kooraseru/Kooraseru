@@ -6,8 +6,8 @@
 const ThemeManager = (() => {
     const COOKIE_NAME = 'theme';
     const COOKIE_MAX_AGE = 31536000; // 365 days in seconds
-    const DEFAULT_THEME = 'dark';
-    const VALID_THEMES = ['light', 'dark'];
+    const DEFAULT_THEME = '{{theme:default}}';
+    const VALID_THEMES = [];
 
     /**
      * Reads the saved theme from the cookie store.
@@ -69,6 +69,7 @@ const ThemeManager = (() => {
 
         try {
             document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.setAttribute('data-ks-theme', theme);
             console.log('[Theme] Applied to DOM:', theme);
             return theme;
         } catch (error) {
@@ -152,7 +153,7 @@ const ThemeManager = (() => {
      * @returns {string} Current theme name, or the default theme if the attribute is absent.
      */
     function getCurrentTheme() {
-        const htmlTheme = document.documentElement.getAttribute('data-theme');
+        const htmlTheme = document.documentElement.getAttribute('data-ks-theme');
         return VALID_THEMES.includes(htmlTheme) ? htmlTheme : DEFAULT_THEME;
     }
 

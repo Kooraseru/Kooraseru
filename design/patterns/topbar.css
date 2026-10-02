@@ -2,21 +2,21 @@
 
 /* Fixed top navigation bar */
 .topbar {
-    background-color: var(--bg-secondary);
-    border-bottom: 1px solid var(--border-secondary);
+    background-color: var(--ks-surface-card);
+    border-bottom: 1px solid var(--ks-border-subtle);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--ks-shadow-subtle);
     height: 45px;
 }
 
 .topbar-content {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 var(--space-lg);
+    padding: 0 var(--ks-space-lg);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -39,9 +39,9 @@
 .logo {
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
-    color: var(--text-primary);
-    font-size: var(--font-size-lg);
+    gap: var(--ks-space-sm);
+    color: var(--ks-text-primary);
+    font-size: var(--ks-font-size-lg);
     font-weight: 700;
     font-family: 'Google Sans', system-ui, -apple-system, sans-serif;
     transition: opacity 0.2s ease;
@@ -69,16 +69,16 @@
 .topbar-left {
     display: flex;
     align-items: center;
-    gap: var(--space-md);
+    gap: var(--ks-space-md);
     z-index: 2;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
-    color: var(--text-secondary);
-    font-size: var(--font-size-lg);
+    gap: var(--ks-space-sm);
+    color: var(--ks-text-secondary);
+    font-size: var(--ks-font-size-lg);
     font-weight: 500;
     transition: opacity 0.2s ease;
 }
@@ -86,20 +86,20 @@
 .nav-link {
     background: none;
     border: none;
-    color: var(--text-secondary);
-    font-size: var(--font-size-sm);
+    color: var(--ks-text-secondary);
+    font-size: var(--ks-font-size-sm);
     font-weight: 500;
-    font-family: var(--font-family-lang, var(--font-family));
+    font-family: var(--ks-font-family-lang, var(--ks-font-family));
     cursor: pointer;
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-sm);
+    padding: var(--ks-space-xs) var(--ks-space-sm);
+    border-radius: var(--ks-radius-sm);
     transition: color 0.2s ease, background-color 0.2s ease;
     text-decoration: none;
 }
 
 .nav-link:hover {
-    color: var(--text-primary);
-    background-color: var(--bg-hover);
+    color: var(--ks-text-primary);
+    background-color: var(--ks-surface-hover);
 }
 
 .nav-links-text {
@@ -126,27 +126,27 @@
 
 .language-toggle-button {
     background-color: transparent;
-    border: 0px solid var(--border-primary);
-    border-radius: var(--radius-sm);
-    padding: var(--space-xs) var(--space-sm);
-    color: var(--text-secondary);
-    font-size: var(--font-size-sm);
+    border: 0px solid var(--ks-border-control);
+    border-radius: var(--ks-radius-sm);
+    padding: var(--ks-space-xs) var(--ks-space-sm);
+    color: var(--ks-text-secondary);
+    font-size: var(--ks-font-size-sm);
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
+    gap: var(--ks-space-xs);
     transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
-    font-family: var(--font-family-lang, var(--font-family));
+    font-family: var(--ks-font-family-lang, var(--ks-font-family));
 }
 
 .language-toggle-button:hover {
-    color: var(--text-primary);
-    background-color: var(--bg-hover);
-    border-color: var(--border-primary);
+    color: var(--ks-text-primary);
+    background-color: var(--ks-surface-hover);
+    border-color: var(--ks-border-control);
 }
 
 .language-toggle-button:focus {
-    outline: 2px solid var(--text-link);
+    outline: 2px solid var(--ks-text-link);
     outline-offset: 2px;
 }
 

@@ -92,7 +92,7 @@ const Confetti = (() => {
                 { id: 'snow', labelKey: 'confetti.types.snow' },
                 { id: 'images', labelKey: 'confetti.types.images' }
             ],
-            images: ['1.png', '2.png', '3.png', '4.png']
+            images: []
         };
     }
 
@@ -371,7 +371,7 @@ const Confetti = (() => {
     // Continuous snow-style particle animation
 
     function getTextColor() {
-        return getComputedStyle(document.documentElement).getPropertyValue('--text-primary').trim();
+        return getComputedStyle(document.documentElement).getPropertyValue('--ks-text-primary').trim();
     }
 
     /**

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" data-ks-theme="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kooraseru design reference</title>
+    <link rel="stylesheet" href="../reference.css" />
+</head>
+<body class="reference-page">
+    <main class="reference-layout">
+        <header class="reference-heading">
+            <div>
+                <h1>Design reference</h1>
+                <p>Shared component states and theme packs.</p>
+            </div>
+            <label>Theme
+                <select class="ks-field" id="referenceTheme">
+                    {{theme:reference-options}}
+                </select>
+            </label>
+        </header>
+
+        <section aria-labelledby="cardsTitle">
+            <h2 id="cardsTitle">Elevation</h2>
+            <div class="reference-grid">
+                <article class="ks-card reference-card" data-elevation="none"><h3>None</h3><p>A surface without shadow.</p></article>
+                <article class="ks-card reference-card" data-elevation="subtle"><h3>Subtle</h3><p>A lightly raised surface.</p></article>
+                <article class="ks-card reference-card" data-elevation="raised"><h3>Raised</h3><p>A prominent card surface.</p></article>
+            </div>
+        </section>
+
+        <section aria-labelledby="actionsTitle">
+            <h2 id="actionsTitle">Actions</h2>
+            <div class="reference-actions">
+                <button class="ks-button" type="button" data-variant="primary">Primary</button>
+                <button class="ks-button" type="button" data-variant="outline">Outline</button>
+                <button class="ks-button" type="button" data-variant="ghost">Ghost</button>
+                <button class="ks-button" type="button" data-variant="primary" data-accent="discord">Discord</button>
+                <button class="ks-button" type="button" disabled>Disabled</button>
+            </div>
+        </section>
+
+        <section aria-labelledby="fieldsTitle">
+            <h2 id="fieldsTitle">Fields</h2>
+            <div class="reference-grid">
+                <label>Default<input class="ks-field" type="text" placeholder="Enter a value" /></label>
+                <label>Invalid<input class="ks-field" type="text" aria-invalid="true" value="Needs attention" /></label>
+                <label>Message<textarea class="ks-field" rows="3">A longer value.</textarea></label>
+            </div>
+        </section>
+    </main>
+    <script type="module" src="../reference.js"></script>
+</body>
+</html>
