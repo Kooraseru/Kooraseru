@@ -1,0 +1,71 @@
+name: Design package
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - design/**
+      - .github/workflows/design-package.yml
+  push:
+    branches: [main]
+    paths:
+      - design/**
+      - .github/workflows/design-package.yml
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Check package contents
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check package archive
+        working-directory: design
+        run: npm pack --dry-run --json > /tmp/design-pack.json
+      - name: Check required CSS entry points
+        run: |
+          node - <<'NODE'
+          const pack = require('/tmp/design-pack.json')[0];
+          const files = new Set(pack.files.map(file => file.path));
+          for (const path of ['core.css', 'home.css', 'service.css', 'components.css', 'themes/dark.css', 'themes/light.css', 'themes.toml']) {
+            if (!files.has(path)) throw new Error(`Missing from package: ${path}`);
+          }
+          NODE
+
+  publish:
+    name: Publish to GitHub Packages
+    needs: validate
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://npm.pkg.github.com
+          scope: '@kooraseru'
+      - name: Check release version and branch
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          PACKAGE_VERSION="$(node -p "require('./design/package.json').version")"
+          test "$RELEASE_TAG" = "design-v$PACKAGE_VERSION"
+          git fetch origin main
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main
+      - name: Publish package
+        working-directory: design
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm publish

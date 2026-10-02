@@ -1,0 +1,34 @@
+{
+  "name": "@kooraseru/design",
+  "version": "0.1.0",
+  "description": "Kooraseru web design tokens, themes, components, and page styles",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kooraseru/Kooraseru.git",
+    "directory": "design"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "*.css",
+    "themes/*.css",
+    "patterns/*.css",
+    "pages/*.css",
+    "themes.toml"
+  ],
+  "exports": {
+    ".": "./core.css",
+    "./core.css": "./core.css",
+    "./home.css": "./home.css",
+    "./service.css": "./service.css",
+    "./components.css": "./components.css",
+    "./foundation.css": "./foundation.css",
+    "./reset.css": "./reset.css",
+    "./themes/*": "./themes/*",
+    "./patterns/*": "./patterns/*",
+    "./pages/*": "./pages/*",
+    "./themes.toml": "./themes.toml"
+  }
+}

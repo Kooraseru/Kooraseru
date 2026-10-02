@@ -18,11 +18,11 @@ this website. Source files remain inspectable by concept; generated files stay
 under `.heap/`. Preserve the current Pages, Worker, and legal-page publication
 paths during migration.
 
-When another repository adopts the system, publish a versioned artifact from
-this source repository. Consumers pin an exact version and integrity value and
-copy the artifact during their build. Avoid a floating URL that changes the
-result of an unchanged commit. Package-manager distribution is optional until
-a consumer needs it.
+The `design/` directory now contains the versioned GitHub npm package
+`@kooraseru/design`. The `Design package` workflow validates its archive on
+normal changes and publishes on a matching `design-v<version>` GitHub release.
+Consumers should pin an exact package version. The website still builds from
+local source and does not depend on the package registry.
 
 ## Migration sequence
 
@@ -38,4 +38,3 @@ a consumer needs it.
 At each step, validate localization and the Lune site build; inspect dark and
 light themes, keyboard focus, narrow screens, and all existing public routes.
 Remove the old rule only after its replacement is used by every relevant page.
-

@@ -33,6 +33,28 @@ Public values are prefixed `--ks-`. Components consume semantic color roles;
 single theme registry is `themes.toml`; the Lune build validates pack roles and
 generates the browser's allowed theme names and the home selector options.
 
-Other projects can consume a versioned copy of this directory once a release
-artifact exists. This repository builds from its local source. No network
-download or package publication is part of the local build.
+## GitHub package
+
+`design/` is the npm package `@kooraseru/design`. This website still builds
+from these source files directly, so preview and Pages do not need a package
+registry or network download.
+
+To use a published version in another project, add this scope to that project's
+`.npmrc`:
+
+```ini
+@kooraseru:registry=https://npm.pkg.github.com
+```
+
+Then install an exact version, for example `npm install --save-exact
+@kooraseru/design@0.1.0`, and import `@kooraseru/design/core.css` or another
+entry point. GitHub Packages requires authentication to install npm packages,
+including public ones. Keep the token in your environment or CI secret, never
+in a committed `.npmrc`.
+
+To release a new version, update `package.json` and publish a GitHub release
+from `main` tagged `design-v<version>` (for example `design-v0.1.0`). The
+`Design package` workflow checks the archive and publishes that version to
+GitHub Packages. A normal push or pull request only validates it. GitHub makes
+a new package private by default; set its visibility to public in package
+settings if it should be available to everyone.
